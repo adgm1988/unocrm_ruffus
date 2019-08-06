@@ -67,7 +67,7 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="procedencia">Industria:</label>
-							<select class="custom-select" name="procedencia">
+							<select class="custom-select" name="industria">
 								@foreach($industrias as $industria)
 								<option value='{{ $industria->id }}'>{{ $industria->industria }}</option>
 								@endforeach
