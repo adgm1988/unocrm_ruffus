@@ -2,8 +2,6 @@
 @section('content')
 
 
-
-<h3 class='text-center'>{{ $prospecto->empresa }}</h3>
 <!-- Trigger the modal with a button -->
 
 @if ($errors->any())
@@ -120,33 +118,25 @@
 	</div>
 </form>
 
-<div class="table-responsive">
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>Empresa</th>
-				<th>Contacto</th>
-				<th>Teléfono</th>
-				<th>Correo</th>
-				<th>Procedencia</th>
-				<th>Valor</th>
-				<th>Estatus</th>
-				
-			</tr>
-		</thead>
-		<tr>	
-			<td>{{ $prospecto->empresa }}</td>		
-			<td>{{ $prospecto->contacto }}</td>		
-			<td>{{ $prospecto->telefono }}</td>		
-			<td>{{ $prospecto->correo }}</td>		
-			<td>{{ $prospecto->procedencias->procedencia }}</td>		
-			<td>${{ $prospecto->valor }}</td>		
-			<td>{{ $prospecto->etapas->etapa }}</td>
-
-		</tr>
-	</table>
+<div class="card mb-3">
+	<h5 class="card-header"> {{ $prospecto->empresa }} <span style="float:right;"><a href="/prospectos/{{ $prospecto->id }}/form"><button type="button" class="btn btn-info p-1 btn-sm mr-3">Editar prospecto</button></a></span></h5>
+	<div class="card-body">
+		<p class="card-text">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4"><span class="font-weight-bold">Contacto:</span> {{ $prospecto->contacto }}</div>
+					<div class="col-md-4" ><span class="font-weight-bold">Etapa: </span><span style="color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }}</span></div>
+					<div class="col-md-4"><span class="font-weight-bold">Procedencia:</span> {{ $prospecto->procedencia }}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4"><span class="font-weight-bold">Telefono:</span> {{ $prospecto->telefono }}</div>
+					<div class="col-md-4"><span class="font-weight-bold">Correo: </span>{{ $prospecto->correo }}</div>
+					<div class="col-md-4"><span class="font-weight-bold">Valor: </span>{{ $prospecto->valor }}</div>
+				</div>
+			</p>
+		</div>
+	</div>
 </div>
-
 
 
 <ul class="nav nav-tabs">
@@ -167,7 +157,6 @@
 				<th>Actividad</th>
 				<th>Fecha</th>
 				<th>Hora</th>
-				<th>Duración</th>
 				<th>Descripción</th>
 				<th>Resultado</th>
 			</tr>
@@ -175,14 +164,12 @@
 		@foreach($prospecto->actividades as $actividad)
 		<tr>		
 			<td nowrap>
-				<a href="#"><i class="far fa-eye"></i></a>&nbsp;
 				<a href="#" data-toggle="modal" data-target="#myModaledit" id="open"><i class="far fa-edit"></i></a>&nbsp;
 				<a onclick="return confirm('¿Estas seguro de quere eliminar esta actividad?')" href="actividades/delete/{{ $actividad->id }}"><i class="far fa-trash-alt"></i></a>
 			</td>	
-			<td>{{ $actividad->tiposdeact->tipo }}</td>		
+			<td style="color:{{ $actividad->tiposdeact->color }}">{{ $actividad->tiposdeact->tipo }}</td>		
 			<td nowrap>{{ $actividad->fecha }}</td>		
-			<td>{{ $actividad->hora }}</td>		
-			<td>{{ $actividad->duracion }}</td>		
+			<td>{{ $actividad->hora }}</td>			
 			<td>{{ $actividad->descripcion }}</td>		
 			<td>{{ $actividad->resultado }}</td>
 		</tr>

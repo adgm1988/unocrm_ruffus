@@ -21,12 +21,14 @@ class TipoactController extends Controller
     		'tipo'=> 'required',
     		'orden'=> 'required',
     		'color'=> 'required',
+            'color_realizada'=> 'required',
     	]);
 
     	$tipo = new Tipoact;
     	$tipo->tipo = $request->get('tipo');
     	$tipo->orden = $request->get('orden');
     	$tipo->color = $request->get('color');
+        $tipo->color_realizada = $request->get('color_realizada');
 
     	$tipo->save();
     	

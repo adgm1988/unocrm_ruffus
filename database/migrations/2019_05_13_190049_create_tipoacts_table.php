@@ -18,6 +18,7 @@ class CreateTipoactsTable extends Migration
             $table->string('tipo');
             $table->unsignedInteger('orden');
             $table->string('color');
+            $table->string('color_realizada');
             $table->timestamps();
         });
     }

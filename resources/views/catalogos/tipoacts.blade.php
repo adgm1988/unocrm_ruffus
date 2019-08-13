@@ -22,6 +22,7 @@
 				<th>Tipo</th>
 				<th>Orden</th>
 				<th>Color calendario</th>
+				<th>Color realizada</th>
 			</tr>
 		</thead>
 		@foreach($tipos as $tipo)
@@ -33,6 +34,7 @@
 			<td>{{ $tipo->tipo }}</td>
 			<td>{{ $tipo->orden }}</td>
 			<td><div style="text-align:center; border-radius:7px; padding:3px; border:1px solid black; color:black; background-color: {{ $tipo->color }} ">Test</div></td>
+			<td><div style="text-align:center; border-radius:7px; padding:3px; border:1px solid black; color:black; background-color: {{ $tipo->color_realizada }} ">Test</div></td>
 		</tr>
 		@endforeach
 	</table>
@@ -53,19 +55,23 @@
 				</div>
 				<div class="modal-body">
 					<div class="row">
-						<div class="form-group col-md-12">
+						<div class="form-group col-md-6">
 							<label for="empresa">Tipo de actividad:</label>
 							<input type="text" class="form-control" name="tipo">
 						</div>
-					</div>
-					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="telefono">Orden:</label>
 							<input type="text" class="form-control" name="orden">
 						</div>
+					</div>
+					<div class="row">
 						<div class="form-group col-md-6">
-							<label for="correo">Color calendario:</label>
-							<input type="color" class="form-control" name="color">
+							<label for="telefono">Color activa:</label>
+							<input type="text" class="form-control" name="color">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="correo">Color realizada:</label>
+							<input type="color" class="form-control" name="color_realizada">
 						</div>
 					</div>
 				</div>

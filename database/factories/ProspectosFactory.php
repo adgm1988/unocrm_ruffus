@@ -16,7 +16,8 @@ $factory->define(Prospecto::class, function (Faker $faker) {
 		'procedencia'=> $faker->numberBetween(1,7),
 		'industria'=> $faker->numberBetween(1,5),
 		'valor'=>$faker->randomFloat(2,0,100000),
-		'etapa'=>$faker->numberBetween(1,5)
+		'etapa'=>$faker->numberBetween(1,5),
+		'userid'=>$faker->numberBetween(1,5),
     ];
 });
 

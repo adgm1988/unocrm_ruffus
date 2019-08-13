@@ -20,6 +20,10 @@ class Prospecto extends Model
 		return $this->belongsTo('App\Etapa','etapa');
 	}
 
+	public function user(){
+		return $this->belongsTo('App\User','userid');
+	}
+
 	public function actividades(){
 		return $this->hasMany('App\Actividad','_prospectoid')->orderBy('fecha', 'DESC');
 	}

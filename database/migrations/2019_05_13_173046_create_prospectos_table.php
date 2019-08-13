@@ -23,6 +23,7 @@ class CreateProspectosTable extends Migration
             $table->unsignedInteger('industria');
             $table->double('valor');
             $table->unsignedInteger('etapa');
+            $table->unsignedInteger('userid');
             $table->timestamps();
         });
     }

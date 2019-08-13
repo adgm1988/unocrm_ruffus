@@ -19,7 +19,8 @@ class TipoactsSeeder extends Seeder
         	Tipoact::create([
         	'tipo'=>$tipo,
         	'orden'=>($key+1),
-        	'color'=>$faker->hexcolor
+        	'color'=>$faker->hexcolor,
+            'color_realizada'=>$faker->hexcolor
         ]);
         }
         

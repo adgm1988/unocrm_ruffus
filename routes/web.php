@@ -27,6 +27,10 @@ Route::get('prospectos','ProspectoController@index');
 Route::post('prospectos','ProspectoController@store');
 Route::get('prospectos/{id}','ProspectoController@show');
 Route::get('prospectos/delete/{id}','ProspectoController@destroy');
+
+Route::get('prospectos/{id}/form','ProspectoController@form');
+Route::post('prospectos/{id}','ProspectoController@update');
+
 Route::get('prospectos/actividades/delete/{id}','ProspectoController@destroyact');
 Route::post('prospecto/{id}/actividad','ActividadController@storeprosp');
 
