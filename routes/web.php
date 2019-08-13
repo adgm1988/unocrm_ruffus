@@ -63,4 +63,16 @@ Route::get('/industrias','IndustryController@index');
 Route::post('/industria','IndustryController@store');
 Route::get('industrias/delete/{id}','IndustryController@destroy');
 
+
+Route::get('etapas/{id}/form','EtapaController@form');
+Route::post('etapas/{id}','EtapaController@update');
+
+Route::get('tipoacts/{id}/form','TipoactController@form');
+Route::post('tipoacts/{id}','TipoactController@update');
+
+Route::get('procedencias/{id}/form','ProcedenciaController@form');
+Route::post('procedencias/{id}','ProcedenciaController@update');
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');

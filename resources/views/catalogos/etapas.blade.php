@@ -28,7 +28,7 @@
 		@foreach($etapas as $etapa)
 		<tr>
 			<td>
-				<a href="#" data-toggle="modal" data-target="#modaletapasedit" id="open"><i class="far fa-edit"></i></a>&nbsp;
+				<a href="/etapas/{{ $etapa->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
 				<a href="/etapas/delete/{{ $etapa->id }}"><i class="far fa-trash-alt"></i></a>
 			</td>
 			<td>{{ $etapa->etapa }}</td>

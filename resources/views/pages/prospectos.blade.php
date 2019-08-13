@@ -106,13 +106,13 @@
 			<tr>
 				<th></th>
 				<th>Empresa</th>
+                <th>Estatus</th>
 				<th>Contacto</th>
 				<th>Teléfono</th>
 				<th>Correo</th>
 				<th>Procedencia</th>
 				<th>Industria</th>
-				<th>Valor</th>
-				<th>Estatus</th>				
+				<th>Valor</th>								
 				<th>Responsable</th>				
 			</tr>
 		</thead>
@@ -124,14 +124,14 @@
 				<a href="/prospectos/delete/{{ $prospecto->id }}"><i class="far fa-trash-alt"></i></a>
 				<a href="#"><i class="far fa-comments"></i></a>
 			</td>
-			<td nowrap>{{ $prospecto->empresa }}</td>		
+			<td nowrap>{{ $prospecto->empresa }}</td>	     
+            <td> <div style="border-radius: 10px; font-weight:bold; text-align:center; width:100px; height:30px; border:1px solid black; background-color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }} </div></td>    	
 			<td nowrap>{{ $prospecto->contacto }}</td>		
 			<td>{{ $prospecto->telefono }}</td>		
 			<td>{{ $prospecto->correo }}</td>		
 			<td>{{ $prospecto->procedencias->procedencia }}</td>		
 			<td>{{ $prospecto->industrias->industria }}</td>		
 			<td>${{ $prospecto->valor }}</td>		
-			<td>{{ $prospecto->etapas->etapa }}</td>	
 			<td>{{ $prospecto->user->name }}</td>	
 		</tr>
 		@endforeach

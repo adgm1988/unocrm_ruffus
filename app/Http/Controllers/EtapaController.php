@@ -32,6 +32,28 @@ class EtapaController extends Controller
         return redirect()->back();
     }
 
+    function update(Request $request, $id){
+        $validated = $request->validate([
+            'etapa'=> 'required',
+            'orden'=> 'required',
+            'color'=> 'required',
+        ]);
+
+        $etapa = Etapa::find($id);
+        $etapa->etapa = $request->get('etapa');
+        $etapa->orden = $request->get('orden');
+        $etapa->color = $request->get('color');
+
+        $etapa->save();
+    
+        return redirect('/etapas');
+    }
+
+    function form($id){
+        $etapa = Etapa::find($id);
+        return view('pages.etapas_edit',compact('etapa'));
+    }
+
     function destroy($id){
     	$etapa = Etapa::find($id);
 

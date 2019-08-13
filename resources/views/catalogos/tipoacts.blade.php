@@ -28,7 +28,7 @@
 		@foreach($tipos as $tipo)
 		<tr>
 			<td>
-				<a href="#" data-toggle="modal" data-target="#myModal" id="open"><i class="far fa-edit"></i></a>&nbsp;
+				<a href="/tipoacts/{{ $tipo->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
 				<a href="/tipos/delete/{{ $tipo->id }}"><i class="far fa-trash-alt"></i></a>
 			</td>
 			<td>{{ $tipo->tipo }}</td>
@@ -66,11 +66,11 @@
 					</div>
 					<div class="row">
 						<div class="form-group col-md-6">
-							<label for="telefono">Color activa:</label>
-							<input type="text" class="form-control" name="color">
+							<label for="color">Color activa:</label>
+							<input type="color" class="form-control" name="color">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="correo">Color realizada:</label>
+							<label for="color_realizada">Color realizada:</label>
 							<input type="color" class="form-control" name="color_realizada">
 						</div>
 					</div>

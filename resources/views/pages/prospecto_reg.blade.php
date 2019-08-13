@@ -125,8 +125,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4"><span class="font-weight-bold">Contacto:</span> {{ $prospecto->contacto }}</div>
-					<div class="col-md-4" ><span class="font-weight-bold">Etapa: </span><span style="color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }}</span></div>
-					<div class="col-md-4"><span class="font-weight-bold">Procedencia:</span> {{ $prospecto->procedencia }}</div>
+					<div class="col-md-4" ><span class="font-weight-bold">Etapa: </span><span style="border-radius: 10px; font-weight:bold; text-align:center; padding:3px; height:30px; border:1px solid black; background-color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }} </span></div>
+					<div class="col-md-4"><span class="font-weight-bold">Procedencia:</span> {{ $prospecto->procedencias->procedencia }}</div>
 				</div>
 				<div class="row">
 					<div class="col-md-4"><span class="font-weight-bold">Telefono:</span> {{ $prospecto->telefono }}</div>

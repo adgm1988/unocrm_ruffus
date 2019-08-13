@@ -28,7 +28,6 @@ class ActividadController extends Controller
     		'hora'=>'required',
             'duracion'=>'required',
     		'descripcion'=>'required',
-    		'resultado'=>'required',
     	]);
 
     	$actividad = new Actividad;

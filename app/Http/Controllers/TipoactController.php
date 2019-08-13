@@ -35,6 +35,30 @@ class TipoactController extends Controller
         return redirect()->back();
     }
 
+    function update(Request $request, $id){
+        $validated = $request->validate([
+            'tipo'=> 'required',
+            'orden'=> 'required',
+            'color'=> 'required',
+            'color_realizada'=> 'required',
+        ]);
+
+        $tipo = Tipoact::find($id);
+        $tipo->tipo = $request->get('tipo');
+        $tipo->orden = $request->get('orden');
+        $tipo->color = $request->get('color');
+        $tipo->color_realizada = $request->get('color_realizada');
+
+        $tipo->save();
+        
+        return redirect('/tipoacts');
+    }
+
+    function form($id){
+        $tipo = Tipoact::find($id);
+        return view('pages.tipoact_edit',compact('tipo'));
+    }
+
     function destroy($id){
     	$etapa = Tipoact::find($id);
 
