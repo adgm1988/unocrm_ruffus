@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Actividad;
 use App\Tipoact;
 use App\Prospecto;
+use App\Bitacora;
 
 class ActividadController extends Controller
 {
@@ -39,6 +40,15 @@ class ActividadController extends Controller
     	$actividad->descripcion = $request->get('descripcion');
     	$actividad->resultado = $request->get('resultado');
 
+        $bitacora = new Bitacora;
+        $bitacora->prospecto_id = $actividad->_prospectoid;
+        $bitacora->fecha = date('Y-m-d');
+        $bitacora->tipo = "Nueva ".$actividad->tiposdeact->tipo." id:".$actividad->id;
+        $bitacora->user_id = auth()->user()->id;
+        $bitacora->nota = $actividad->descripcion. " con resultado: ".$actividad->resultado;
+
+
+        $bitacora->save();
 
     	$actividad->save();
 
@@ -91,8 +101,17 @@ class ActividadController extends Controller
         $actividad->descripcion = $request->get('descripcion');
         $actividad->resultado = $request->get('resultado');
 
-
         $actividad->save();
+
+        $bitacora = new Bitacora;
+        $bitacora->prospecto_id = $actividad->_prospectoid;
+        $bitacora->fecha = date('Y-m-d');
+        $bitacora->tipo = "Nueva ".$actividad->tiposdeact->tipo." id:".$actividad->id;
+        $bitacora->user_id = auth()->user()->id;
+        $bitacora->nota = $actividad->descripcion. " con resultado: ".$actividad->resultado;
+
+
+        $bitacora->save();
 
         return back();
 
@@ -117,8 +136,16 @@ class ActividadController extends Controller
         $actividad->descripcion = $request->get('descripcion');
         $actividad->resultado = $request->get('resultado');
 
-
         $actividad->save();
+
+        $bitacora = new Bitacora;
+        $bitacora->prospecto_id = $actividad->_prospectoid;
+        $bitacora->fecha = date('Y-m-d');
+        $bitacora->tipo = "Actualización de ".$actividad->tiposdeact->tipo." id:".$actividad->id;
+        $bitacora->user_id = auth()->user()->id;
+        $bitacora->nota = $actividad->descripcion. " con resultado: ".$actividad->resultado;
+
+        $bitacora->save();
 
         return redirect('/actividades');
 

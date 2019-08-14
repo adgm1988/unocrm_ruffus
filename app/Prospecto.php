@@ -17,7 +17,7 @@ class Prospecto extends Model
 	}
 
 	public function etapas(){
-		return $this->belongsTo('App\Etapa','etapa');
+		return $this->belongsTo('App\Etapa','etapa_id');
 	}
 
 	public function user(){
@@ -26,6 +26,10 @@ class Prospecto extends Model
 
 	public function actividades(){
 		return $this->hasMany('App\Actividad','_prospectoid')->orderBy('fecha', 'DESC');
+	}
+
+	public function bitacoras(){
+		return $this->hasMany('App\Bitacora','prospecto_id')->orderBy('fecha', 'DESC');
 	}
 
 	public function getSemaforoAttribute(){
@@ -38,11 +42,11 @@ class Prospecto extends Model
 		}
 
 		if($fecha_sig_act == null){
-			return "gray";
+			return "#C4C4C4"; //gris
 		}elseif ($fecha_sig_act < date('Y-m-d')){
-			return "red";
+			return "#FF0C00"; //rojo
 		}else{
-			return "green";
+			return "#40CA00"; //verde
 		}
 	}
 }

@@ -37,7 +37,7 @@
 							<label for="actividad">Actividad:</label>
 							<select class="custom-select" name="actividad">
 								@foreach($tipos as $tipo)
-									<option value='{{ $tipo->id }}'>{{ $tipo->tipo }}</option>
+								<option value='{{ $tipo->id }}'>{{ $tipo->tipo }}</option>
 								@endforeach
 							</select>
 						</div>
@@ -118,14 +118,60 @@
 	</div>
 </form>
 
+
+<!--Modal cambio de estatus--->
+<form method="post" action="{{url('/prospecto/'.$prospecto->id.'/etapa')}}" id="form">
+	@csrf
+
+	<!-- Modal agregar -->
+	<div class="modal" tabindex="-1" role="dialog" id="modalestatus">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="alert alert-danger" style="display:none"></div>
+				<div class="modal-header">
+
+					<h5 class="modal-title">Estatus</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label for="actividad">Estatus:</label>
+							<select class="custom-select" name="etapa">
+								@foreach($etapas as $etapa)
+								<option {{ $etapa->id === $prospecto->etapas->id ? "selected" : "" }} value='{{ $etapa->id }}'>{{ $etapa->etapa }}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+						<button  class="btn btn-success" >Guardar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+
+
 <div class="card mb-3">
-	<h5 class="card-header"> {{ $prospecto->empresa }} <span style="float:right;"><a href="/prospectos/{{ $prospecto->id }}/form"><button type="button" class="btn btn-info p-1 btn-sm mr-3">Editar prospecto</button></a></span></h5>
+	<h5 class="card-header"> <i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }}  <span style="float:right;"><a href="/prospectos/{{ $prospecto->id }}/form"><button type="button" class="btn btn-info p-1 btn-sm mr-3">Editar prospecto</button></a></span></h5>
 	<div class="card-body">
 		<p class="card-text">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-4"><span class="font-weight-bold">Contacto:</span> {{ $prospecto->contacto }}</div>
-					<div class="col-md-4" ><span class="font-weight-bold">Etapa: </span><span style="border-radius: 10px; font-weight:bold; text-align:center; padding:3px; height:30px; border:1px solid black; background-color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }} </span></div>
+				<div class="row mb-3">
+					<div class="col-md-4"><span class="font-weight-bold">Contacto:</span> {{ $prospecto->contacto }} </div>
+					<div class="col-md-4" ><span class="font-weight-bold">Etapa: </span>
+						<button type="button" class="p-2 btn-sm" style="border-radius: 13px; font-weight:bold; text-align:center; height:30px; border:1px solid black; padding:3px 15px 3px 15px !important; background-color: {{ $prospecto->etapas->color }}"  data-toggle="modal" data-target="#modalestatus" id="open">
+							{{ $prospecto->etapas->etapa }} 
+							
+						</button>
+					</div>
 					<div class="col-md-4"><span class="font-weight-bold">Procedencia:</span> {{ $prospecto->procedencias->procedencia }}</div>
 				</div>
 				<div class="row">
@@ -139,43 +185,64 @@
 </div>
 
 
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Actividades</a>
-  </li>
-  <!--<li class="nav-item">
-    <a class="nav-link" href="#">Bitácora</a>
-  </li>-->
-</ul>
-
-
+<nav>
+	<div class="nav nav-tabs" id="nav-tab" role="tablist">
+		<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Actividad</a>
+		<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Bitácora</a>
+	</div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+	<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+		<div class="table-sm table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th><button type="button" class="btn btn-info p-1 btn-sm" data-toggle="modal" data-target="#modalactividad" id="open">Agregar</button></th>
+						<th>Actividad</th>
+						<th>Fecha</th>
+						<th>Hora</th>
+						<th>Descripción</th>
+						<th>Resultado</th>
+					</tr>
+				</thead>
+				@foreach($prospecto->actividades as $actividad)
+				<tr>		
+					<td nowrap>
+						<a href="/actividad/{{ $actividad->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
+						<a onclick="return confirm('¿Estas seguro de quere eliminar esta actividad?')" href="actividades/delete/{{ $actividad->id }}"><i class="far fa-trash-alt"></i></a>
+					</td>	
+					<td style="color:{{ $actividad->tiposdeact->color }}">{{ $actividad->tiposdeact->tipo }}</td>		
+					<td nowrap>{{ $actividad->fecha }}</td>		
+					<td>{{ $actividad->hora }}</td>			
+					<td>{{ $actividad->descripcion }}</td>		
+					<td>{{ $actividad->resultado }}</td>
+				</tr>
+				@endforeach
+			</table>
+		</div>
+	</div>
+	<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 <div class="table-sm table-responsive">
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th><button type="button" class="btn btn-info p-1 btn-sm" data-toggle="modal" data-target="#modalactividad" id="open">Agregar</button></th>
-				<th>Actividad</th>
-				<th>Fecha</th>
-				<th>Hora</th>
-				<th>Descripción</th>
-				<th>Resultado</th>
-			</tr>
-		</thead>
-		@foreach($prospecto->actividades as $actividad)
-		<tr>		
-			<td nowrap>
-				<a href="/actividad/{{ $actividad->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
-				<a onclick="return confirm('¿Estas seguro de quere eliminar esta actividad?')" href="actividades/delete/{{ $actividad->id }}"><i class="far fa-trash-alt"></i></a>
-			</td>	
-			<td style="color:{{ $actividad->tiposdeact->color }}">{{ $actividad->tiposdeact->tipo }}</td>		
-			<td nowrap>{{ $actividad->fecha }}</td>		
-			<td>{{ $actividad->hora }}</td>			
-			<td>{{ $actividad->descripcion }}</td>		
-			<td>{{ $actividad->resultado }}</td>
-		</tr>
-		@endforeach
-	</table>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Fecha</th>
+						<th>Tipo</th>
+						<th>Nota</th>
+						<th>Usuario</th>
+					</tr>
+				</thead>
+				@foreach($prospecto->bitacoras as $bitacora)
+				<tr>		
+					<td nowrap>{{ $bitacora->fecha }}</td>
+					<td>{{ $bitacora->tipo }}</td>
+					<td>{{ $bitacora->nota }}</td>
+					<td>{{ $bitacora->user->name }}</td>
+				</tr>
+				@endforeach
+			</table>
+		</div>
+	</div>
 </div>
-
 
 @endsection

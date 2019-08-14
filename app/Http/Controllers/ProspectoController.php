@@ -9,6 +9,7 @@ use App\Etapa;
 use App\Actividad;
 use App\Tipoact;
 use App\Industry;
+use App\Bitacora;
 
 class ProspectoController extends Controller
 {
@@ -46,11 +47,22 @@ class ProspectoController extends Controller
     	$prospecto->correo = $request->get('correo');
     	$prospecto->procedencia = $request->get('procedencia');
         $prospecto->industria = $request->get('industria');
-        $prospecto->etapa = $request->get('etapa');
+        $prospecto->etapa_id = $request->get('etapa');
     	$prospecto->valor = $request->get('valor');    
         $prospecto->userid = auth()->user()->id;
 
     	$prospecto->save();
+
+        $bitacora = new Bitacora;
+        $bitacora->prospecto_id = $prospecto->id;
+        $bitacora->fecha = date('Y-m-d');
+        $bitacora->tipo = "Nuevo prospecto";
+        $bitacora->user_id = auth()->user()->id;
+        $bitacora->nota = "Creación de prospecto";
+
+
+        $bitacora->save();
+
 
     	return redirect('prospectos');
     }
@@ -79,11 +91,21 @@ class ProspectoController extends Controller
         $prospecto->correo = $request->get('correo');
         $prospecto->procedencia = $request->get('procedencia');
         $prospecto->industria = $request->get('industria');
-        $prospecto->etapa = $request->get('etapa');
+        $prospecto->etapa_id = $request->get('etapa');
         $prospecto->valor = $request->get('valor');
         $prospecto->userid = auth()->user()->id;
 
         $prospecto->save();
+
+        $bitacora = new Bitacora;
+        $bitacora->prospecto_id = $prospecto->id;
+        $bitacora->fecha = date('Y-m-d');
+        $bitacora->tipo = "Edicion de prospecto";
+        $bitacora->user_id = auth()->user()->id;
+        $bitacora->nota = "Se edito la información general del prospecto";
+
+
+        $bitacora->save();
 
         $tipos = Tipoact::all();
         return view ('pages.prospecto_reg',compact('prospecto','tipos'));
@@ -111,13 +133,31 @@ class ProspectoController extends Controller
     function show($id){
         $prospecto = Prospecto::find($id);
         $tipos = Tipoact::all();
-        return view ('pages.prospecto_reg',compact('prospecto','tipos'));
+        $etapas = Etapa::all();
+        return view ('pages.prospecto_reg',compact('prospecto','tipos','etapas'));
     }
 
     function destroyact($id){
         $actividad = Actividad::find($id);
         $actividad->delete();
         return back();
+    }
+
+    function cambioetapa($id, Request $request){
+        $prospecto = Prospecto::find($id);
+        $prospecto->etapa_id = $request->get('etapa');
+        $prospecto->save();
+
+        $bitacora = new Bitacora;
+        $bitacora->prospecto_id = $prospecto->id;
+        $bitacora->fecha = date('Y-m-d');
+        $bitacora->tipo = "Cambio de etapa";
+        $bitacora->user_id = auth()->user()->id;
+        $bitacora->nota = "Se cambió la etapa de prospecto a ".$prospecto->etapas->etapa;
+
+        $bitacora->save();
+
+         return redirect('/prospectos/'.$id);
     }
 
 }

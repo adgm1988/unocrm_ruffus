@@ -31,6 +31,12 @@
           <span>Actividades</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/bitacoras">
+          <i class="fas fa-fw fa-tasks"></i>
+          <span>Bitácoras</span>
+        </a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>

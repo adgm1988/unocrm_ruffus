@@ -11,7 +11,6 @@ class IndustryController extends Controller
     function index(){
         $industrias = Industry::all();
         $industrias = $industrias->sortBy('orden');
-
         return view('catalogos.industrias',compact('industrias'));
     }
 
@@ -20,16 +19,11 @@ class IndustryController extends Controller
     		'industria'=> 'required',
     		'orden'=> 'required',
     	]);
-
     	$industria = new Industry;
     	$industria->industria = $request->get('industria');
     	$industria->orden = $request->get('orden');
-    	//dd($industria);
-
     	$industria->save();
-
     	return redirect()->back();
-
     }
 
     function update(Request $request, $id){
@@ -41,12 +35,8 @@ class IndustryController extends Controller
         $industria = Industry::find($id);
         $industria->industria = $request->get('industria');
         $industria->orden = $request->get('orden');
-        //dd($industria);
-
         $industria->save();
-
         return redirect('/industrias');
-
     }
 
     function form($id){
@@ -56,10 +46,7 @@ class IndustryController extends Controller
 
     function destroy($id){
     	$industria = Industry::find($id);
-
     	$industria->delete();
-
     	return redirect()->back();
-
     }
 }

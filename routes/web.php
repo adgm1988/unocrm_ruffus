@@ -33,14 +33,14 @@ Route::post('prospectos/{id}','ProspectoController@update');
 
 Route::get('prospectos/actividades/delete/{id}','ProspectoController@destroyact');
 Route::post('prospecto/{id}/actividad','ActividadController@storeprosp');
-
-
-
+Route::post('prospecto/{id}/etapa','ProspectoController@cambioetapa');
 
 Route::get('actividades','ActividadController@index');
 Route::post('actividades','ActividadController@store');
 Route::post('actividadescal','ActividadController@storecal');
 Route::get('actividades/delete/{actividad}','ActividadController@destroy');
+
+Route::get('bitacoras','BitacoraController@index');
 
 Auth::routes();
 

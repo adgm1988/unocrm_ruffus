@@ -10,7 +10,8 @@ class DashboardController extends Controller
 {
     //
     function index(){
-    	$etapas = Etapa::all();
+    	//$etapas = Etapa::all();
+    	$etapas = Etapa::withCount('prospectos')->get(); //on esto ya saco la cantidad de propsectos por etapa
 
     	$etapas = $etapas->sortBy('orden');
     	$prospectos = Prospecto::all();
