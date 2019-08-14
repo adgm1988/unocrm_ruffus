@@ -27,4 +27,22 @@ class Prospecto extends Model
 	public function actividades(){
 		return $this->hasMany('App\Actividad','_prospectoid')->orderBy('fecha', 'DESC');
 	}
+
+	public function getSemaforoAttribute(){
+		$siguiente_act = $this->actividades->where('resultado','=','')->first();
+		
+		if($siguiente_act!=''){
+			$fecha_sig_act = $siguiente_act->fecha;
+		}else{
+			$fecha_sig_act = null;
+		}
+
+		if($fecha_sig_act == null){
+			return "gray";
+		}elseif ($fecha_sig_act < date('Y-m-d')){
+			return "red";
+		}else{
+			return "green";
+		}
+	}
 }

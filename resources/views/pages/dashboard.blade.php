@@ -44,7 +44,7 @@
 						<div><span style="font-size:12px; font-weight:bold;">{{ $prospecto->empresa }}</span> <span style="color:gray; font-size: 9px; float:right;">${{ $prospecto->valor }}</span></div>
 						<div style="clear:both"></div>
 						<hr style="margin:0px;">
-						<div><span style="font-size:10px; font-weight:bold;">{{ $prospecto->contacto }}</span> <span style="color:{{ $etapa->color }}; font-size: 16px; float:right;"><i class="far fa-arrow-alt-circle-right"></i></span></div>
+						<div><span style="font-size:10px; font-weight:bold;">{{ $prospecto->contacto }}</span> <span style="color:{{ $prospecto->semaforo }}; font-size: 16px; float:right;"><i class="far fa-arrow-alt-circle-right"></i></span></div>
 						<div style="clear:both"></div>
 					</div>
 

@@ -164,7 +164,7 @@
 		@foreach($prospecto->actividades as $actividad)
 		<tr>		
 			<td nowrap>
-				<a href="#" data-toggle="modal" data-target="#myModaledit" id="open"><i class="far fa-edit"></i></a>&nbsp;
+				<a href="/actividad/{{ $actividad->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
 				<a onclick="return confirm('¿Estas seguro de quere eliminar esta actividad?')" href="actividades/delete/{{ $actividad->id }}"><i class="far fa-trash-alt"></i></a>
 			</td>	
 			<td style="color:{{ $actividad->tiposdeact->color }}">{{ $actividad->tiposdeact->tipo }}</td>		

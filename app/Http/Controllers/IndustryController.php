@@ -21,8 +21,6 @@ class IndustryController extends Controller
     		'orden'=> 'required',
     	]);
 
-
-
     	$industria = new Industry;
     	$industria->industria = $request->get('industria');
     	$industria->orden = $request->get('orden');
@@ -32,8 +30,28 @@ class IndustryController extends Controller
 
     	return redirect()->back();
 
+    }
 
+    function update(Request $request, $id){
+        $validated = $request->validate([
+            'industria'=> 'required',
+            'orden'=> 'required',
+        ]);
 
+        $industria = Industry::find($id);
+        $industria->industria = $request->get('industria');
+        $industria->orden = $request->get('orden');
+        //dd($industria);
+
+        $industria->save();
+
+        return redirect('/industrias');
+
+    }
+
+    function form($id){
+        $industria = Industry::find($id);
+        return view('pages.industria_edit', compact('industria'));
     }
 
     function destroy($id){

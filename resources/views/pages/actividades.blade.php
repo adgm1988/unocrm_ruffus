@@ -152,8 +152,7 @@
 		@foreach($actividades as $actividad)
 		<tr>		
 			<td nowrap>
-				<a href="#"><i class="far fa-eye"></i></a>&nbsp;
-				<a href="#" data-toggle="modal" data-target="#myModaledit" id="open"><i class="far fa-edit"></i></a>&nbsp;
+				<a href="/actividad/{{ $actividad->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
 				<a href="actividades/delete/{{ $actividad->id }}"><i class="far fa-trash-alt"></i></a>
 			</td>
 			<td>{{ $actividad->prospecto->empresa }}</td>		

@@ -73,6 +73,11 @@ Route::post('tipoacts/{id}','TipoactController@update');
 Route::get('procedencias/{id}/form','ProcedenciaController@form');
 Route::post('procedencias/{id}','ProcedenciaController@update');
 
+Route::get('actividad/{id}/form','ActividadController@form');
+Route::post('actividad/{id}','ActividadController@update');
+
+Route::get('industria/{id}/form','IndustryController@form');
+Route::post('industria/{id}','IndustryController@update');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

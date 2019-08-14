@@ -26,7 +26,7 @@
 		@foreach($industrias as $industria)
 		<tr>
 			<td>
-				<a href="#" data-toggle="modal" data-target="#myModal" id="open"><i class="far fa-edit"></i></a>&nbsp;
+				<a href="/industria/{{ $industria->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
 				<a href="/industrias/delete/{{ $industria->id }}"><i class="far fa-trash-alt"></i></a>
 			</td>
 			<td>{{ $industria->industria }}</td>

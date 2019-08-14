@@ -54,7 +54,6 @@ class ActividadController extends Controller
             'hora'=>'required',
             'duracion'=>'required',
             'descripcion'=>'required',
-            'resultado'=>'required',
         ]);
 
         $actividad = new Actividad;
@@ -96,6 +95,40 @@ class ActividadController extends Controller
         $actividad->save();
 
         return back();
+
+    }
+
+
+     function update(Request $request, $id){
+
+        $validated= $request->validate([
+            'actividad'=>'required',
+            'fecha'=>'required',
+            'hora'=>'required',
+            'duracion'=>'required',
+            'descripcion'=>'required'
+        ]);
+
+        $actividad = Actividad::find($id);
+        $actividad->_tipoactid = $request->get('actividad');
+        $actividad->fecha = $request->get('fecha');
+        $actividad->hora = $request->get('hora');
+        $actividad->duracion = $request->get('duracion');
+        $actividad->descripcion = $request->get('descripcion');
+        $actividad->resultado = $request->get('resultado');
+
+
+        $actividad->save();
+
+        return redirect('/actividades');
+
+    }
+
+    function form($id){
+        $prospectos = Prospecto::all();
+        $actividad = Actividad::find($id);
+        $tipos = Tipoact::all();
+        return view('pages.actividad_edit',compact('actividad','tipos','prospectos'));
 
     }
 
