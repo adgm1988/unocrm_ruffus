@@ -85,7 +85,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="valor">Valor de oportunidad:</label>
-                            <input type="number" class="form-control" name="valor">
+                            <input type="number" step=".01" class="form-control" name="valor">
                         </div>
                     </div>
                     <div class="modal-footer">

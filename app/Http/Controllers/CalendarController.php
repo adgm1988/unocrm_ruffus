@@ -39,6 +39,7 @@ class CalendarController extends Controller
 				$actividad->id,
 				[
 					'color' => $color,
+					//'borderColor' => $actividad->prospecto->semaforo,
 					'url' => 'prospectos/'.$actividad->prospecto->id,
 					'description' => $actividad->descripcion,
 					//'editable' => true
