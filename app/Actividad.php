@@ -26,4 +26,18 @@ class Actividad extends Model
     	}
     	
     }
+
+    public function getSemaforoAttribute(){
+        $fecha = $this->fecha;
+        $realizada = $this->resultado ? 1: 0;
+
+        if($realizada === 1){
+            return "#C4C4C4"; //gris
+        }elseif($fecha < date('Y-m-d')){
+            return "#FF0C00"; //rojo
+        }else{
+            return "#40CA00"; //verde
+        }   
+
+    }
 }

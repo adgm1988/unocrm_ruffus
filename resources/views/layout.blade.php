@@ -37,7 +37,7 @@
         <div class="container-fluid">
           @yield('content')
         </div>
-        @include('components/footer')
+        <!--@include('components/footer')-->
       </div>
 
     </div>

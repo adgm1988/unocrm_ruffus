@@ -167,8 +167,8 @@
 				<div class="row mb-3">
 					<div class="col-md-4"><span class="font-weight-bold">Contacto:</span> {{ $prospecto->contacto }} </div>
 					<div class="col-md-4" ><span class="font-weight-bold">Etapa: </span>
-						<button type="button" class="p-2 btn-sm" style="border-radius: 13px; font-weight:bold; text-align:center; height:30px; border:1px solid black; padding:3px 15px 3px 15px !important; background-color: {{ $prospecto->etapas->color }}"  data-toggle="modal" data-target="#modalestatus" id="open">
-							{{ $prospecto->etapas->etapa }} 
+						<button type="button" class="ml-2 p-2 btn-sm" style="border-radius: 13px; font-weight:bold; text-align:center; height:30px; border:1px solid black; padding:3px 15px 3px 15px !important; background-color: {{ $prospecto->etapas->color }}"  data-toggle="modal" data-target="#modalestatus" id="open">
+							{{ $prospecto->etapas->etapa }} <i class="ml-2 fas fa-sync-alt"></i>
 							
 						</button>
 					</div>
@@ -177,7 +177,7 @@
 				<div class="row">
 					<div class="col-md-4"><span class="font-weight-bold">Telefono:</span> {{ $prospecto->telefono }}</div>
 					<div class="col-md-4"><span class="font-weight-bold">Correo: </span>{{ $prospecto->correo }}</div>
-					<div class="col-md-4"><span class="font-weight-bold">Valor: </span>{{ $prospecto->valor }}</div>
+					<div class="col-md-4"><span class="font-weight-bold">Valor: </span>$ {{ number_format($prospecto->valor,2,".",",") }}</div>
 				</div>
 			</p>
 		</div>
@@ -211,7 +211,7 @@
 						<a href="/actividad/{{ $actividad->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
 						<a onclick="return confirm('¿Estas seguro de quere eliminar esta actividad?')" href="actividades/delete/{{ $actividad->id }}"><i class="far fa-trash-alt"></i></a>
 					</td>	
-					<td style="color:{{ $actividad->tiposdeact->color }}">{{ $actividad->tiposdeact->tipo }}</td>		
+					<td style="color:{{ $actividad->semaforo }}">{{ $actividad->tiposdeact->tipo }}</td>		
 					<td nowrap>{{ $actividad->fecha }}</td>		
 					<td>{{ $actividad->hora }}</td>			
 					<td>{{ $actividad->descripcion }}</td>		

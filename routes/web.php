@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('prospectos/actividades/delete/{id}','ProspectoController@destroyact');
 	Route::post('prospecto/{id}/actividad','ActividadController@storeprosp');
 	Route::post('prospecto/{id}/etapa','ProspectoController@cambioetapa');
+	Route::post('prospectosearch','ProspectoController@search');
 
 	Route::get('actividades','ActividadController@index');
 	Route::post('actividades','ActividadController@store');

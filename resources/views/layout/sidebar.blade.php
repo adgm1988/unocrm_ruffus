@@ -1,5 +1,5 @@
  <!-- Sidebar -->
-    <ul class="sidebar navbar-nav sticky-top">
+    <ul class="sidebar navbar-nav static-top" >
 
       <li class="nav-item">
         <a class="nav-link" href="/dashboard">
@@ -33,7 +33,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/bitacoras">
-          <i class="fas fa-fw fa-tasks"></i>
+          <i class="fas fa-archive"></i>
           <span>Bitácoras</span>
         </a>
       </li>

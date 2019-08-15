@@ -3,9 +3,9 @@
 
 
 
+<button style="float:left;" type="button" class="btn btn-info btn-sm mb-2" data-toggle="modal" data-target="#modalactividad" id="open">Agregar actividad</button>
 <h3 class='text-center'>Agenda de actividades</h3>
-<!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-sm mb-2" data-toggle="modal" data-target="#modalactividad" id="open">Agregar actividad</button>
+
 
 @if ($errors->any())
     <div class="alert alert-danger">

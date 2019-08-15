@@ -19,8 +19,39 @@ class ProspectoController extends Controller
         $procedencias = Procedencia::all();
         $etapas = Etapa::all();
         $industrias = Industry::all();
-		return view('pages.prospectos',compact('prospectos','procedencias','etapas','industrias'));
+        $filtro='';
+		return view('pages.prospectos',compact('prospectos','procedencias','etapas','industrias','filtro'));
 	}
+
+    function search(Request $request){
+        $campo = $request->get('campo');
+        $valor = $request->get('valor');
+        $condicion = $request->get('condicion');
+
+        switch ($condicion){
+            case "contiene":  // if $var == "x"
+                $prospectos = Prospecto::where($campo,'like','%'.$valor.'%')->paginate(30);
+                $condicion_texto= "contiene";
+                break;
+            case "mayor":  // if $var == "y"
+                $prospectos = Prospecto::where($campo,'>',$valor)->paginate(30);
+                $condicion_texto= "es mayor que";
+                break;
+            case "menor":  // if $var == "y"
+                $prospectos = Prospecto::where($campo,'<',$valor)->paginate(30);
+                $condicion_texto= "es menor que";
+                break;
+            default:  // if $var != "x" && != "y"
+                $prospectos = Prospecto::paginate(30);
+                break;
+       }
+
+        $procedencias = Procedencia::all();
+        $etapas = Etapa::all();
+        $industrias = Industry::all();
+        $filtro = ucfirst($campo)." ".$condicion_texto." ". $valor;
+        return view('pages.prospectos',compact('prospectos','procedencias','etapas','industrias','filtro'));
+    }
 
     function store(Request $request)
     {
