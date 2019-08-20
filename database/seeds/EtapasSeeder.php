@@ -18,6 +18,7 @@ class EtapasSeeder extends Seeder
         	Etapa::create([
         	'etapa'=>$etapa,
         	'orden'=>($key+1),
+            'dias'=>$faker->numberBetween(2,25),
         	'color'=>$faker->hexcolor
         ]);
         }

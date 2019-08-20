@@ -21,6 +21,7 @@
 			<tr>
 				<th></th>
 				<th>Etapa</th>
+				<th>Días</th>
 				<th>Orden</th>
 				<th>Color</th>
 			</tr>
@@ -32,6 +33,7 @@
 				<a href="/etapas/delete/{{ $etapa->id }}"><i class="far fa-trash-alt"></i></a>
 			</td>
 			<td>{{ $etapa->etapa }}</td>
+			<td>{{ $etapa->dias }}</td>
 			<td>{{ $etapa->orden }}</td>
 			<td><div style="text-align:center; border-radius:7px; padding:3px; border:1px solid black; color:white; background-color: {{ $etapa->color }} ">Test</div></td>
 		</tr>
@@ -55,9 +57,13 @@
 				</div>
 				<div class="modal-body">
 					<div class="row">
-						<div class="form-group col-md-12">
+						<div class="form-group col-md-6">
 							<label for="empresa">Etapa:</label>
 							<input type="text" class="form-control" name="etapa">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="empresa">Días:</label>
+							<input type="text" class="form-control" name="dias">
 						</div>
 					</div>
 					<div class="row">

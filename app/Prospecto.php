@@ -49,4 +49,8 @@ class Prospecto extends Model
 			return "#40CA00"; //verde
 		}
 	}
+
+	public function getIndicadorAttribute(){
+		return "red"; //aqui es un color dependiente de cuanto tiempo lleva el prospecto en alguna etapa
+	}
 }

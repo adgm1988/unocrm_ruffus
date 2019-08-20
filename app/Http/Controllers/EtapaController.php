@@ -19,12 +19,14 @@ class EtapaController extends Controller
     	$validated = $request->validate([
     		'etapa'=> 'required',
     		'orden'=> 'required',
+            'dias'=> 'required',
     		'color'=> 'required',
     	]);
 
     	$etapa = new Etapa;
     	$etapa->etapa = $request->get('etapa');
     	$etapa->orden = $request->get('orden');
+        $etapa->dias = $request->get('dias');
     	$etapa->color = $request->get('color');
 
     	$etapa->save();
@@ -36,12 +38,14 @@ class EtapaController extends Controller
         $validated = $request->validate([
             'etapa'=> 'required',
             'orden'=> 'required',
+            'dias'=> 'required',
             'color'=> 'required',
         ]);
 
         $etapa = Etapa::find($id);
         $etapa->etapa = $request->get('etapa');
         $etapa->orden = $request->get('orden');
+        $etapa->dias = $request->get('dias');
         $etapa->color = $request->get('color');
 
         $etapa->save();

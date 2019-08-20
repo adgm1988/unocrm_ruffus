@@ -40,6 +40,7 @@ class ActividadController extends Controller
     	$actividad->descripcion = $request->get('descripcion');
     	$actividad->resultado = $request->get('resultado');
 
+        /* //Mejor dejo la bitacora solamente para cambio de estatus.
         $bitacora = new Bitacora;
         $bitacora->prospecto_id = $actividad->_prospectoid;
         $bitacora->fecha = date('Y-m-d');
@@ -51,6 +52,7 @@ class ActividadController extends Controller
         $bitacora->save();
 
     	$actividad->save();
+        */
 
     	return redirect('actividades');
 

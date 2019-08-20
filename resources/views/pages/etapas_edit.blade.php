@@ -25,9 +25,13 @@
 	</button>
 
 	<div class="row">
-		<div class="form-group col-md-12">
+		<div class="form-group col-md-6">
 			<label for="empresa">Etapa:</label>
 			<input type="text" class="form-control" name="etapa" value="{{ $etapa->etapa }}">
+		</div>
+		<div class="form-group col-md-6">
+			<label for="empresa">Días:</label>
+			<input type="text" class="form-control" name="dias" value="{{ $etapa->dias }}">
 		</div>
 	</div>
 	<div class="row">

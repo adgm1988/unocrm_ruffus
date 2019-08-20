@@ -16,6 +16,7 @@ class CreateEtapasTable extends Migration
         Schema::create('etapas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('etapa');
+            $table->string('dias');
             $table->unsignedInteger('orden');
             $table->string('color');
             $table->timestamps();
