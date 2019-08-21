@@ -9,7 +9,7 @@
 				@foreach($etapas as $key=>$etapa)
 					<th class='text-center'>
 						<div>{{ $etapa->etapa }} <span style="font-size:10px; color:gray;"> ({{ $etapa->prospectos_count }})</span></div>
-						<div style="font-size:12px; color: {{ $etapa->color }}">${{ number_format((759123/($key+1)),0) }}</div>
+						<div style="font-size:12px; color: {{ $etapa->color }}">${{ number_format($etapa->suma,0) }}</div>
 					</th>
 				@endforeach
 			</tr>

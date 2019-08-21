@@ -105,6 +105,8 @@ class ActividadController extends Controller
 
         $actividad->save();
 
+
+        /**
         $bitacora = new Bitacora;
         $bitacora->prospecto_id = $actividad->_prospectoid;
         $bitacora->fecha = date('Y-m-d');
@@ -114,6 +116,7 @@ class ActividadController extends Controller
 
 
         $bitacora->save();
+        **/
 
         return back();
 
@@ -140,6 +143,8 @@ class ActividadController extends Controller
 
         $actividad->save();
 
+
+        /**
         $bitacora = new Bitacora;
         $bitacora->prospecto_id = $actividad->_prospectoid;
         $bitacora->fecha = date('Y-m-d');
@@ -148,6 +153,7 @@ class ActividadController extends Controller
         $bitacora->nota = $actividad->descripcion. " con resultado: ".$actividad->resultado;
 
         $bitacora->save();
+        **/
 
         return redirect('/actividades');
 
