@@ -143,7 +143,7 @@ class ProspectoController extends Controller
         $bitacora->fecha = date('Y-m-d');
         $bitacora->tipo = "Nuevo prospecto";
         $bitacora->user_id = auth()->user()->id;
-        $bitacora->nota = "Creación de prospecto";
+        $bitacora->nota = "Creación de prospecto en etapa";
 
 
         $bitacora->save();

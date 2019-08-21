@@ -19,8 +19,7 @@ class CreateBitacorasTable extends Migration
             $table->date('fecha');
             $table->unsignedInteger('etapa_id');
             $table->unsignedInteger('etapa_anterior_id');
-            $table->number('dias');
-            $table->unsignedInteger('tipo');
+            $table->unsignedInteger('dias');
             $table->unsignedInteger('user_id');
             $table->text('nota');
             $table->timestamps();

@@ -145,6 +145,7 @@
 								<option {{ $etapa->id === $prospecto->etapas->id ? "selected" : "" }} value='{{ $etapa->id }}'>{{ $etapa->etapa }}</option>
 								@endforeach
 							</select>
+							<input type="hidden" name="etapa_anterior_id" value="{{ $prospecto->etapas->id }}" disabled>
 						</div>
 					</div>
 					<div class="modal-footer">

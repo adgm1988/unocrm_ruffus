@@ -62,7 +62,7 @@
 	<div class="row">
 		<div class="form-group col-md-6">
 			<label for="procedencia">Etapa:</label>
-			<select class="custom-select" name="etapa">
+			<select class="custom-select" name="etapa" disabled>
 				@foreach($etapas as $etapa)
 				<option {{ $etapa->id === $prospecto->etapa ? "selected" : "" }} value='{{ $etapa->id }}'>{{ $etapa->etapa }}</option>
 				@endforeach

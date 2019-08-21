@@ -35,7 +35,8 @@
 			<td>{{ $bitacora->prospecto->empresa }}</td>		
 			<td nowrap>{{ $bitacora->fecha }}</td>
 			<td nowrap>{{ $bitacora->dias }}</td>
-			<td>{{ $bitacora->tipo }}</td>
+			<td>{{ $bitacora->nombre_etapa }}</td>
+			<td>{{ $bitacora->nombre_etapa_anterior }}</td>
 			<td>{{ $bitacora->nota }}</td>
 			<td>{{ $bitacora->user->name }}</td>
 		</tr>
