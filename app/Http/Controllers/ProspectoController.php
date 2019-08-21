@@ -11,6 +11,7 @@ use App\Tipoact;
 use App\Industry;
 use App\Bitacora;
 use App\User;
+use Carbon\Carbon;
 
 class ProspectoController extends Controller
 {
@@ -134,22 +135,25 @@ class ProspectoController extends Controller
         $prospecto->industria = $request->get('industria');
         $prospecto->etapa_id = $request->get('etapa');
     	$prospecto->valor = $request->get('valor');    
+        $prospecto->estatus = 'prospecto';    
         $prospecto->userid = auth()->user()->id;
 
     	$prospecto->save();
 
         $bitacora = new Bitacora;
         $bitacora->prospecto_id = $prospecto->id;
-        $bitacora->fecha = date('Y-m-d');
-        $bitacora->tipo = "Nuevo prospecto";
+        $bitacora->fecha = Carbon::now();
         $bitacora->user_id = auth()->user()->id;
-        $bitacora->nota = "Creación de prospecto en etapa";
-
+        $bitacora->nota = "Creacion prospecto";
+        $bitacora->etapa_id = $request->get('etapa');
 
         $bitacora->save();
 
+         return redirect('/prospectos/'.$prospecto->id);
 
-    	return redirect('prospectos');
+
+
+
     }
 
     function update(Request $request, $id)
@@ -182,6 +186,7 @@ class ProspectoController extends Controller
 
         $prospecto->save();
 
+        /**
         $bitacora = new Bitacora;
         $bitacora->prospecto_id = $prospecto->id;
         $bitacora->fecha = date('Y-m-d');
@@ -191,6 +196,7 @@ class ProspectoController extends Controller
 
 
         $bitacora->save();
+        **/
 
         $tipos = Tipoact::all();
         return view ('pages.prospecto_reg',compact('prospecto','tipos'));
@@ -229,17 +235,29 @@ class ProspectoController extends Controller
     }
 
     function cambioetapa($id, Request $request){
-        dd($request);
+        
         $prospecto = Prospecto::find($id);
         $prospecto->etapa_id = $request->get('etapa');
         $prospecto->save();
 
+        $bitacora_anterior = Bitacora::where('prospecto_id',$id)->latest()->first();
+        if($bitacora_anterior){
+            $fechaanterior = Carbon::createFromDate($bitacora_anterior->fecha);
+        }else{
+            $fechaanterior = $prospecto->created_at;
+        }
+
+        $dias = $fechaanterior->diffInDays(Carbon::now());
+        $bitacora_anterior->dias = $dias;
+        $bitacora_anterior->save();
+
         $bitacora = new Bitacora;
         $bitacora->prospecto_id = $prospecto->id;
-        $bitacora->fecha = date('Y-m-d');
-        $bitacora->tipo = "Etapa";
+        $bitacora->fecha = Carbon::now();
         $bitacora->user_id = auth()->user()->id;
-        $bitacora->nota = "Se cambió la etapa a ".$prospecto->etapas->etapa;
+        $bitacora->nota = "Cambio de etapa";
+        $bitacora->etapa_id = $request->get('etapa');
+        $bitacora->etapa_anterior_id = $request->get('etapa_anterior_id');
 
         $bitacora->save();
 

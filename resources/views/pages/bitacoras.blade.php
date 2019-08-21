@@ -24,9 +24,10 @@
 			<tr>
 				<th>Prospecto</th>
 				<th>Fecha</th>
-				<th>Dias</th>
 				<th>Etapa</th>
-				<th>Etapa anterior</th>
+				<th>Días</th>
+				<!--<th>Etapa anterior</th>-->
+				<th>Nota</th>
 				<th>Usuario</th>
 			</tr>
 		</thead>
@@ -34,9 +35,9 @@
 		<tr>		
 			<td>{{ $bitacora->prospecto->empresa }}</td>		
 			<td nowrap>{{ $bitacora->fecha }}</td>
+			<td>{{ $bitacora->etapa->etapa }}</td>
 			<td nowrap>{{ $bitacora->dias }}</td>
-			<td>{{ $bitacora->nombre_etapa }}</td>
-			<td>{{ $bitacora->nombre_etapa_anterior }}</td>
+			<!--<td>{{ $bitacora->etapa_anterior ? $bitacora->etapa_anterior->etapa : "-" }}</td>-->
 			<td>{{ $bitacora->nota }}</td>
 			<td>{{ $bitacora->user->name }}</td>
 		</tr>

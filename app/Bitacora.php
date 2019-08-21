@@ -16,4 +16,13 @@ class Bitacora extends Model
 	{
 	    return $this->belongsTo('App\User', 'user_id');
 	}
+
+	public function etapa()
+	{
+	    return $this->belongsTo('App\Etapa', 'etapa_id');
+	}
+	public function etapa_anterior()
+	{
+	    return $this->belongsTo('App\Etapa', 'etapa_anterior_id');
+	}
 }

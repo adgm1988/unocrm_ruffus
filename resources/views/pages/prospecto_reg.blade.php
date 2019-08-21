@@ -145,7 +145,7 @@
 								<option {{ $etapa->id === $prospecto->etapas->id ? "selected" : "" }} value='{{ $etapa->id }}'>{{ $etapa->etapa }}</option>
 								@endforeach
 							</select>
-							<input type="hidden" name="etapa_anterior_id" value="{{ $prospecto->etapas->id }}" disabled>
+							<input type="hidden" name="etapa_anterior_id" value="{{ $prospecto->etapas->id }}">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -228,7 +228,9 @@
 				<thead>
 					<tr>
 						<th>Fecha</th>
-						<th>Tipo</th>
+						<!--<th>Etapa anterior</th>-->
+						<th>Etapa</th>
+						<th>Días</th>
 						<th>Nota</th>
 						<th>Usuario</th>
 					</tr>
@@ -236,7 +238,9 @@
 				@foreach($prospecto->bitacoras as $bitacora)
 				<tr>		
 					<td nowrap>{{ $bitacora->fecha }}</td>
-					<td>{{ $bitacora->tipo }}</td>
+					<!--<td>{{ $bitacora->etapa_anterior ? $bitacora->etapa_anterior->etapa : '-' }}</td>-->
+					<td>{{ $bitacora->etapa->etapa }}</td>
+					<td>{{ $bitacora->dias }}</td>
 					<td>{{ $bitacora->nota }}</td>
 					<td>{{ $bitacora->user->name }}</td>
 				</tr>

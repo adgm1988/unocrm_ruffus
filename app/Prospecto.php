@@ -29,7 +29,7 @@ class Prospecto extends Model
 	}
 
 	public function bitacoras(){
-		return $this->hasMany('App\Bitacora','prospecto_id')->orderBy('fecha', 'DESC');
+		return $this->hasMany('App\Bitacora','prospecto_id')->orderBy('fecha', 'ASC');
 	}
 
 	public function getSemaforoAttribute(){
