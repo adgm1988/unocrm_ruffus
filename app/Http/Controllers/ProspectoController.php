@@ -243,13 +243,26 @@ class ProspectoController extends Controller
         $bitacora_anterior = Bitacora::where('prospecto_id',$id)->latest()->first();
         if($bitacora_anterior){
             $fechaanterior = Carbon::createFromDate($bitacora_anterior->fecha);
+            $dias = $fechaanterior->diffInDays(Carbon::now());
+            $bitacora_anterior->dias = $dias;
+            $bitacora_anterior->save();
+
         }else{
             $fechaanterior = $prospecto->created_at;
+            $dias = $fechaanterior->diffInDays(Carbon::now());
+
+            $bitacora = new Bitacora;            
+            $bitacora->prospecto_id = $prospecto->id;
+            $bitacora->fecha = $prospecto->created_at;
+            $bitacora->user_id = auth()->user()->id;
+            $bitacora->nota = "Creacion prospecto";
+            $bitacora->dias = $dias;
+            $bitacora->etapa_id = $request->get('etapa_anterior_id');
+
+            $bitacora->save();
         }
 
-        $dias = $fechaanterior->diffInDays(Carbon::now());
-        $bitacora_anterior->dias = $dias;
-        $bitacora_anterior->save();
+        
 
         $bitacora = new Bitacora;
         $bitacora->prospecto_id = $prospecto->id;
