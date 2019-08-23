@@ -15,7 +15,7 @@
 </div>
 @endif
 
-<form method="post" action="/actividad/{{ $actividad->id }}" id="form">
+<form method="post" action="/actividad/{{ $actividad->id }}/{{ $origen }}" id="form">
 	@csrf
 	<div class="row">
 		<div class="form-group col-md-12">

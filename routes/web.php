@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('prospectos/{id}/form','ProspectoController@form');
 	Route::post('prospectos/{id}','ProspectoController@update');
 
-	Route::get('prospectos/actividades/delete/{id}','ProspectoController@destroyact');
+	Route::get('prospectos/actividades/delete/{id}/{prospecto?}','ProspectoController@destroyact');
 	Route::post('prospecto/{id}/actividad','ActividadController@storeprosp');
 	Route::post('prospecto/{id}/etapa','ProspectoController@cambioetapa');
 	Route::post('prospectosearch','ProspectoController@search');
@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('actividades','ActividadController@index');
 	Route::post('actividades','ActividadController@store');
 	Route::post('actividadescal','ActividadController@storecal');
-	Route::get('actividades/delete/{actividad}','ActividadController@destroy');
+	Route::get('actividades/delete/{actividad}/{prospecto?}','ActividadController@destroy');
 
 	Route::get('bitacoras','BitacoraController@index');
 
@@ -77,8 +77,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('procedencias/{id}/form','ProcedenciaController@form');
 	Route::post('procedencias/{id}','ProcedenciaController@update');
 
-	Route::get('actividad/{id}/form','ActividadController@form');
-	Route::post('actividad/{id}','ActividadController@update');
+	Route::get('actividad/{id}/form/{prospecto?}','ActividadController@form');
+	Route::post('actividad/{id}/{origen}','ActividadController@update');
 
 	Route::get('industria/{id}/form','IndustryController@form');
 	Route::post('industria/{id}','IndustryController@update');

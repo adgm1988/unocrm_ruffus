@@ -153,7 +153,7 @@
 		<tr>		
 			<td nowrap>
 				<a href="/actividad/{{ $actividad->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
-				<a href="actividades/delete/{{ $actividad->id }}"><i class="far fa-trash-alt"></i></a>
+				<a onclick="return confirm('¿Estas seguro de querer eliminar esta actividad?')" href="actividades/delete/{{ $actividad->id }}"><i class="far fa-trash-alt"></i></a>
 			</td>
 			<td>{{ $actividad->prospecto->empresa }}</td>		
 			<td nowrap>{{ $actividad->tiposdeact->tipo }}</td>		

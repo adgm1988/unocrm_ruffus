@@ -209,8 +209,8 @@
 				@foreach($prospecto->actividades as $actividad)
 				<tr>		
 					<td nowrap>
-						<a href="/actividad/{{ $actividad->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
-						<a onclick="return confirm('¿Estas seguro de quere eliminar esta actividad?')" href="actividades/delete/{{ $actividad->id }}"><i class="far fa-trash-alt"></i></a>
+						<a href="/actividad/{{ $actividad->id }}/form/prospecto"><i class="far fa-edit"></i></a>&nbsp;
+						<a onclick="return confirm('¿Estas seguro de querer eliminar esta actividad?')" href="actividades/delete/{{ $actividad->id }}/prospecto"><i class="far fa-trash-alt"></i></a>
 					</td>	
 					<td style="color:{{ $actividad->semaforo }}">{{ $actividad->tiposdeact->tipo }}</td>		
 					<td nowrap>{{ $actividad->fecha }}</td>		

@@ -123,7 +123,8 @@ class ActividadController extends Controller
     }
 
 
-     function update(Request $request, $id){
+     function update(Request $request, $id, $origen){
+
 
         $validated= $request->validate([
             'actividad'=>'required',
@@ -155,24 +156,41 @@ class ActividadController extends Controller
         $bitacora->save();
         **/
 
-        return redirect('/actividades');
+        if($origen == 'prospecto'){
+            return redirect('/prospectos/'.$actividad->_prospectoid);
+        }else{
+            return redirect('/actividades');
+        }
+        
 
     }
 
-    function form($id){
+    function form($id, $prospecto = null){
         $prospectos = Prospecto::all();
         $actividad = Actividad::find($id);
         $tipos = Tipoact::all();
-        return view('pages.actividad_edit',compact('actividad','tipos','prospectos'));
+        if($prospecto){
+            $origen='prospecto';
+        }else{
+            $origen='actividad';
+        }
+        return view('pages.actividad_edit',compact('actividad','tipos','prospectos','origen'));
 
     }
 
-    function destroy($id){
+    function destroy($id, $prospecto = null){
     	$actividad = Actividad::find($id);
+        $prospecto_id = $actividad->prospecto->id;
 
     	$actividad->delete();
 
-    	return redirect('actividades');
+        if($prospecto='prospecto'){
+             return redirect('/prospectos/'.$prospecto_id);
+        }else{
+            return redirect('actividades');
+        }
+
+    	
     }
 	
 }

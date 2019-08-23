@@ -153,13 +153,11 @@ class ProspectoController extends Controller
 
 
 
-
     }
 
     function update(Request $request, $id)
     {
 
-        //dd($request);
         $validatedData = $request->validate([
             'empresa' => 'required',
             'contacto' => 'required',
@@ -170,6 +168,7 @@ class ProspectoController extends Controller
             'valor' => 'required',
             'etapa' => 'required',
         ]);
+
 
 
         //aqui hay error porque no paso la info vlaidada
