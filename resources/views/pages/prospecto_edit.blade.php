@@ -64,7 +64,7 @@
 			<label for="procedencia">Etapa:</label>
 			<select class="custom-select" name="etapa" disabled>
 				@foreach($etapas as $etapa)
-				<option {{ $etapa->id === $prospecto->etapa ? "selected" : "" }} value='{{ $etapa->id }}'>{{ $etapa->etapa }}</option>
+				<option {{ $etapa->id === $prospecto->etapa_id ? "selected" : "" }} value='{{ $etapa->id }}'>{{ $etapa->etapa }}</option>
 				@endforeach
 			</select>
 		</div>
