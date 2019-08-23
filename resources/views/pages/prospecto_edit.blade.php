@@ -62,12 +62,13 @@
 	<div class="row">
 		<div class="form-group col-md-6">
 			<label for="procedencia">Etapa:</label>
-			<select class="custom-select" name="etapa" disabled>
+			<select class="custom-select" name="etapa_disabled" disabled>
 				@foreach($etapas as $etapa)
 				<option {{ $etapa->id === $prospecto->etapa_id ? "selected" : "" }} value='{{ $etapa->id }}'>{{ $etapa->etapa }}</option>
 				@endforeach
 			</select>
 		</div>
+		<input type="hidden" name="etapa" value="{{  $prospecto->etapa_id  }}" />
 		<div class="form-group col-md-6">
 			<label for="valor">Valor de oportunidad:</label>
 			<input type="number" step=".01" class="form-control" name="valor" value="{{ $prospecto->valor }}">

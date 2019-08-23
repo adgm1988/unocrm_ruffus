@@ -159,6 +159,7 @@ class ProspectoController extends Controller
     function update(Request $request, $id)
     {
 
+        //dd($request);
         $validatedData = $request->validate([
             'empresa' => 'required',
             'contacto' => 'required',
@@ -199,7 +200,8 @@ class ProspectoController extends Controller
         **/
 
         $tipos = Tipoact::all();
-        return view ('pages.prospecto_reg',compact('prospecto','tipos'));
+        $etapas = Etapa::all();
+        return view ('pages.prospecto_reg',compact('prospecto','tipos','etapas'));
     }
 
     function form($id){
@@ -263,7 +265,6 @@ class ProspectoController extends Controller
         }
 
         
-
         $bitacora = new Bitacora;
         $bitacora->prospecto_id = $prospecto->id;
         $bitacora->fecha = Carbon::now();
