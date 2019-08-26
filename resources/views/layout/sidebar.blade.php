@@ -26,6 +26,18 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/prospectos/cliente">
+          <i class="fas fa-fw fa-users"></i>
+          <span>Clientes</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/prospectos/perdido">
+          <i class="fas fa-fw fa-users"></i>
+          <span>Perdidos</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/actividades">
           <i class="fas fa-fw fa-tasks"></i>
           <span>Actividades</span>

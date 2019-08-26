@@ -83,6 +83,11 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('industria/{id}/form','IndustryController@form');
 	Route::post('industria/{id}','IndustryController@update');
 
+	Route::get('perdido/{id}','ProspectoController@perdido');
+	Route::post('perdido/{id}','ProspectoController@updateperdido');
+
+
+
 
 	Route::get('/home', 'HomeController@index')->name('home');
 });

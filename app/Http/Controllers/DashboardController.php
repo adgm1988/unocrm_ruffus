@@ -14,6 +14,7 @@ class DashboardController extends Controller
     	$etapas = Etapa::withCount('prospectos')->get(); //on esto ya saco la cantidad de propsectos por etapa
 
     	$etapas = $etapas->sortBy('orden');
+    	//$prospectos = Prospecto::where('estatus','like','prospecto')->get();
     	$prospectos = Prospecto::all();
     	
     	return view('pages.dashboard', compact('etapas','prospectos'));

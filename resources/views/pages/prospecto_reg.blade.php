@@ -161,7 +161,19 @@
 
 
 <div class="card mb-3">
-	<h5 class="card-header"> <i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }}  <span style="float:right;"><a href="/prospectos/{{ $prospecto->id }}/form"><button type="button" class="btn btn-info p-1 btn-sm mr-3">Editar prospecto</button></a></span></h5>
+	<h5 class="card-header"> 
+		<i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> 
+		{{ $prospecto->empresa }}
+		@if($prospecto->estatus!='prospecto')
+			<span style="color:gray;">({{ ucfirst($prospecto->estatus) }})</span>
+		@endif 
+
+		<span style="float:right;">
+			<a href="/prospectos/{{ $prospecto->id }}/form">
+				<button type="button" class="btn btn-info p-1 btn-sm mr-3">Editar prospecto</button>
+			</a>
+		</span>
+	</h5>
 	<div class="card-body">
 		<p class="card-text">
 			<div class="container">

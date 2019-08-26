@@ -51,6 +51,24 @@ class Prospecto extends Model
 	}
 
 	public function getIndicadorAttribute(){
-		return "red"; //aqui es un color dependiente de cuanto tiempo lleva el prospecto en alguna etapa
+		$ultima_bitacora = $this->bitacoras->first();
+		if($ultima_bitacora){
+			$ultimo_cambio = $ultima_bitacora->created_at;
+			$ultimo_estatus_dias = $ultima_bitacora->etapa->dias;
+
+			$dias=$ultimo_cambio->diffInDays();
+			$dias_por_vencer = $ultimo_estatus_dias - $dias;
+
+			if($dias_por_vencer<0){
+				return '#ffc0b8'; //color rojo;
+			}elseif($dias_por_vencer<2){
+				return "#fff8b0"; // color amarillo;
+			}else{
+				return 'white';
+			}
+		}else{
+			return 'white';
+		}
+		
 	}
 }

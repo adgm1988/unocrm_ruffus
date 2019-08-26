@@ -211,6 +211,59 @@ class ProspectoController extends Controller
         return view('pages.prospecto_edit',compact('prospecto','procedencias','etapas','industrias'));
     }
 
+    function perdido($id){
+        $prospecto = Prospecto::find($id);
+        return view('pages.perdido',compact('prospecto'));
+    }
+
+    function updateperdido(Request $request, $id){
+        $prospecto = Prospecto::find($id);
+        $validatedData = $request->validate([
+            'motivo' => 'required',
+        ]);
+        
+        $prospecto->estatus = "perdido";
+        $prospecto->userid = auth()->user()->id;
+        $prospecto->save();
+
+        $bitacora_anterior = Bitacora::where('prospecto_id',$id)->latest()->first();
+        if($bitacora_anterior){
+            $fechaanterior = Carbon::createFromDate($bitacora_anterior->fecha);
+            $dias = $fechaanterior->diffInDays(Carbon::now());
+            $bitacora_anterior->dias = $dias;
+            $bitacora_anterior->save();
+
+        }else{
+            $fechaanterior = $prospecto->created_at;
+            $dias = $fechaanterior->diffInDays(Carbon::now());
+
+            $bitacora = new Bitacora;            
+            $bitacora->prospecto_id = $prospecto->id;
+            $bitacora->fecha = $prospecto->created_at;
+            $bitacora->user_id = auth()->user()->id;
+            $bitacora->nota = "Creacion prospecto";
+            $bitacora->dias = $dias;
+            $bitacora->etapa_id = $request->get('etapa_anterior_id');
+
+            $bitacora->save();
+        }
+
+        
+        $bitacora = new Bitacora;
+        $bitacora->prospecto_id = $prospecto->id;
+        $bitacora->fecha = Carbon::now();
+        $bitacora->user_id = auth()->user()->id;
+        $bitacora->dias = $dias;
+        $bitacora->nota = "Prospecto perdido por ".$request->get('motivo').": " .$request->get('notas');
+        $bitacora->etapa_anterior_id = $request->get('etapa_anterior_id');
+        $bitacora->etapa_id = $request->get('etapa_anterior_id');
+
+        $bitacora->save();
+
+        return redirect("/prospectos/".$prospecto->id);
+
+    }
+
     function destroy($id){
     	$prospecto = Prospecto::find($id);
         $procedencias = Procedencia::all();

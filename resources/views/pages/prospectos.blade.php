@@ -8,7 +8,7 @@
 
 @if ($errors->any())
 <div class="alert alert-danger">
-	<strong>Whoops!</strong> There were some problems with your input.<br><br>
+	<strong>Revisar los datos ingresados!<br><br>
 	<ul>
 		@foreach ($errors->all() as $error)
 		<li>{{ $error }}</li>
@@ -169,13 +169,13 @@
             </tr>
         </thead>
         @foreach($prospectos as $prospecto)
-        <tr style="border-left:10px solid {{ $prospecto->semaforo }};">		
+        <tr style="border-left:10px solid {{ $prospecto->indicador }};">		
          <td nowrap>
             <a href="/prospectos/{{ $prospecto->id }}"><i class="far fa-eye"></i></a>&nbsp;
             <a href="/prospectos/{{ $prospecto->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
             <a href="/prospectos/delete/{{ $prospecto->id }}"><i class="far fa-trash-alt"></i></a>
         </td>
-        <td nowrap><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }}</td>	     
+        <td nowrap><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }} </td>	     
         <td> <div style="border-radius: 10px; font-weight:bold; text-align:center; width:100px; height:25px; border:1px solid black; background-color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }} </div></td>    	
         <td nowrap>{{ $prospecto->contacto }}</td>		
         <td>{{ $prospecto->telefono }}</td>		
@@ -197,7 +197,5 @@
 @endsection
 
 <script>
-    document.Ready(function (){
-        alert('si');
-    });
+    
 </script>

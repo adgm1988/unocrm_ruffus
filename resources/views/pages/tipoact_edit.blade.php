@@ -42,7 +42,7 @@
 	<div class="row">
 		<div class="form-group col-md-6">
 			<button  class="btn btn-success" >Actualizar</button>
-			<button type="button" class="btn btn-secondary" >Cancelar</button>
+			<a href="/tipoacts"><button type="button" class="btn btn-secondary" >Cancelar</button></a>
 		</div>
 	</div>
 
