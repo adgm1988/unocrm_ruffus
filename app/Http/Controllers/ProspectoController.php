@@ -82,28 +82,28 @@ class ProspectoController extends Controller
 
         switch ($condicion){
             case "contiene":  // if $var == "x"
-                $prospectos = Prospecto::where($campo,'like','%'.$valor.'%')->paginate(30);
-                $cant = Prospecto::where($campo,'like','%'.$valor.'%')->count();
+                $prospectos = Prospecto::where('estatus','prospecto')->where($campo,'like','%'.$valor.'%')->paginate(30);
+                $cant = Prospecto::where('estatus','prospecto')->where($campo,'like','%'.$valor.'%')->count();
                 $condicion_texto= "contiene";
                 break;
             case "mayor":  // if $var == "y"
-                $prospectos = Prospecto::where($campo,'>',$valor)->paginate(30);
-                $cant = Prospecto::where($campo,'>',$valor)->count();
+                $prospectos = Prospecto::where('estatus','prospecto')->where($campo,'>',$valor)->paginate(30);
+                $cant = Prospecto::where('estatus','prospecto')->where($campo,'>',$valor)->count();
                 $condicion_texto= "es mayor que";
                 break;
             case "menor":  // if $var == "y"
-                $prospectos = Prospecto::where($campo,'<',$valor)->paginate(30);
-                $cant = Prospecto::where($campo,'<',$valor)->xount();
+                $prospectos = Prospecto::where('estatus','prospecto')->where($campo,'<',$valor)->paginate(30);
+                $cant = Prospecto::where('estatus','prospecto')->where($campo,'<',$valor)->xount();
                 $condicion_texto= "es menor que";
                 break;
             case "especial":  // if $var == "y"
-                $prospectos = Prospecto::whereIn($campo_tabla, $array_ids)->paginate(30);   
-                $cant = Prospecto::whereIn($campo_tabla, $array_ids)->count();   
+                $prospectos = Prospecto::where('estatus','prospecto')->whereIn($campo_tabla, $array_ids)->paginate(30);   
+                $cant = Prospecto::where('estatus','prospecto')->whereIn($campo_tabla, $array_ids)->count();   
                 $condicion_texto= "contiene";
                 break;
             default:  // if $var != "x" && != "y"
-                $prospectos = Prospecto::paginate(30);
-                $cant = Prospecto::all()->count();
+                $prospectos = Prospecto::where('estatus','prospecto')->paginate(30);
+                $cant = Prospecto::where('estatus','prospecto')->count();
                 break;
        }
 
@@ -284,7 +284,7 @@ class ProspectoController extends Controller
             'valor' => 'required',
         ]);
         
-        $prospecto->estatus = "ganado";
+        $prospecto->estatus = "cliente";
         $prospecto->userid = auth()->user()->id;
         $prospecto->save();
 

@@ -27,13 +27,13 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/clientes">
-          <i class="fas fa-fw fa-users"></i>
+          <i class="fas fa-fw fa-user-check"></i>
           <span>Clientes</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/perdidos">
-          <i class="fas fa-fw fa-users"></i>
+          <i class="fas fa-fw fa-user-times"></i>
           <span>Perdidos</span>
         </a>
       </li>

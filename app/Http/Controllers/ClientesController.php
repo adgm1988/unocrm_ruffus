@@ -32,7 +32,7 @@ class ClientesController extends Controller
 
         switch ($campo){
             case "industria":  // if $var == "x"
-                $registros = Industry::where('estatus','like','cliente')->where('industria','like','%'.$valor.'%')->get();
+                $registros = Industry::where('industria','like','%'.$valor.'%')->get();
                 //dd($industrias);
                 $array_ids = array();
                 foreach ($registros as $registro){
@@ -42,7 +42,7 @@ class ClientesController extends Controller
                 $campo_tabla = "industria";
                 break;
             case "etapa":  // if $var == "x"
-                $registros = Etapa::where('estatus','like','cliente')->where('etapa','like','%'.$valor.'%')->get();
+                $registros = Etapa::where('etapa','like','%'.$valor.'%')->get();
                 //dd($industrias);
                 $array_ids = array();
                 foreach ($registros as $registro){
@@ -52,7 +52,7 @@ class ClientesController extends Controller
                 $campo_tabla = "etapa_id";
                 break;
             case "procedencia":  // if $var == "x"
-                $registros = Procedencia::where('estatus','like','cliente')->where('procedencia','like','%'.$valor.'%')->get();
+                $registros = Procedencia::where('procedencia','like','%'.$valor.'%')->get();
                 //dd($industrias);
                 $array_ids = array();
                 foreach ($registros as $registro){
@@ -62,7 +62,7 @@ class ClientesController extends Controller
                 $campo_tabla = "procedencia";
                 break;
             case "usuario":  // if $var == "x"
-                $registros = User::where('estatus','like','cliente')->where('name','like','%'.$valor.'%')->get();
+                $registros = User::where('name','like','%'.$valor.'%')->get();
                 //dd($industrias);
                 $array_ids = array();
                 foreach ($registros as $registro){

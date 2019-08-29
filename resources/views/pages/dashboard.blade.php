@@ -35,7 +35,7 @@
 
 <div class="row mb-3">
 	<div class="col-md-4">
-		<input onkeyup="filtrar()" id="filtro" type="text" class="form-control form-control-sm" placeholder="Nombre de empresa o contacto..." name="valor">
+		<input autocomplete="off" onkeyup="filtrar()" id="filtro" type="text" class="form-control form-control-sm" placeholder="Nombre de empresa o contacto..." name="valor">
 	</div>
 </div>
 <div class="table-responsive">

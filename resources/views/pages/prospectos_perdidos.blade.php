@@ -55,9 +55,11 @@
 </div>
 @if ($filtro)
     <div class="col-6">
-    <div class="alert alert-info p-1 pl-3" role="alert">
+    <a style="text-decoration:none;" href="/perdidos">
+      <div class="alert alert-info p-1 pl-3" role="alert">
         {{ $filtro }}
     </div>
+    </a>
     </div>
     @endif
 </div>
