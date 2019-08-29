@@ -4,6 +4,7 @@
 
 
 <h3 class='text-center'>{{ $prospecto->empresa }}</h3>
+<h5 class='text-center'>{{ $prospecto->estatus }}</h5>
 <!-- Trigger the modal with a button -->
 
 @if ($errors->any())
@@ -25,9 +26,17 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="form-group col-md-12">
+		<div class="form-group col-md-6">
 			<label for="contacto">Contacto:</label>
 			<input type="text" class="form-control" name="contacto" value="{{ $prospecto->contacto }}">
+		</div>
+		<div class="form-group col-md-6">
+			<label for="contacto">Estatus:</label>
+			<select class="custom-select" name="estatus">
+				<option {{ $prospecto->estatus == 'perdido' ? 'selected' : ''}} value='perdido'>Perdido</option>
+				<option {{ $prospecto->estatus == 'prospecto' ? 'selected' : ''}} value='prospecto'>Prospecto</option>
+				<option {{ $prospecto->estatus == 'ganado' ? 'selected' : ''}} value='ganado'>Ganado</option>
+			</select>
 		</div>
 	</div>
 	<div class="row">

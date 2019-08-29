@@ -12,7 +12,10 @@ class Etapa extends Model
     }
 
     public function getSumaAttribute(){
-    	return $this->prospectos()->sum('valor');
+    	return $this->prospectos()->where('estatus','like','prospecto')->sum('valor');
     }
     
+    public function getCuentaAttribute(){
+    	return $this->prospectos()->where('estatus','like','prospecto')->count('id');
+    }
 }

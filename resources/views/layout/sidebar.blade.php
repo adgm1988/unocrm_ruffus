@@ -26,13 +26,13 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/prospectos/cliente">
+        <a class="nav-link" href="/clientes">
           <i class="fas fa-fw fa-users"></i>
           <span>Clientes</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/prospectos/perdido">
+        <a class="nav-link" href="/perdidos">
           <i class="fas fa-fw fa-users"></i>
           <span>Perdidos</span>
         </a>

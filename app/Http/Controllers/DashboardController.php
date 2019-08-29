@@ -15,7 +15,7 @@ class DashboardController extends Controller
 
     	$etapas = $etapas->sortBy('orden');
     	//$prospectos = Prospecto::where('estatus','like','prospecto')->get();
-    	$prospectos = Prospecto::all();
+    	$prospectos = Prospecto::where('estatus','like','prospecto')->get();
     	
     	return view('pages.dashboard', compact('etapas','prospectos'));
     }

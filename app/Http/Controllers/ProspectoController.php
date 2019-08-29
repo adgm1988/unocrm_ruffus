@@ -17,12 +17,13 @@ class ProspectoController extends Controller
 {
     //
 	function index(){
-		$prospectos = Prospecto::paginate(30);
+		$prospectos = Prospecto::where('estatus','prospecto')->paginate(30);
+        $cant = Prospecto::where('estatus','prospecto')->count();
         $procedencias = Procedencia::all();
         $etapas = Etapa::all();
         $industrias = Industry::all();
         $filtro='';
-		return view('pages.prospectos',compact('prospectos','procedencias','etapas','industrias','filtro'));
+		return view('pages.prospectos',compact('prospectos','procedencias','etapas','industrias','filtro','cant'));
 	}
 
     function search(Request $request){
@@ -82,22 +83,27 @@ class ProspectoController extends Controller
         switch ($condicion){
             case "contiene":  // if $var == "x"
                 $prospectos = Prospecto::where($campo,'like','%'.$valor.'%')->paginate(30);
+                $cant = Prospecto::where($campo,'like','%'.$valor.'%')->count();
                 $condicion_texto= "contiene";
                 break;
             case "mayor":  // if $var == "y"
                 $prospectos = Prospecto::where($campo,'>',$valor)->paginate(30);
+                $cant = Prospecto::where($campo,'>',$valor)->count();
                 $condicion_texto= "es mayor que";
                 break;
             case "menor":  // if $var == "y"
                 $prospectos = Prospecto::where($campo,'<',$valor)->paginate(30);
+                $cant = Prospecto::where($campo,'<',$valor)->xount();
                 $condicion_texto= "es menor que";
                 break;
             case "especial":  // if $var == "y"
                 $prospectos = Prospecto::whereIn($campo_tabla, $array_ids)->paginate(30);   
+                $cant = Prospecto::whereIn($campo_tabla, $array_ids)->count();   
                 $condicion_texto= "contiene";
                 break;
             default:  // if $var != "x" && != "y"
                 $prospectos = Prospecto::paginate(30);
+                $cant = Prospecto::all()->count();
                 break;
        }
 
@@ -105,7 +111,7 @@ class ProspectoController extends Controller
         $etapas = Etapa::all();
         $industrias = Industry::all();
         $filtro = ucfirst($campo)." ".$condicion_texto." ". $valor;
-        return view('pages.prospectos',compact('prospectos','procedencias','etapas','industrias','filtro'));
+        return view('pages.prospectos',compact('prospectos','procedencias','etapas','industrias','filtro','cant'));
     }
 
     function store(Request $request)
@@ -120,6 +126,7 @@ class ProspectoController extends Controller
             'industria' => 'required',
 	        'valor' => 'required',
             'etapa' => 'required',
+            'estatus' => 'prospecto',
 
     	]);
 
@@ -167,6 +174,7 @@ class ProspectoController extends Controller
             'industria' => 'required',
             'valor' => 'required',
             'etapa' => 'required',
+            'estatus' => 'required',
         ]);
 
 
@@ -182,6 +190,7 @@ class ProspectoController extends Controller
         $prospecto->industria = $request->get('industria');
         $prospecto->etapa_id = $request->get('etapa');
         $prospecto->valor = $request->get('valor');
+        $prospecto->estatus = $request->get('estatus');
         $prospecto->userid = auth()->user()->id;
 
         $prospecto->save();
@@ -255,6 +264,59 @@ class ProspectoController extends Controller
         $bitacora->user_id = auth()->user()->id;
         $bitacora->dias = $dias;
         $bitacora->nota = "Prospecto perdido por ".$request->get('motivo').": " .$request->get('notas');
+        $bitacora->etapa_anterior_id = $request->get('etapa_anterior_id');
+        $bitacora->etapa_id = $request->get('etapa_anterior_id');
+
+        $bitacora->save();
+
+        return redirect("/prospectos/".$prospecto->id);
+
+    }
+
+    function ganado($id){
+        $prospecto = Prospecto::find($id);
+        return view('pages.ganado',compact('prospecto'));
+    }
+
+    function updateganado(Request $request, $id){
+        $prospecto = Prospecto::find($id);
+        $validatedData = $request->validate([
+            'valor' => 'required',
+        ]);
+        
+        $prospecto->estatus = "ganado";
+        $prospecto->userid = auth()->user()->id;
+        $prospecto->save();
+
+        $bitacora_anterior = Bitacora::where('prospecto_id',$id)->latest()->first();
+        if($bitacora_anterior){
+            $fechaanterior = Carbon::createFromDate($bitacora_anterior->fecha);
+            $dias = $fechaanterior->diffInDays(Carbon::now());
+            $bitacora_anterior->dias = $dias;
+            $bitacora_anterior->save();
+
+        }else{
+            $fechaanterior = $prospecto->created_at;
+            $dias = $fechaanterior->diffInDays(Carbon::now());
+
+            $bitacora = new Bitacora;            
+            $bitacora->prospecto_id = $prospecto->id;
+            $bitacora->fecha = $prospecto->created_at;
+            $bitacora->user_id = auth()->user()->id;
+            $bitacora->nota = "Creacion prospecto";
+            $bitacora->dias = $dias;
+            $bitacora->etapa_id = $request->get('etapa_anterior_id');
+
+            $bitacora->save();
+        }
+
+        
+        $bitacora = new Bitacora;
+        $bitacora->prospecto_id = $prospecto->id;
+        $bitacora->fecha = Carbon::now();
+        $bitacora->user_id = auth()->user()->id;
+        $bitacora->dias = $dias;
+        $bitacora->nota = "Prospecto perdido por ".$request->get('valor').": " .$request->get('notas');
         $bitacora->etapa_anterior_id = $request->get('etapa_anterior_id');
         $bitacora->etapa_id = $request->get('etapa_anterior_id');
 

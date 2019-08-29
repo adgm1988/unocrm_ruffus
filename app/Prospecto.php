@@ -71,4 +71,5 @@ class Prospecto extends Model
 		}
 		
 	}
+
 }

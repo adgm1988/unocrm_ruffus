@@ -2,7 +2,7 @@
 @section('content')
 
 <button style="float:left;" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" id="open">Agregar</button>
-<h3 class='text-center'>Directorio de prospectos</h3>
+<h3 class='text-center'>Directorio de prospectos <span style="color:gray; font-size:16px;">({{ $cant }})</span></h3>
 <!-- Trigger the modal with a button -->
 
 

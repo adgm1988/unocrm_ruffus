@@ -24,6 +24,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::get('','DashboardController@index')->middleware('auth');
 	Route::get('dashboard','DashboardController@index');
+	Route::get('home',function(){
+		return redirect('/dashboard');
+	});
 
 	Route::get('calendar','CalendarController@index');
 
@@ -32,6 +35,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('prospectos/{id}','ProspectoController@show');
 	Route::get('prospectos/delete/{id}','ProspectoController@destroy');
 
+	Route::get('/perdidos','PerdidosController@index');
+	Route::get('/clientes','ClientesController@index');
+
 	Route::get('prospectos/{id}/form','ProspectoController@form');
 	Route::post('prospectos/{id}','ProspectoController@update');
 
@@ -39,6 +45,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('prospecto/{id}/actividad','ActividadController@storeprosp');
 	Route::post('prospecto/{id}/etapa','ProspectoController@cambioetapa');
 	Route::post('prospectosearch','ProspectoController@search');
+	Route::post('perdidosearch','PerdidosController@search');
+	Route::post('clientesearch','ClientesController@search');
 
 	Route::get('actividades','ActividadController@index');
 	Route::post('actividades','ActividadController@store');
@@ -86,8 +94,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('perdido/{id}','ProspectoController@perdido');
 	Route::post('perdido/{id}','ProspectoController@updateperdido');
 
+	Route::get('ganado/{id}','ProspectoController@ganado');
+	Route::post('ganado/{id}','ProspectoController@updateganado');
 
-
-
-	Route::get('/home', 'HomeController@index')->name('home');
+	//Route::get('/home', 'HomeController@index')->name('home');
 });
