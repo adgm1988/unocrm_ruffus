@@ -11,6 +11,7 @@ use App\Tipoact;
 use App\Industry;
 use App\Bitacora;
 use App\User;
+use App\Rechazos;
 use Carbon\Carbon;
 
 class ProspectoController extends Controller
@@ -222,7 +223,8 @@ class ProspectoController extends Controller
 
     function perdido($id){
         $prospecto = Prospecto::find($id);
-        return view('pages.perdido',compact('prospecto'));
+        $motivos = Rechazos::all();
+        return view('pages.perdido',compact('prospecto','motivos'));
     }
 
     function updateperdido(Request $request, $id){

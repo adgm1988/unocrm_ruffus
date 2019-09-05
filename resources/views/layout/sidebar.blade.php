@@ -14,7 +14,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/reportes">
           <i class="fas fa-fw fa-signal"></i>
           <span>Reportes</span>
         </a>
@@ -71,6 +71,7 @@
           <a class="dropdown-item" href="/tipoacts">Tipos de actividad</a>
           <a class="dropdown-item" href="/procedencias">Procedencias</a>
           <a class="dropdown-item" href="/industrias">Industrias</a>
+          <a class="dropdown-item" href="/motivos">Motivos rechazo</a>
 
         </div>
       </li>

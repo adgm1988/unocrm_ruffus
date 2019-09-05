@@ -63,8 +63,8 @@
 							<div style="padding-right:5px; overflow:hidden;">
 								<span class="empresa" style="font-size:12px; font-weight:bold; margin-left:5px; white-space:nowrap; "><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }}</span> 
 							</div>						
-							<br>
-							<hr style="margin:2px;">
+							
+							<hr style="margin:6px;">
 							<span class="contacto" style="font-size:10px; font-weight:bold; float:left;">{{ $prospecto->contacto }}</span> 
 							<span style="color:gray; font-size: 9px; float:right;">${{ $prospecto->valor }}</span>
 						</div>

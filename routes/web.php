@@ -75,6 +75,11 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/industria','IndustryController@store');
 	Route::get('industrias/delete/{id}','IndustryController@destroy');
 
+	Route::get('/motivos','RechazosController@index');
+	Route::post('/motivos','RechazosController@store');
+	Route::get('motivos/delete/{id}','RechazosController@destroy');
+	Route::get('motivo/{id}/form','RechazosController@form');
+	Route::post('motivo/{id}','RechazosController@update');
 
 	Route::get('etapas/{id}/form','EtapaController@form');
 	Route::post('etapas/{id}','EtapaController@update');
@@ -96,6 +101,10 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::get('ganado/{id}','ProspectoController@ganado');
 	Route::post('ganado/{id}','ProspectoController@updateganado');
+
+	Route::get('reportes','ReportsController@index');
+
+
 
 	//Route::get('/home', 'HomeController@index')->name('home');
 });
