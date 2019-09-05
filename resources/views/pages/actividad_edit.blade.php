@@ -104,7 +104,7 @@
 	<div class="row">
 		<div class="form-group col-md-12">
 			<button  class="btn btn-success" >Actualizar</button>
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>		
+			<a href="/prospectos/{{ $actividad->prospecto->id }}"><button type="button" class="btn btn-secondary p-2 btn-sm">Cancelar</button></a>		
 		</div>
 	</div>
 
