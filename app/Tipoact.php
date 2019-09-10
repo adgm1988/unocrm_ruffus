@@ -8,6 +8,11 @@ class Tipoact extends Model
 {
     //
     public function actividades(){
-    	return $this->hasMany('App\Actividad');
+    	return $this->hasMany('App\Actividad','_tipoactid');
     }
+
+    public function getCuentaAttribute(){
+    	return $this->actividades()->count();
+    }
+
 }

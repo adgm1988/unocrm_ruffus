@@ -72,4 +72,13 @@ class Prospecto extends Model
 		
 	}
 
+	public function getDiasAttribute(){
+		
+		return 10;
+
+		/*$ultima_bitacora = $this->bitacoras->first();
+		$ultimo_cambio = $ultima_bitacora->created_at;
+		$dias=$ultimo_cambio->diffInDays();*/
+	}
+
 }
