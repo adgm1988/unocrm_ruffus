@@ -167,7 +167,7 @@
 		@if($prospecto->estatus!='prospecto')
 			<span style="color:gray;">({{ ucfirst($prospecto->estatus) }})</span>
 		@endif 
-
+		
 		<span style="float:right;">
 			<a href="/prospectos/{{ $prospecto->id }}/form">
 				<button type="button" class="btn btn-info p-1 btn-sm mr-3">Editar prospecto</button>
@@ -180,10 +180,11 @@
 				<div class="row mb-3">
 					<div class="col-md-4"><span class="font-weight-bold">Contacto:</span> {{ $prospecto->contacto }} </div>
 					<div class="col-md-4" ><span class="font-weight-bold">Etapa: </span>
-						<button type="button" class="ml-2 p-2 btn-sm" style="border-radius: 13px; font-weight:bold; text-align:center; height:30px; border:1px solid black; padding:3px 15px 3px 15px !important; background-color: {{ $prospecto->etapas->color }}"  data-toggle="modal" data-target="#modalestatus" id="open">
-							{{ $prospecto->etapas->etapa }} <i class="ml-2 fas fa-sync-alt"></i>
-							
-						</button>
+								
+							<button  type="button" class="ml-2 p-2 btn-sm" style="color:black; border-radius: 13px; font-weight:bold; text-align:center; height:30px; border:1px solid black; padding:3px 15px 3px 15px !important; background-color: {{ $prospecto->etapas->color }}"  data-toggle="modal" data-target="#modalestatus" id="open">
+								{{ $prospecto->etapas->etapa }} <i class="ml-2 fas fa-sync-alt"></i>	
+							</button>
+
 					</div>
 					<div class="col-md-4"><span class="font-weight-bold">Procedencia:</span> {{ $prospecto->procedencias->procedencia }}</div>
 				</div>

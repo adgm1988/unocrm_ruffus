@@ -13,18 +13,30 @@
           <span>Calendario</span>
         </a>
       </li>
+
+      @if(auth::user()->vendedor !=1)
       <li class="nav-item">
         <a class="nav-link" href="/reportes">
           <i class="fas fa-fw fa-signal"></i>
           <span>Reportes</span>
         </a>
       </li>
+      @endif
+      @if(auth::user()->vendedor ==1)
+      <li class="nav-item">
+        <a class="nav-link" href="/reportes">
+          <i class="fas fa-fw fa-signal"></i>
+          <span>Reportes vendedor</span>
+        </a>
+      </li>
+      @endif
       <li class="nav-item">
         <a class="nav-link" href="/prospectos">
           <i class="fas fa-fw fa-users"></i>
           <span>Prospectos</span>
         </a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="/clientes">
           <i class="fas fa-fw fa-user-check"></i>
@@ -49,6 +61,8 @@
           <span>Bitácoras</span>
         </a>
       </li>
+
+      @if(auth::user()->admin ==1 || auth::user()->consultor ==1)
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
@@ -75,6 +89,7 @@
 
         </div>
       </li>
+      @endif
       <!--
       <li class="nav-item">
         <a class="nav-link" href="charts.html">

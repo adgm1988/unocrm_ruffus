@@ -13,13 +13,21 @@ use App\Bitacora;
 use App\User;
 use App\Rechazos;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ProspectoController extends Controller
 {
     //
 	function index(){
-		$prospectos = Prospecto::where('estatus','prospecto')->paginate(30);
-        $cant = Prospecto::where('estatus','prospecto')->count();
+        if(auth::user()->vendedor == 1){
+            $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->paginate(30);
+            $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->count();
+        }else{
+            $prospectos = Prospecto::where('estatus','prospecto')->paginate(30);
+            $cant = Prospecto::where('estatus','prospecto')->count();
+        }
+		
+        
         $procedencias = Procedencia::all();
         $etapas = Etapa::all();
         $industrias = Industry::all();
@@ -80,8 +88,35 @@ class ProspectoController extends Controller
        }
 
 
-
-        switch ($condicion){
+       if(auth::user()->vendedor == 1){
+            switch ($condicion){
+            case "contiene":  // if $var == "x"
+                $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->where($campo,'like','%'.$valor.'%')->paginate(30);
+                $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->where($campo,'like','%'.$valor.'%')->count();
+                $condicion_texto= "contiene";
+                break;
+            case "mayor":  // if $var == "y"
+                $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->where($campo,'>',$valor)->paginate(30);
+                $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->where($campo,'>',$valor)->count();
+                $condicion_texto= "es mayor que";
+                break;
+            case "menor":  // if $var == "y"
+                $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->where($campo,'<',$valor)->paginate(30);
+                $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->where($campo,'<',$valor)->xount();
+                $condicion_texto= "es menor que";
+                break;
+            case "especial":  // if $var == "y"
+                $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->whereIn($campo_tabla, $array_ids)->paginate(30);   
+                $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->whereIn($campo_tabla, $array_ids)->count();   
+                $condicion_texto= "contiene";
+                break;
+            default:  // if $var != "x" && != "y"
+                $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->paginate(30);
+                $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->count();
+                break;
+            }
+        }else{
+            switch ($condicion){
             case "contiene":  // if $var == "x"
                 $prospectos = Prospecto::where('estatus','prospecto')->where($campo,'like','%'.$valor.'%')->paginate(30);
                 $cant = Prospecto::where('estatus','prospecto')->where($campo,'like','%'.$valor.'%')->count();
@@ -106,7 +141,9 @@ class ProspectoController extends Controller
                 $prospectos = Prospecto::where('estatus','prospecto')->paginate(30);
                 $cant = Prospecto::where('estatus','prospecto')->count();
                 break;
-       }
+            }
+        }
+        
 
         $procedencias = Procedencia::all();
         $etapas = Etapa::all();
@@ -215,6 +252,11 @@ class ProspectoController extends Controller
 
     function form($id){
         $prospecto = Prospecto::find($id);
+
+        if(auth::user()->id != $prospecto->userid && auth::user()->consultor==1 ){
+            return redirect('/prospectos');
+        }
+
         $procedencias = Procedencia::all();
         $etapas = Etapa::all();
         $industrias = Industry::all();

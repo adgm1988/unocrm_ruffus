@@ -12,13 +12,19 @@ use App\Industry;
 use App\Bitacora;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PerdidosController extends Controller
 {
     function index(){
-		$prospectos = Prospecto::where('estatus','like','perdido')->paginate(30);
-        $cant = Prospecto::where('estatus','perdido')->count(); //si le quitas el like es "es igual", con el like puedes poner si contiene, empieza terminar etc.
-        $procedencias = Procedencia::all();
+        if(auth::user()->vendedor == 1){
+            $prospectos = Prospecto::where('estatus','like','perdido')->where('userid',auth::user()->id)->paginate(30);
+            $cant = Prospecto::where('estatus','perdido')->where('userid',auth::user()->id)->count(); //si le quitas el like es "es igual", con el like puedes poner si contiene, empieza terminar etc.
+        }else{
+            $prospectos = Prospecto::where('estatus','like','perdido')->paginate(30);
+            $cant = Prospecto::where('estatus','perdido')->count(); //si le quitas el like es "es igual", con el like puedes poner si contiene, empieza terminar etc.
+        }
+		$procedencias = Procedencia::all();
         $etapas = Etapa::all();
         $industrias = Industry::all();
         $filtro='';
@@ -29,6 +35,54 @@ class PerdidosController extends Controller
         $campo = $request->get('campo');
         $valor = $request->get('valor');
         $condicion = $request->get('condicion');
+
+        if(auth::user()->vendedor == 1){
+            switch ($condicion){
+            case "contiene":  // if $var == "x"
+                $prospectos = Prospecto::where('estatus','like','perdido')->where('userid',auth::user()->id)->where($campo,'like','%'.$valor.'%')->paginate(30);
+                $condicion_texto= "contiene";
+                break;
+            case "mayor":  // if $var == "y"
+                $prospectos = Prospecto::where('estatus','like','perdido')->where('userid',auth::user()->id)->where($campo,'>',$valor)->paginate(30);
+                $condicion_texto= "es mayor que";
+                break;
+            case "menor":  // if $var == "y"
+                $prospectos = Prospecto::where('estatus','like','perdido')->where('userid',auth::user()->id)->where($campo,'<',$valor)->paginate(30);
+                $condicion_texto= "es menor que";
+                break;
+            case "especial":  // if $var == "y"
+                $prospectos = Prospecto::where('estatus','like','perdido')->where('userid',auth::user()->id)->whereIn($campo_tabla, $array_ids)->paginate(30);   
+                $condicion_texto= "contiene";
+                break;
+            default:  // if $var != "x" && != "y"
+                $prospectos = Prospecto::paginate(30);
+                break;
+            }
+
+        }else{
+            switch ($condicion){
+            case "contiene":  // if $var == "x"
+                $prospectos = Prospecto::where('estatus','like','perdido')->where($campo,'like','%'.$valor.'%')->paginate(30);
+                $condicion_texto= "contiene";
+                break;
+            case "mayor":  // if $var == "y"
+                $prospectos = Prospecto::where('estatus','like','perdido')->where($campo,'>',$valor)->paginate(30);
+                $condicion_texto= "es mayor que";
+                break;
+            case "menor":  // if $var == "y"
+                $prospectos = Prospecto::where('estatus','like','perdido')->where($campo,'<',$valor)->paginate(30);
+                $condicion_texto= "es menor que";
+                break;
+            case "especial":  // if $var == "y"
+                $prospectos = Prospecto::where('estatus','like','perdido')->whereIn($campo_tabla, $array_ids)->paginate(30);   
+                $condicion_texto= "contiene";
+                break;
+            default:  // if $var != "x" && != "y"
+                $prospectos = Prospecto::paginate(30);
+                break;
+            }
+
+        }
 
         switch ($campo){
             case "industria":  // if $var == "x"
@@ -79,27 +133,7 @@ class PerdidosController extends Controller
 
 
 
-        switch ($condicion){
-            case "contiene":  // if $var == "x"
-                $prospectos = Prospecto::where('estatus','like','perdido')->where($campo,'like','%'.$valor.'%')->paginate(30);
-                $condicion_texto= "contiene";
-                break;
-            case "mayor":  // if $var == "y"
-                $prospectos = Prospecto::where('estatus','like','perdido')->where($campo,'>',$valor)->paginate(30);
-                $condicion_texto= "es mayor que";
-                break;
-            case "menor":  // if $var == "y"
-                $prospectos = Prospecto::where('estatus','like','perdido')->where($campo,'<',$valor)->paginate(30);
-                $condicion_texto= "es menor que";
-                break;
-            case "especial":  // if $var == "y"
-                $prospectos = Prospecto::where('estatus','like','perdido')->whereIn($campo_tabla, $array_ids)->paginate(30);   
-                $condicion_texto= "contiene";
-                break;
-            default:  // if $var != "x" && != "y"
-                $prospectos = Prospecto::paginate(30);
-                break;
-       }
+        
 
         $procedencias = Procedencia::all();
         $etapas = Etapa::all();

@@ -7,15 +7,25 @@ use App\Actividad;
 use App\Tipoact;
 use App\Prospecto;
 use App\Bitacora;
+use Illuminate\Support\Facades\Auth;
 
 class ActividadController extends Controller
 {
     //
-
     function index(){
 
-    	$actividades = Actividad::orderBy('fecha', 'DESC')->get();
-        $prospectos = Prospecto::all();
+        if(auth::user()->vendedor == 1){
+           // $actividades = Actividad::orderBy('fecha', 'DESC')->get();
+
+            $actividades = Actividad::with('Prospecto')->whereHas('Prospecto', function($q){
+                $q->where('userid', auth::user()->id);
+            })->get();
+
+            $prospectos = Prospecto::all();
+        }else{
+            $actividades = Actividad::orderBy('fecha', 'DESC')->get();
+            $prospectos = Prospecto::all();
+        }
     	$tipos = Tipoact::all();
     	return view('pages.actividades',compact('actividades','tipos','prospectos'));
     }

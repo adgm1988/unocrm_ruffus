@@ -58,6 +58,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 	//rutas catalogos
 	Route::get('/users','UsersController@index');
+	Route::post('/users','UsersController@store');
+	Route::post('/users/{id}','UsersController@update');
+	Route::get('/users/delete/{id}','UsersController@destroy');
 
 	Route::get('/etapas','EtapaController@index');
 	Route::post('/etapas','EtapaController@store');

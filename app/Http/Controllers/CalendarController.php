@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Actividad;
 use App\Prospecto;
 use App\Tipoact;
+use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
@@ -20,7 +21,16 @@ class CalendarController extends Controller
 
     	//para la parte del calendario
     	$events = [];
-    	$actividades = Actividad::all();
+
+    	if(auth::user()->vendedor == 1){
+           // $actividades = Actividad::orderBy('fecha', 'DESC')->get();
+
+            $actividades = Actividad::with('Prospecto')->whereHas('Prospecto', function($q){
+                $q->where('userid', auth::user()->id);
+            })->get();
+        }else{
+            $actividades = Actividad::all();
+        }
 
     	foreach($actividades as $actividad){
 

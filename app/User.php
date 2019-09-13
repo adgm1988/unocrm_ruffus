@@ -40,4 +40,5 @@ class User extends Authenticatable
     public function prospectos(){
         return $this->hasMany('App/Prospecto','procedencia');
     }
+
 }
