@@ -20,10 +20,10 @@ class ProspectoController extends Controller
     //
 	function index(){
         if(auth::user()->vendedor == 1){
-            $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->paginate(30);
+            $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->paginate(500);
             $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->count();
         }else{
-            $prospectos = Prospecto::where('estatus','prospecto')->paginate(30);
+            $prospectos = Prospecto::where('estatus','prospecto')->paginate(500);
             $cant = Prospecto::where('estatus','prospecto')->count();
         }
 		
@@ -360,7 +360,7 @@ class ProspectoController extends Controller
         $bitacora->fecha = Carbon::now();
         $bitacora->user_id = auth()->user()->id;
         $bitacora->dias = $dias;
-        $bitacora->nota = "Prospecto perdido por ".$request->get('valor').": " .$request->get('notas');
+        $bitacora->nota = "Prospecto ganado por $".$request->get('valor').": " .$request->get('notas');
         $bitacora->etapa_anterior_id = $request->get('etapa_anterior_id');
         $bitacora->etapa_id = $request->get('etapa_anterior_id');
 

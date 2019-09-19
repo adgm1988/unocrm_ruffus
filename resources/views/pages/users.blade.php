@@ -49,7 +49,7 @@
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label for="telefono">Contraseña:</label>
-							<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+							<input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 						</div>
 						
 					</div>

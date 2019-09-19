@@ -23,12 +23,20 @@ class Etapa extends Model
         return $this->prospectos()->where('estatus','like','perdido')->count('id');
     }
 
+    public function getSumaperdidosAttribute(){
+        return $this->prospectos()->where('estatus','like','perdido')->sum('valor');
+    }
+
     public function getCuentaclientesAttribute(){
         return $this->prospectos()->where('estatus','like','cliente')->count('id');
     }
 
+    public function getSumaclientesAttribute(){
+        return $this->prospectos()->where('estatus','like','cliente')->sum('valor');
+    }
+
     public function getDiasetapaAttribute(){
-        return $this->hasMany('App\Prospecto')->dias()->sum('valor');
+        return $this->prospectos()->sum('valor');
     }
 
 }

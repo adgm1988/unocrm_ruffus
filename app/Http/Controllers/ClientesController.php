@@ -18,11 +18,11 @@ class ClientesController extends Controller
 {
     function index(){
         if(auth::user()->vendedor == 1){
-            $prospectos = Prospecto::where('estatus','like','cliente')->where('userid',auth::user()->id)->paginate(30);
+            $prospectos = Prospecto::where('estatus','like','cliente')->where('userid',auth::user()->id)->paginate(500);
             $cant = Prospecto::where('estatus','like','cliente')->where('userid',auth::user()->id)->count();
         }else{
-            $prospectos = Prospecto::where('estatus','like','cliente')->paginate(30);
             $cant = Prospecto::where('estatus','like','cliente')->count();
+            $prospectos = Prospecto::where('estatus','like','cliente')->paginate(500);
         }
 		
         $procedencias = Procedencia::all();

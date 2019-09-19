@@ -32,7 +32,7 @@
 		</div>
 		<div class="form-group col-md-6">
 			<label for="contacto">Estatus:</label>
-			<select class="custom-select" name="estatus">
+			<select class="custom-select" name="estatus" disabled>
 				<option {{ $prospecto->estatus == 'perdido' ? 'selected' : ''}} value='perdido'>Perdido</option>
 				<option {{ $prospecto->estatus == 'prospecto' ? 'selected' : ''}} value='prospecto'>Prospecto</option>
 				<option {{ $prospecto->estatus == 'ganado' ? 'selected' : ''}} value='ganado'>Ganado</option>

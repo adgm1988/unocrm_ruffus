@@ -62,7 +62,7 @@
         </a>
       </li>
 
-      @if(auth::user()->admin ==1 || auth::user()->consultor ==1)
+      @if(!auth::user()->vendedor ==1)
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
@@ -81,11 +81,14 @@
           <a class="dropdown-item" href="blank.html">Blank Page</a>
           -->
           <a class="dropdown-item" href="/users">Usuarios</a>
-          <a class="dropdown-item" href="/etapas">Etapas</a>
-          <a class="dropdown-item" href="/tipoacts">Tipos de actividad</a>
-          <a class="dropdown-item" href="/procedencias">Procedencias</a>
-          <a class="dropdown-item" href="/industrias">Industrias</a>
-          <a class="dropdown-item" href="/motivos">Motivos rechazo</a>
+
+          @if(auth::user()->admin ==1 || auth::user()->consultor ==1)
+            <a class="dropdown-item" href="/etapas">Etapas</a>
+            <a class="dropdown-item" href="/tipoacts">Tipos de actividad</a>
+            <a class="dropdown-item" href="/procedencias">Procedencias</a>
+            <a class="dropdown-item" href="/industrias">Industrias</a>
+            <a class="dropdown-item" href="/motivos">Motivos rechazo</a>
+          @endif
 
         </div>
       </li>

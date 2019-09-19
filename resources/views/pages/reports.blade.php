@@ -1,217 +1,441 @@
 @extends('layout')
 @section('content')
 
-<h5>Reportes</h5>
 
+<form action="/reports/filtrar" method="post">
+    @csrf
+    <div class="row form-group">
+        <label for="vendedor" class="col-md-1 col-form-label ">Vendedor:</label>
+        <div class="form-group col-md-2">
+            <select class="custom-select" name="vendedor" id="vendedor">
+                <option value='0'>Todos</option>
+                @foreach($vendedores as $vendedor)
+                <option value='{{ $vendedor->id }}'>{{ $vendedor->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <label for="vendedor" class="col-md-1 col-form-label">Desde:</label>
+        <div class="form-group col-md-3">
+            <input type="date" class="form-control" name="desde" id="desde" onchange="checar_filtros()">
+        </div>
+        <label for="vendedor" class="col-md-1 col-form-label">Hasta:</label>
+        <div class="form-group col-md-3">
+            <input type="date" class="form-control" name="hasta" id="hasta" onchange="checar_filtros()">
+        </div>
 
+        <div class="form-group col-md-1">
+           <button id="boton_filtro" type="submit" class="btn btn-secondary" disabled>Filtrar</button>
+       </div> 
+   </div>
+</form>
+<hr>
 
+<h5>Cantidad</h5>
 <script src="{{ asset('vendor/chart.js/Chart.min.js') }}" ></script>
+<div class="row">
+    <div class="col-lg-4">
+        <canvas id="etapas" width="200" height="100"></canvas>
+    </div>
+    <div class="col-lg-4">
+        <canvas id="etapas_perdidos" width="200" height="100"></canvas>
+    </div>
+    <div class="col-lg-4">
+        <canvas id="etapas_ganados" width="200" height="100"></canvas>
+    </div>
+</div>
 
-<canvas id="etapas" width="400" height="100"></canvas>
+
 <script>
-var ctx = document.getElementById('etapas');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [
-        	@foreach($etapas as $etapa)
-        		'{{ $etapa->etapa }}',
-        	@endforeach
-        ],
-        datasets: [{
-            label: 'Prospectos por etapa',
-            data: [
-            @foreach($etapas as $etapa)
-                {{ $etapa->cuenta }},
-            @endforeach
-            ],
-            backgroundColor: [
+    var ctx = document.getElementById('etapas');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
             	@foreach($etapas as $etapa)
-        		  '{{ $etapa->color }}',
-        	    @endforeach
+            		'{{ $etapa->etapa }}',
+            	@endforeach
             ],
-            borderColor: [
-            //vacio es sin borde
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
+            datasets: [{
+                label: 'Prospectos',
+                data: [
+                @foreach($etapas as $etapa)
+                    {{ $etapa->cuenta }},
+                @endforeach
+                ],
+                backgroundColor: [
+                	@foreach($etapas as $etapa)
+            		  '{{ $etapa->color }}',
+            	    @endforeach
+                ],
+                borderColor: [
+                //vacio es sin borde
+                ],
+                borderWidth: 1
             }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+              labels: {
+                  boxWidth: 0
+              }
+          }
         }
-    }
-});
+    });
 </script>
 
-<canvas id="etapas_perdidos" width="400" height="100"></canvas>
 <script>
-var ctx = document.getElementById('etapas_perdidos');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [
-            @foreach($etapas as $etapa)
-                '{{ $etapa->etapa }}',
-            @endforeach
-        ],
-        datasets: [{
-            label: 'Perdidos por etapa',
-            data: [
-            @foreach($etapas as $etapa)
-                {{ $etapa->cuentaperdidos }},
-            @endforeach
-            ],
-            backgroundColor: [
+    var ctx = document.getElementById('etapas_perdidos');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
                 @foreach($etapas as $etapa)
-                  '{{ $etapa->color }}',
+                    '{{ $etapa->etapa }}',
                 @endforeach
             ],
-            borderColor: [
-                //vacio es sin borde
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
+            datasets: [{
+                label: 'Perdidos',
+                data: [
+                @foreach($etapas as $etapa)
+                    {{ $etapa->cuentaperdidos }},
+                @endforeach
+                ],
+                backgroundColor: [
+                    @foreach($etapas as $etapa)
+                      '{{ $etapa->color }}',
+                    @endforeach
+                ],
+                borderColor: [
+                    //vacio es sin borde
+                ],
+                borderWidth: 1
             }]
+        },
+       options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+              labels: {
+                  boxWidth: 0
+              }
+          }
         }
-    }
-});
+    });
 </script>
 
-<canvas id="etapas_ganados" width="400" height="100"></canvas>
 <script>
-var ctx = document.getElementById('etapas_ganados');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [
-            @foreach($etapas as $etapa)
-                '{{ $etapa->etapa }}',
-            @endforeach
-        ],
-        datasets: [{
-            label: 'Ganados por etapa',
-            data: [
-            @foreach($etapas as $etapa)
-                {{ $etapa->cuentaclientes }},
-            @endforeach
-            ],
-            backgroundColor: [
+    var ctx = document.getElementById('etapas_ganados');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
                 @foreach($etapas as $etapa)
-                  '{{ $etapa->color }}',
+                    '{{ $etapa->etapa }}',
                 @endforeach
             ],
-            borderColor: [
-                //vacio es sin borde
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
+            datasets: [{
+                label: 'Ganados',
+                data: [
+                @foreach($etapas as $etapa)
+                    {{ $etapa->cuentaclientes }},
+                @endforeach
+                ],
+                backgroundColor: [
+                    @foreach($etapas as $etapa)
+                      '{{ $etapa->color }}',
+                    @endforeach
+                ],
+                borderColor: [
+                    //vacio es sin borde
+                ],
+                borderWidth: 1
             }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+              labels: {
+                  boxWidth: 0
+              }
+          }
         }
-    }
-});
+    });
+</script>
+<hr>
+<h5>Monto</h5>
+<div class="row">
+    <div class="col-lg-4">
+        <canvas id="etapas_valor" width="200" height="100"></canvas>
+    </div>
+    <div class="col-lg-4">
+        <canvas id="etapas_perdidos_valor" width="200" height="100"></canvas>
+    </div>
+    <div class="col-lg-4">
+        <canvas id="etapas_ganados_valor" width="200" height="100"></canvas>
+    </div>
+</div>
+
+
+<script>
+    var ctx = document.getElementById('etapas_valor');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                @foreach($etapas as $etapa)
+                    '{{ $etapa->etapa }}',
+                @endforeach
+            ],
+            datasets: [{
+                label: 'Prospectos',
+                data: [
+                @foreach($etapas as $etapa)
+                    {{ $etapa->suma }},
+                @endforeach
+                ],
+                backgroundColor: [
+                    @foreach($etapas as $etapa)
+                      '{{ $etapa->color }}',
+                    @endforeach
+                ],
+                borderColor: [
+                //vacio es sin borde
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+              labels: {
+                  boxWidth: 0
+              }
+          }
+        }
+    });
 </script>
 
+<script>
+    var ctx = document.getElementById('etapas_perdidos_valor');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                @foreach($etapas as $etapa)
+                    '{{ $etapa->etapa }}',
+                @endforeach
+            ],
+            datasets: [{
+                label: 'Perdidos',
+                data: [
+                @foreach($etapas as $etapa)
+                    {{ $etapa->sumaperdidos }},
+                @endforeach
+                ],
+                backgroundColor: [
+                    @foreach($etapas as $etapa)
+                      '{{ $etapa->color }}',
+                    @endforeach
+                ],
+                borderColor: [
+                    //vacio es sin borde
+                ],
+                borderWidth: 1
+            }]
+        },
+       options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+              labels: {
+                  boxWidth: 0
+              }
+          }
+        }
+    });
+</script>
 
+<script>
+    var ctx = document.getElementById('etapas_ganados_valor');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                @foreach($etapas as $etapa)
+                    '{{ $etapa->etapa }}',
+                @endforeach
+            ],
+            datasets: [{
+                label: 'Ganados',
+                data: [
+                @foreach($etapas as $etapa)
+                    {{ $etapa->sumaclientes }},
+                @endforeach
+                ],
+                backgroundColor: [
+                    @foreach($etapas as $etapa)
+                      '{{ $etapa->color }}',
+                    @endforeach
+                ],
+                borderColor: [
+                    //vacio es sin borde
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+              labels: {
+                  boxWidth: 0
+              }
+          }
+        }
+    });
+</script>
+
+<h5>Otros</h5>
 <canvas id="tiempo_etapa" width="400" height="100"></canvas>
 <script>
-var ctx = document.getElementById('etapas_ganados');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [
-            @foreach($etapas as $etapa)
-                '{{ $etapa->etapa }}',
-            @endforeach
-        ],
-        datasets: [{
-            label: 'Ganados por etapa',
-            data: [
-            @foreach($etapas as $etapa)
-                {{ $etapa->cuentaclientes }},
-            @endforeach
-            ],
-            backgroundColor: [
+    var ctx = document.getElementById('tiempo_etapa');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
                 @foreach($etapas as $etapa)
-                  '{{ $etapa->color }}',
+                    '{{ $etapa->etapa }}',
                 @endforeach
             ],
-            borderColor: [
-                //vacio es sin borde
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
+            datasets: [{
+                label: 'Tiempo por etapa',
+                data: [
+                @foreach($etapas as $etapa)
+                    {{ $etapa->diasetapa }},
+                @endforeach
+                ],
+                backgroundColor: [
+                    @foreach($etapas as $etapa)
+                      '{{ $etapa->color }}',
+                    @endforeach
+                ],
+                borderColor: [
+                    //vacio es sin borde
+                ],
+                borderWidth: 1
             }]
+        },
+       options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+              labels: {
+                  boxWidth: 0
+              }
+          }
         }
-    }
-});
+    });
 </script>
 
 <canvas id="tipoact" width="400" height="100"></canvas>
 <script>
-var ctx = document.getElementById('tipoact');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [
-            @foreach($tipoacts as $tipo)
-                '{{ $tipo->tipo }}',
-            @endforeach
-        ],
-        datasets: [{
-            label: 'Actividades por tipo',
-            data: [
+    var ctx = document.getElementById('tipoact');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
                 @foreach($tipoacts as $tipo)
-                    {{ $tipo->cuenta }},
+                    '{{ $tipo->tipo }}',
                 @endforeach
             ],
-            backgroundColor: [
-                @foreach($tipoacts as $tipo)
-                '{{ $tipo->color }}',
-                @endforeach
-            ],
-            borderColor: [
-                //vacio es sin borde
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
+            datasets: [{
+                label: 'Actividades por tipo',
+                data: [
+                    @foreach($tipoacts as $tipo)
+                        {{ $tipo->cuenta }},
+                    @endforeach
+                ],
+                backgroundColor: [
+                    @foreach($tipoacts as $tipo)
+                    '{{ $tipo->color }}',
+                    @endforeach
+                ],
+                borderColor: [
+                    //vacio es sin borde
+                ],
+                borderWidth: 1
             }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+              labels: {
+                  boxWidth: 0
+              }
+          }
         }
-    }
-});
+    });
 </script>
 
 
 @endsection
+
+
+
+<script>
+
+    var checar_filtros = function(){
+
+        var desde = document.getElementById("desde").value;
+        var hasta = document.getElementById("hasta").value;
+        if(desde!='' && hasta!=''){
+            document.getElementById('boton_filtro').disabled = false;
+        }
+    }
+        
+</script>

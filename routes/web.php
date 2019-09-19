@@ -55,50 +55,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::get('bitacoras','BitacoraController@index');
 
-
-	//rutas catalogos
-	Route::get('/users','UsersController@index');
-	Route::post('/users','UsersController@store');
-	Route::post('/users/{id}','UsersController@update');
-	Route::get('/users/delete/{id}','UsersController@destroy');
-
-	Route::get('/etapas','EtapaController@index');
-	Route::post('/etapas','EtapaController@store');
-	Route::get('etapas/delete/{id}','EtapaController@destroy');
-
-	Route::get('/tipoacts','TipoactController@index');
-	Route::post('/tipoact','TipoactController@store');
-	Route::get('tipos/delete/{id}','TipoactController@destroy');
-
-	Route::get('/procedencias','ProcedenciaController@index');
-	Route::post('/procedencia','ProcedenciaController@store');
-	Route::get('procedencias/delete/{id}','ProcedenciaController@destroy');
-
-	Route::get('/industrias','IndustryController@index');
-	Route::post('/industria','IndustryController@store');
-	Route::get('industrias/delete/{id}','IndustryController@destroy');
-
-	Route::get('/motivos','RechazosController@index');
-	Route::post('/motivos','RechazosController@store');
-	Route::get('motivos/delete/{id}','RechazosController@destroy');
-	Route::get('motivo/{id}/form','RechazosController@form');
-	Route::post('motivo/{id}','RechazosController@update');
-
-	Route::get('etapas/{id}/form','EtapaController@form');
-	Route::post('etapas/{id}','EtapaController@update');
-
-	Route::get('tipoacts/{id}/form','TipoactController@form');
-	Route::post('tipoacts/{id}','TipoactController@update');
-
-	Route::get('procedencias/{id}/form','ProcedenciaController@form');
-	Route::post('procedencias/{id}','ProcedenciaController@update');
-
-	Route::get('actividad/{id}/form/{prospecto?}','ActividadController@form');
-	Route::post('actividad/{id}/{origen}','ActividadController@update');
-
-	Route::get('industria/{id}/form','IndustryController@form');
-	Route::post('industria/{id}','IndustryController@update');
-
 	Route::get('perdido/{id}','ProspectoController@perdido');
 	Route::post('perdido/{id}','ProspectoController@updateperdido');
 
@@ -106,6 +62,53 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('ganado/{id}','ProspectoController@updateganado');
 
 	Route::get('reportes','ReportsController@index');
+
+
+
+	//rutas catalogos
+	Route::group(['middleware' => ['novendedor']], function () {
+		Route::get('/users','UsersController@index');
+		Route::post('/users','UsersController@store');
+		Route::post('/users/{id}','UsersController@update');
+		Route::get('/users/delete/{id}','UsersController@destroy');
+
+		Route::get('/etapas','EtapaController@index');
+		Route::post('/etapas','EtapaController@store');
+		Route::get('etapas/delete/{id}','EtapaController@destroy');
+
+		Route::get('/tipoacts','TipoactController@index');
+		Route::post('/tipoact','TipoactController@store');
+		Route::get('tipos/delete/{id}','TipoactController@destroy');
+
+		Route::get('/procedencias','ProcedenciaController@index');
+		Route::post('/procedencia','ProcedenciaController@store');
+		Route::get('procedencias/delete/{id}','ProcedenciaController@destroy');
+
+		Route::get('/industrias','IndustryController@index');
+		Route::post('/industria','IndustryController@store');
+		Route::get('industrias/delete/{id}','IndustryController@destroy');
+
+		Route::get('/motivos','RechazosController@index');
+		Route::post('/motivos','RechazosController@store');
+		Route::get('motivos/delete/{id}','RechazosController@destroy');
+		Route::get('motivo/{id}/form','RechazosController@form');
+		Route::post('motivo/{id}','RechazosController@update');
+
+		Route::get('etapas/{id}/form','EtapaController@form');
+		Route::post('etapas/{id}','EtapaController@update');
+
+		Route::get('tipoacts/{id}/form','TipoactController@form');
+		Route::post('tipoacts/{id}','TipoactController@update');
+
+		Route::get('procedencias/{id}/form','ProcedenciaController@form');
+		Route::post('procedencias/{id}','ProcedenciaController@update');
+
+		Route::get('actividad/{id}/form/{prospecto?}','ActividadController@form');
+		Route::post('actividad/{id}/{origen}','ActividadController@update');
+
+		Route::get('industria/{id}/form','IndustryController@form');
+		Route::post('industria/{id}','IndustryController@update');
+	});
 
 
 

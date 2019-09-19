@@ -16,6 +16,8 @@ class ReportsController extends Controller
     public function index(){
     	$etapas = Etapa::all();
     	$tipoacts= Tipoact::all();
-    	return view('pages.reports',compact('etapas','tipoacts'));
+    	$prospectos= Prospecto::all();
+    	$vendedores= User::where('vendedor',1)->get();
+    	return view('pages.reports',compact('etapas','tipoacts','prospectos','vendedores'));
     }
 }

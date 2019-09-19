@@ -18,10 +18,10 @@ class PerdidosController extends Controller
 {
     function index(){
         if(auth::user()->vendedor == 1){
-            $prospectos = Prospecto::where('estatus','like','perdido')->where('userid',auth::user()->id)->paginate(30);
+            $prospectos = Prospecto::where('estatus','like','perdido')->where('userid',auth::user()->id)->paginate(500);
             $cant = Prospecto::where('estatus','perdido')->where('userid',auth::user()->id)->count(); //si le quitas el like es "es igual", con el like puedes poner si contiene, empieza terminar etc.
         }else{
-            $prospectos = Prospecto::where('estatus','like','perdido')->paginate(30);
+            $prospectos = Prospecto::where('estatus','like','perdido')->paginate(500);
             $cant = Prospecto::where('estatus','perdido')->count(); //si le quitas el like es "es igual", con el like puedes poner si contiene, empieza terminar etc.
         }
 		$procedencias = Procedencia::all();
