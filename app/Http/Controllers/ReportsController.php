@@ -20,4 +20,23 @@ class ReportsController extends Controller
     	$vendedores= User::where('vendedor',1)->get();
     	return view('pages.reports',compact('etapas','tipoacts','prospectos','vendedores'));
     }
+
+    public function filtrar(Request $request){
+
+    	$user = $request->get('vendedor');
+    	$desde = $request->get('desde');
+    	$hasta = $request->get('hasta');
+
+    	$etapas = Etapa::all();
+    	if($user == 0){
+    		$prospectos= Prospecto::all();
+    	}else{
+    		$prospectos = Prospecto::where('userid','like',$user)->get();
+    	}
+    	$tipoacts= Tipoact::all();
+    	$vendedores= User::where('vendedor',1)->get();
+    	return view('pages.reports',compact('etapas','tipoacts','prospectos','vendedores','user','desde','hasta'));
+    }
+
+
 }

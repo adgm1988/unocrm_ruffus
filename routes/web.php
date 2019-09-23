@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('ganado/{id}','ProspectoController@updateganado');
 
 	Route::get('reportes','ReportsController@index');
+	Route::post('reportes/filtrar','ReportsController@filtrar');
 
 
 
