@@ -3,8 +3,9 @@
 
 <button style="float:left;" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" id="open">Agregar</button>
 
-<a href="/prospecto/export"><button style="float:left; margin-left:10px;" type="button" class="btn btn-info btn-sm" >Exportar</button></a>
-
+@if(auth::user()->admin ==1 || auth::user()->consultor ==1)
+    <a href="/prospecto/export"><button style="float:left; margin-left:10px;" type="button" class="btn btn-info btn-sm" >Exportar</button></a>
+@endif
 <h3 class='text-center'>Directorio de prospectos <span style="color:gray; font-size:16px;">({{ $cant }})</span></h3>
 <!-- Trigger the modal with a button -->
 

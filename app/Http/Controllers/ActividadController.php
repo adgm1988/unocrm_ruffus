@@ -9,6 +9,10 @@ use App\Prospecto;
 use App\Bitacora;
 use Illuminate\Support\Facades\Auth;
 
+use Carbon\Carbon;
+use App\Exports\ActividadsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class ActividadController extends Controller
 {
     //
@@ -202,5 +206,11 @@ class ActividadController extends Controller
 
     	
     }
+
+    public function export() {
+        $date =  Carbon::now();
+        $filename = 'actividades-'.$date.'.xlsx';
+        return Excel::download(new ActividadsExport, $filename);
+    }   
 	
 }

@@ -111,6 +111,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('industria/{id}','IndustryController@update');
 
 		Route::get('/prospecto/export', 'ProspectoController@export');
+		Route::get('/actividades/export', 'ActividadController@export');
 	});
 
 
