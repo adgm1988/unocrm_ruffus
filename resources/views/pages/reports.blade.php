@@ -10,7 +10,7 @@
             <select class="custom-select" name="vendedor" id="vendedor" onchange="checar_filtros()">
                 <option value='0'>Todos</option>
                 @foreach($vendedores as $vendedor)
-                    <option value='{{ $vendedor->id }}'  {{ $vendedor->id == $user ? "selected" : "" }} >{{ $vendedor->name }}</option>
+                    <option value='{{ $vendedor->id }}'  {{ $vendedor->id == auth::user()->id ? "selected" : "" }} >{{ $vendedor->name }}</option>
                 @endforeach
             </select>
         </div>

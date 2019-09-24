@@ -18,7 +18,10 @@ class ReportsController extends Controller
     	$tipoacts= Tipoact::all();
     	$prospectos= Prospecto::all();
     	$vendedores= User::where('vendedor',1)->get();
-    	return view('pages.reports',compact('etapas','tipoacts','prospectos','vendedores'));
+        $user = 0;
+        $desde ='';
+        $hasta = '';
+    	return view('pages.reports',compact('etapas','tipoacts','prospectos','vendedores','user','desde','hasta'));
     }
 
     public function filtrar(Request $request){
