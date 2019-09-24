@@ -15,6 +15,9 @@ use App\Rechazos;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
+use App\Exports\ProspectosExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class ProspectoController extends Controller
 {
     //
@@ -435,5 +438,11 @@ class ProspectoController extends Controller
 
          return redirect('/prospectos/'.$id);
     }
+
+    public function export() {
+        $date =  Carbon::now();
+        $filename = 'prospectos-'.$date.'.xlsx';
+        return Excel::download(new ProspectosExport, $filename);
+    }   
 
 }

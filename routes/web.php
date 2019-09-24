@@ -109,6 +109,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 		Route::get('industria/{id}/form','IndustryController@form');
 		Route::post('industria/{id}','IndustryController@update');
+
+		Route::get('/prospecto/export', 'ProspectoController@export');
 	});
 
 
