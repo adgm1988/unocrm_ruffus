@@ -10,7 +10,7 @@
             <select class="custom-select" name="vendedor" id="vendedor" onchange="checar_filtros()">
                 <option value='0'>Todos</option>
                 @foreach($vendedores as $vendedor)
-                    <option value='{{ $vendedor->id }}'  {{ $vendedor->id == auth::user()->id ? "selected" : "" }} >{{ $vendedor->name }}</option>
+                    <option value='{{ $vendedor->id }}'  {{ $vendedor->id == $user ? "selected" : "" }} >{{ $vendedor->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -58,8 +58,8 @@
             datasets: [{
                 label: 'Prospectos',
                 data: [
-                @foreach($etapas as $etapa)
-                    {{ $etapa->cuenta }},
+                @foreach($prospectos_cant as $prospecto)
+                    {{ $prospecto->cantidad }},
                 @endforeach
                 ],
                 backgroundColor: [
@@ -101,10 +101,10 @@
                 @endforeach
             ],
             datasets: [{
-                label: 'Perdidos',
+                label: 'Clientes',
                 data: [
-                @foreach($etapas as $etapa)
-                    {{ $etapa->cuentaperdidos }},
+                @foreach($clientes_cant as $cliente)
+                    {{ $cliente->cantidad }},
                 @endforeach
                 ],
                 backgroundColor: [
@@ -113,7 +113,7 @@
                     @endforeach
                 ],
                 borderColor: [
-                    //vacio es sin borde
+                //vacio es sin borde
                 ],
                 borderWidth: 1
             }]
@@ -146,10 +146,10 @@
                 @endforeach
             ],
             datasets: [{
-                label: 'Ganados',
+                label: 'Perdidos',
                 data: [
-                @foreach($etapas as $etapa)
-                    {{ $etapa->cuentaclientes }},
+                @foreach($perdidos_cant as $perdido)
+                    {{ $perdido->cantidad }},
                 @endforeach
                 ],
                 backgroundColor: [
@@ -158,7 +158,7 @@
                     @endforeach
                 ],
                 borderColor: [
-                    //vacio es sin borde
+                //vacio es sin borde
                 ],
                 borderWidth: 1
             }]
@@ -207,8 +207,8 @@
             datasets: [{
                 label: 'Prospectos',
                 data: [
-                @foreach($etapas as $etapa)
-                    {{ $etapa->suma }},
+                @foreach($prospectos_val as $prospecto)
+                    {{ $prospecto->suma }},
                 @endforeach
                 ],
                 backgroundColor: [
@@ -250,10 +250,10 @@
                 @endforeach
             ],
             datasets: [{
-                label: 'Perdidos',
+                label: 'Clientes',
                 data: [
-                @foreach($etapas as $etapa)
-                    {{ $etapa->sumaperdidos }},
+                @foreach($clientes_val as $cliente)
+                    {{ $cliente->suma }},
                 @endforeach
                 ],
                 backgroundColor: [
@@ -262,7 +262,7 @@
                     @endforeach
                 ],
                 borderColor: [
-                    //vacio es sin borde
+                //vacio es sin borde
                 ],
                 borderWidth: 1
             }]
@@ -295,10 +295,10 @@
                 @endforeach
             ],
             datasets: [{
-                label: 'Ganados',
+                label: 'Perdidos',
                 data: [
-                @foreach($etapas as $etapa)
-                    {{ $etapa->sumaclientes }},
+                @foreach($perdidos_val as $perdido)
+                    {{ $perdido->suma }},
                 @endforeach
                 ],
                 backgroundColor: [
@@ -307,7 +307,7 @@
                     @endforeach
                 ],
                 borderColor: [
-                    //vacio es sin borde
+                //vacio es sin borde
                 ],
                 borderWidth: 1
             }]
@@ -327,6 +327,7 @@
           }
         }
     });
+</script>
 </script>
 
 <h5>Otros</h5>

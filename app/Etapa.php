@@ -36,7 +36,9 @@ class Etapa extends Model
     }
 
     public function getDiasetapaAttribute(){
-        return $this->prospectos()->sum('valor');
+        //return $this->prospectos()->avg('dias');
+        return 50;
     }
+
 
 }

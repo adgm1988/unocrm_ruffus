@@ -81,4 +81,5 @@ class Prospecto extends Model
 		$dias=$ultimo_cambio->diffInDays();*/
 	}
 
+
 }
