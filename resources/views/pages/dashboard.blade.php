@@ -56,29 +56,32 @@
 				@foreach($etapas as $etapa)
 				<td style="padding:3px; min-width:200px; max-width:200px; ">
 					@foreach($prospectos as $prospecto)
-					@if($prospecto->etapas->etapa == $etapa->etapa)				
-					
-					<div class="tarjeta" style="width:98%; box-shadow: 2px 2px #888888; border: 1px solid gray; background-color:{{ $prospecto->indicador }}; border-bottom:5px solid {{ $etapa->color }} ; border-radius:4px; padding:5px; margin:auto; margin-bottom:5px; ">
-						<div>
-							<div style="padding-right:5px; overflow:hidden;">
-								<span class="empresa" style="font-size:12px; font-weight:bold; margin-left:5px; white-space:nowrap; "><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }}</span> 
-							</div>						
-							
-							<hr style="margin:6px;">
-							<span class="contacto" style="font-size:10px; font-weight:bold; float:left;">{{ $prospecto->contacto }}</span> 
-							<span style="color:gray; font-size: 9px; float:right;">${{ $prospecto->valor }}</span>
-						</div>
-						<div style="clear:both"></div>
+					@if($prospecto)
+
+						@if($prospecto->etapas->etapa == $etapa->etapa)				
 						
-						<hr style="margin:4px;">
-						<div style="width:100%">
-							<a style="text-decoration:none; color:black;" href="/prospectos/{{ $prospecto->id }}">
-								<button style="box-shadow: 2px 2px 2px grey; color:#eaeaea; background-color:#343a40; float:left; width:49%" class="btn btn-sm p-0"><i class="far fa-eye"></i></button>
-							</a>
-							<button style="box-shadow: 2px 2px 2px grey; color:#eaeaea; background-color:#343a40; float:right; width:49%" class="btn btn-sm p-0" data-toggle="modal" data-target="#modalcierre" id="open" onclick="llenar_modal({{ $prospecto->id }},'{{ $prospecto->empresa }}')"><i class="far fa-handshake" style="font-weight:bold;" ></i></button>
-						</div>
-						<div style="clear:both"></div>
-					</div>					
+						<div class="tarjeta" style="width:98%; box-shadow: 2px 2px #888888; border: 1px solid gray; background-color:{{ $prospecto->indicador }}; border-bottom:5px solid {{ $etapa->color }} ; border-radius:4px; padding:5px; margin:auto; margin-bottom:5px; ">
+							<div>
+								<div style="padding-right:5px; overflow:hidden;">
+									<span class="empresa" style="font-size:12px; font-weight:bold; margin-left:5px; white-space:nowrap; "><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }}</span> 
+								</div>						
+								
+								<hr style="margin:6px;">
+								<span class="contacto" style="font-size:10px; font-weight:bold; float:left;">{{ $prospecto->contacto }}</span> 
+								<span style="color:gray; font-size: 9px; float:right;">${{ $prospecto->valor }}</span>
+							</div>
+							<div style="clear:both"></div>
+							
+							<hr style="margin:4px;">
+							<div style="width:100%">
+								<a style="text-decoration:none; color:black;" href="/prospectos/{{ $prospecto->id }}">
+									<button style="box-shadow: 2px 2px 2px grey; color:#eaeaea; background-color:#343a40; float:left; width:49%" class="btn btn-sm p-0"><i class="far fa-eye"></i></button>
+								</a>
+								<button style="box-shadow: 2px 2px 2px grey; color:#eaeaea; background-color:#343a40; float:right; width:49%" class="btn btn-sm p-0" data-toggle="modal" data-target="#modalcierre" id="open" onclick="llenar_modal({{ $prospecto->id }},'{{ $prospecto->empresa }}')"><i class="far fa-handshake" style="font-weight:bold;" ></i></button>
+							</div>
+							<div style="clear:both"></div>
+						</div>					
+						@endif
 					@endif
 					@endforeach
 				</td>
