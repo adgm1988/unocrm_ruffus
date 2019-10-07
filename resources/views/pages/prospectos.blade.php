@@ -175,6 +175,7 @@
             </tr>
         </thead>
         @foreach($prospectos as $prospecto)
+        @if($prospecto)
         <tr style="border-left:10px solid {{ $prospecto->indicador }};">		
          <td nowrap>
             <a href="/prospectos/{{ $prospecto->id }}"><i class="far fa-eye"></i></a>&nbsp;
@@ -191,6 +192,7 @@
         <td>${{ number_format($prospecto->valor,2,".",",") }}</td>		
         <td>{{ $prospecto->user->name }}</td>	
     </tr>
+    @endif
     @endforeach
 </table>
 
