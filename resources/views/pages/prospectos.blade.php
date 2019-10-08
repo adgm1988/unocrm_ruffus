@@ -174,26 +174,30 @@
                 <th>Responsable</th>				
             </tr>
         </thead>
-        @foreach($prospectos as $prospecto)
-        @if($prospecto)
-        <tr style="border-left:10px solid {{ $prospecto->indicador }};">		
-         <td nowrap>
-            <a href="/prospectos/{{ $prospecto->id }}"><i class="far fa-eye"></i></a>&nbsp;
-            <a href="/prospectos/{{ $prospecto->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
-            <a href="/prospectos/delete/{{ $prospecto->id }}"><i class="far fa-trash-alt"></i></a>
-        </td>
-        <td nowrap><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }} </td>	     
-        <td> <div style="border-radius: 10px; font-weight:bold; text-align:center; width:100px; height:25px; border:1px solid black; background-color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }} </div></td>    	
-        <td nowrap>{{ $prospecto->contacto }}</td>		
-        <td>{{ $prospecto->telefono }}</td>		
-        <td>{{ $prospecto->correo }}</td>		
-        <td>{{ $prospecto->procedencias->procedencia }}</td>		
-        <td>{{ $prospecto->industrias->industria }}</td>		
-        <td>${{ number_format($prospecto->valor,2,".",",") }}</td>		
-        <td>{{ $prospecto->user->name }}</td>	
-    </tr>
-    @endif
-    @endforeach
+        @if(!empty($prospectos))
+                <tr>
+                    <td colspan="10">No existen registros que mostrar </td>
+                </tr>
+        @else
+            @foreach($prospectos as $prospecto)
+            <tr style="border-left:10px solid {{ $prospecto->indicador }};">		
+                 <td nowrap>
+                    <a href="/prospectos/{{ $prospecto->id }}"><i class="far fa-eye"></i></a>&nbsp;
+                    <a href="/prospectos/{{ $prospecto->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
+                    <a href="/prospectos/delete/{{ $prospecto->id }}"><i class="far fa-trash-alt"></i></a>
+                </td>
+                <td nowrap><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }} </td>	     
+                <td> <div style="border-radius: 10px; font-weight:bold; text-align:center; width:100px; height:25px; border:1px solid black; background-color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }} </div></td>    	
+                <td nowrap>{{ $prospecto->contacto }}</td>		
+                <td>{{ $prospecto->telefono }}</td>		
+                <td>{{ $prospecto->correo }}</td>		
+                <td>{{ $prospecto->procedencias->procedencia }}</td>		
+                <td>{{ $prospecto->industrias->industria }}</td>		
+                <td>${{ number_format($prospecto->valor,2,".",",") }}</td>		
+                <td>{{ $prospecto->user->name }}</td>	
+            </tr>
+            @endforeach
+        @endif
 </table>
 
 </div>
