@@ -55,7 +55,7 @@
 		<tr style="background-color:lightgray;">			
 				@foreach($etapas as $etapa)
 				<td style="padding:3px; min-width:200px; max-width:200px; ">
-					 @if(empty($prospectos))
+					 @if(is_null($prospectos))
 			                <tr>
 			                    <td colspan="10">No existen registros que mostrar </td>
 			                </tr>
