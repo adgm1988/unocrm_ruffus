@@ -174,7 +174,7 @@
                 <th>Responsable</th>				
             </tr>
         </thead>
-        @if(!empty($prospectos))
+        @if(empty($prospectos))
                 <tr>
                     <td colspan="10">No existen registros que mostrar </td>
                 </tr>

@@ -55,9 +55,13 @@
 		<tr style="background-color:lightgray;">			
 				@foreach($etapas as $etapa)
 				<td style="padding:3px; min-width:200px; max-width:200px; ">
+					 @if(empty($prospectos))
+			                <tr>
+			                    <td colspan="10">No existen registros que mostrar </td>
+			                </tr>
+			        @else
 					@foreach($prospectos as $prospecto)
-					@if($prospecto)
-
+					
 						@if($prospecto->etapas->etapa == $etapa->etapa)				
 						
 						<div class="tarjeta" style="width:98%; box-shadow: 2px 2px #888888; border: 1px solid gray; background-color:{{ $prospecto->indicador }}; border-bottom:5px solid {{ $etapa->color }} ; border-radius:4px; padding:5px; margin:auto; margin-bottom:5px; ">
@@ -82,8 +86,8 @@
 							<div style="clear:both"></div>
 						</div>					
 						@endif
-					@endif
 					@endforeach
+					@endif
 				</td>
 
 				@endforeach
