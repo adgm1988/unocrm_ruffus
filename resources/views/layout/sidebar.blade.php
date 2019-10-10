@@ -50,6 +50,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/ventas">
+          <i class="fas fa-fw fa-dollar-sign"></i>
+          <span>Ventas</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/actividades">
           <i class="fas fa-fw fa-tasks"></i>
           <span>Actividades</span>

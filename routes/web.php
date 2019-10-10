@@ -48,10 +48,18 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('perdidosearch','PerdidosController@search');
 	Route::post('clientesearch','ClientesController@search');
 
+
+	Route::get('prospectos/ventas/delete/{id}/{prospecto?}','ProspectoController@destroyventa');
+	Route::post('prospecto/{id}/venta','VentasController@storeprosp');
+
 	Route::get('actividades','ActividadController@index');
 	Route::post('actividades','ActividadController@store');
 	Route::post('actividadescal','ActividadController@storecal');
 	Route::get('actividades/delete/{actividad}/{prospecto?}','ActividadController@destroy');
+
+	Route::get('ventas','VentasController@index');
+	Route::post('ventas','VentasController@store');
+	Route::get('ventas/delete/{venta}/{prospecto?}','VentasController@destroy');
 
 	Route::get('bitacoras','BitacoraController@index');
 
@@ -112,6 +120,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 		Route::get('/prospecto/export', 'ProspectoController@export');
 		Route::get('/actividades/export', 'ActividadController@export');
+		Route::get('/ventas/export', 'VentasController@export');
 	});
 
 

@@ -12,6 +12,7 @@ use App\Industry;
 use App\Bitacora;
 use App\User;
 use App\Rechazos;
+use App\Venta;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -393,6 +394,12 @@ class ProspectoController extends Controller
 
     function destroyact($id){
         $actividad = Actividad::find($id);
+        $actividad->delete();
+        return back();
+    }
+
+    function destroyventa($id){
+        $actividad = Venta::find($id);
         $actividad->delete();
         return back();
     }

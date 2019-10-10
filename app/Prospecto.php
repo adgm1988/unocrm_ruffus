@@ -32,6 +32,10 @@ class Prospecto extends Model
 		return $this->hasMany('App\Bitacora','prospecto_id')->orderBy('fecha', 'ASC');
 	}
 
+	public function ventas(){
+		return $this->hasMany('App\Venta','_prospectoid')->orderBy('fecha', 'DESC');
+	}
+
 	public function getSemaforoAttribute(){
 		$siguiente_act = $this->actividades->where('resultado','=','')->first();
 		

@@ -64,9 +64,9 @@ class ActividadController extends Controller
 
 
         $bitacora->save();
-
-    	$actividad->save();
         */
+    	$actividad->save();
+        
 
     	return redirect('actividades');
 

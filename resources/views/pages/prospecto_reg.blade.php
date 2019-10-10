@@ -159,6 +159,51 @@
 </form>
 
 
+<form method="post" action="{{url('/prospecto/'.$prospecto->id.'/venta')}}" id="form">
+	@csrf
+
+	<!-- Modal agregar -->
+	<div class="modal" tabindex="-1" role="dialog" id="modalventa">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="alert alert-danger" style="display:none"></div>
+				<div class="modal-header">
+
+					<h5 class="modal-title">Agregar venta</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					
+					
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="fecha">Fecha:</label>
+							<input type="date" class="form-control" name="fecha" value="{{ date('Y-m-d') }}">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="fecha">Monto:</label>
+							<input type="number" class="form-control" name="monto" value="">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label for="detalle">Descripcion:</label>
+							<textarea class="form-control" rows="5" id="detalle" name="detalle"></textarea>
+						</div>
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					<button  class="btn btn-success" >Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
 
 <div class="card mb-3">
 	<h5 class="card-header"> 
@@ -203,8 +248,10 @@
 	<div class="nav nav-tabs" id="nav-tab" role="tablist">
 		<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Actividad</a>
 		<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Bitácora</a>
+		<a class="nav-item nav-link" id="nav-ventas-tab" data-toggle="tab" href="#nav-ventas" role="tab" aria-controls="nav-ventas" aria-selected="false">Ventas</a>
 	</div>
 </nav>
+
 <div class="tab-content" id="nav-tabContent">
 	<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 		<div class="table-sm table-responsive">
@@ -236,7 +283,7 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-<div class="table-sm table-responsive">
+		<div class="table-sm table-responsive">
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -256,6 +303,31 @@
 					<td>{{ $bitacora->dias }}</td>
 					<td>{{ $bitacora->nota }}</td>
 					<td>{{ $bitacora->user->name }}</td>
+				</tr>
+				@endforeach
+			</table>
+		</div>
+	</div>
+	<div class="tab-pane fade" id="nav-ventas" role="tabpanel" aria-labelledby="nav-ventas-tab">
+		<div class="table-sm table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th><button type="button" class="btn btn-info p-1 btn-sm" data-toggle="modal" data-target="#modalventa" id="open">Agregar</button></th>
+						<th>Fecha</th>
+						<th>Monto</th>
+						<th>Detalle</th>
+					</tr>
+				</thead>
+				@foreach($prospecto->ventas as $venta)
+				<tr>
+					<td nowrap>
+						<a href="/venta/{{ $venta->id }}/form/venta"><i class="far fa-edit"></i></a>&nbsp;
+						<a onclick="return confirm('¿Estas seguro de querer eliminar esta venta?')" href="ventas/delete/{{ $venta->id }}/venta"><i class="far fa-trash-alt"></i></a>
+					</td>			
+					<td nowrap>{{ $venta->fecha }}</td>
+					<td>${{ number_format($venta->monto,2,".",",") }}</td>
+					<td>{{ $venta->detalle }}</td>
 				</tr>
 				@endforeach
 			</table>
