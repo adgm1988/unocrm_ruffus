@@ -23,7 +23,7 @@ class VentasController extends Controller
                 $q->where('userid', auth::user()->id);
             })->get();
 
-            $prospectos = Prospecto::all();
+            $prospectos = Prospecto::where('userid', auth::user()->id)->get();
         }else{
             $ventas = Venta::orderBy('fecha', 'DESC')->get();
             $prospectos = Prospecto::all();
@@ -138,29 +138,26 @@ class VentasController extends Controller
 
     }
 
-    function form($id, $prospecto = null){
-        $prospectos = Prospecto::all();
-        $actividad = Actividad::find($id);
-        $tipos = Tipoact::all();
-        if($prospecto){
+    function form($id, $venta = null){
+        $venta = Venta::find($id);
+        if($venta){
             $origen='prospecto';
         }else{
-            $origen='actividad';
+            $origen='venta';
         }
-        return view('pages.actividad_edit',compact('actividad','tipos','prospectos','origen'));
+        return view('pages.ventas_edit',compact('venta','origen'));
 
     }
 
     function destroy($id, $prospecto = null){
-    	$venta = Actividad::find($id);
+    	$venta = Venta::find($id);
         $prospecto_id = $venta->prospecto->id;
-
     	$venta->delete();
 
-        if($prospecto='prospecto'){
-             return redirect('/prospectos/'.$prospecto_id);
+        if($prospecto=='prospecto'){
+             return redirect('/prospectos/'.$prospecto_id.'?t=v');
         }else{
-            return redirect('ventas');
+            return redirect('/ventas');
         }
 
     	

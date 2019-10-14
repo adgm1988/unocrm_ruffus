@@ -56,10 +56,14 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('actividades','ActividadController@store');
 	Route::post('actividadescal','ActividadController@storecal');
 	Route::get('actividades/delete/{actividad}/{prospecto?}','ActividadController@destroy');
+	Route::get('actividad/{id}/form/{prospecto?}','ActividadController@form');
+	Route::post('actividad/{id}/{origen}','ActividadController@update');
 
 	Route::get('ventas','VentasController@index');
 	Route::post('ventas','VentasController@store');
 	Route::get('ventas/delete/{venta}/{prospecto?}','VentasController@destroy');
+	Route::get('venta/{id}/form','VentasController@form');
+	Route::post('ventas/{id}','VentasController@update');
 
 	Route::get('bitacoras','BitacoraController@index');
 
@@ -112,8 +116,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('procedencias/{id}/form','ProcedenciaController@form');
 		Route::post('procedencias/{id}','ProcedenciaController@update');
 
-		Route::get('actividad/{id}/form/{prospecto?}','ActividadController@form');
-		Route::post('actividad/{id}/{origen}','ActividadController@update');
+		
 
 		Route::get('industria/{id}/form','IndustryController@form');
 		Route::post('industria/{id}','IndustryController@update');

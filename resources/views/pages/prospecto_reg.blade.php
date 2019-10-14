@@ -245,10 +245,13 @@
 
 
 <nav>
+	
 	<div class="nav nav-tabs" id="nav-tab" role="tablist">
-		<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Actividad</a>
-		<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Bitácora</a>
-		<a class="nav-item nav-link" id="nav-ventas-tab" data-toggle="tab" href="#nav-ventas" role="tab" aria-controls="nav-ventas" aria-selected="false">Ventas</a>
+		<a class="nav-item nav-link {{ $_GET['t']==''? 'active':''}}" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected={{ $_GET['t']==''? 'true':'false'}}>Actividad</a>
+
+		<a class="nav-item nav-link {{ $_GET['t']=='b'? 'active':''}}" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected={{ $_GET['t']=='b'?'true':'false'}}>Bitácora</a>
+
+		<a class="nav-item nav-link {{ $_GET['t']=='v'? 'active':''}}" id="nav-ventas-tab" data-toggle="tab" href="#nav-ventas" role="tab" aria-controls="nav-ventas" aria-selected={{ $_GET['t']=='v'?'true':'false'}}>Ventas</a>
 	</div>
 </nav>
 
@@ -323,7 +326,7 @@
 				<tr>
 					<td nowrap>
 						<a href="/venta/{{ $venta->id }}/form/venta"><i class="far fa-edit"></i></a>&nbsp;
-						<a onclick="return confirm('¿Estas seguro de querer eliminar esta venta?')" href="ventas/delete/{{ $venta->id }}/venta"><i class="far fa-trash-alt"></i></a>
+						<a onclick="return confirm('¿Estas seguro de querer eliminar esta venta?')" href="ventas/delete/{{ $venta->id }}/prospecto"><i class="far fa-trash-alt"></i></a>
 					</td>			
 					<td nowrap>{{ $venta->fecha }}</td>
 					<td>${{ number_format($venta->monto,2,".",",") }}</td>

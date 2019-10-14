@@ -98,7 +98,7 @@
 			</td>
 			<td>{{ $venta->prospecto->empresa }}</td>		
 			<td nowrap>{{ $venta->fecha }}</td>		
-			<td nowrap>{{ $venta->monto }}</td>		
+			<td nowrap>$ {{ number_format($venta->monto,2,".",",") }}</td>		
 			<td nowrap>{{ $venta->detalle }}</td>		
 			<td nowrap>{{ $venta->prospecto->user->name }}</td>		
 		</tr>

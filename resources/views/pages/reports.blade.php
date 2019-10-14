@@ -330,6 +330,8 @@
 </script>
 </script>
 
+
+<!--
 <h5>Otros</h5>
 <canvas id="tiempo_etapa" width="400" height="100"></canvas>
 <script>
@@ -423,7 +425,7 @@
     });
 </script>
 
-
+-->
 @endsection
 
 

@@ -76,8 +76,7 @@
     <thead>
       <tr>
         <th></th>
-        <th>Empresa</th>
-                <th>Etapa</th>
+                <th>Empresa</th>
                 <th>Contacto</th>
                 <th>Teléfono</th>
                 <th>Correo</th>
@@ -94,8 +93,7 @@
             <a href="/prospectos/{{ $prospecto->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
             <a href="/prospectos/delete/{{ $prospecto->id }}"><i class="far fa-trash-alt"></i></a>
         </td>
-        <td nowrap><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }} </td>      
-        <td> <div style="border-radius: 10px; font-weight:bold; text-align:center; width:100px; height:25px; border:1px solid black; background-color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }} </div></td>     
+        <td nowrap><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }} </td>          
         <td nowrap>{{ $prospecto->contacto }}</td>    
         <td>{{ $prospecto->telefono }}</td>   
         <td>{{ $prospecto->correo }}</td>   
