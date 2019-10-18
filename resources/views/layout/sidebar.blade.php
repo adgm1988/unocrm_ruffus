@@ -13,7 +13,8 @@
           <span>Calendario</span>
         </a>
       </li>
-
+  
+    
       @if(auth::user()->vendedor !=1)
       <li class="nav-item">
         <a class="nav-link" href="/reportes">
@@ -22,6 +23,7 @@
         </a>
       </li>
       @endif
+      <!--
       @if(auth::user()->vendedor ==1)
       <li class="nav-item">
         <a class="nav-link" href="/reportes">
@@ -30,6 +32,7 @@
         </a>
       </li>
       @endif
+    -->
       <li class="nav-item">
         <a class="nav-link" href="/prospectos">
           <i class="fas fa-fw fa-users"></i>

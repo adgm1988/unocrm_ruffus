@@ -13,6 +13,8 @@
 </div>
 @endif
 
+<h4>{{ $prospecto->empresa }}</h4>
+<h5>{{ $prospecto->contacto }}</h5>
 <form method="post" action="/ganado/{{ $prospecto->id}}" id="form">
 	@csrf
 
@@ -31,7 +33,7 @@
 	<div class="row">
 		<div class="form-group col-md-6">
 			<button class="btn btn-success" >Guardar</button>
-			<button type="button" class="btn btn-secondary" >Cancelar</button>
+			<a href="/prospectos/{{ $prospecto->id }}"><button type="button" class="btn btn-secondary" >Cancelar</button></a>
 		</div>
 	</div>
 </form>
