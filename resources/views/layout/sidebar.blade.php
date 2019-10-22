@@ -14,7 +14,7 @@
         </a>
       </li>
   
-    
+    <!--
       @if(auth::user()->vendedor !=1)
       <li class="nav-item">
         <a class="nav-link" href="/reportes">
@@ -23,7 +23,7 @@
         </a>
       </li>
       @endif
-      <!--
+      
       @if(auth::user()->vendedor ==1)
       <li class="nav-item">
         <a class="nav-link" href="/reportes">
