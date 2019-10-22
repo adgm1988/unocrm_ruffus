@@ -39,7 +39,7 @@
 			</select>
 			<a href="/perdido/{{ $prospecto->id }}"><button type="button" style="box-shadow: 2px 2px 2px grey; color:white; background-color:#ff0000;" class="btn btn-md p3" >Perdido</button></a>
 			
-			<a href="/ganado/{{ $prospecto->id }}"><button type="button" style="box-shadow: 2px 2px 2px grey; color:white; background-color:#007bff;" class="btn btn-md p3" > Prospecto</button></a>
+			<a href="/activarprospecto/{{ $prospecto->id }}"><button type="button" style="box-shadow: 2px 2px 2px grey; color:white; background-color:#007bff;" class="btn btn-md p3" > Prospecto</button></a>
 			
 			<a href="/ganado/{{ $prospecto->id }}"><button type="button" style="box-shadow: 2px 2px 2px grey; color:white; background-color:#45bd17;" class="btn btn-md p3" > Ganado</button></a>
 		</div>

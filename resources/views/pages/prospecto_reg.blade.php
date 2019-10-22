@@ -251,7 +251,9 @@
 
 		<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected='false'>Bitácora</a>
 
+				
 		<a class="nav-item nav-link" id="nav-ventas-tab" data-toggle="tab" href="#nav-ventas" role="tab" aria-controls="nav-ventas" aria-selected='false'>Ventas</a>
+		
 	</div>
 </nav>
 
@@ -316,7 +318,11 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th><button type="button" class="btn btn-info p-1 btn-sm" data-toggle="modal" data-target="#modalventa" id="open">Agregar</button></th>
+						<th>
+							@if($prospecto->estatus=='cliente')
+								<button type="button" class="btn btn-info p-1 btn-sm" data-toggle="modal" data-target="#modalventa" id="open">Agregar</button>
+							@endif
+						</th>
 						<th>Fecha</th>
 						<th>Monto</th>
 						<th>Detalle</th>

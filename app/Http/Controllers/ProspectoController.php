@@ -326,6 +326,15 @@ class ProspectoController extends Controller
         return view('pages.ganado',compact('prospecto'));
     }
 
+
+    function activar($id){
+        $prospecto = Prospecto::find($id);
+        $prospecto->estatus = "prospecto";
+        $prospecto->save();
+
+        return redirect("/prospectos/".$prospecto->id);
+    }
+
     function updateganado(Request $request, $id){
         $prospecto = Prospecto::find($id);
         $validatedData = $request->validate([
