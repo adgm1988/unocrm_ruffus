@@ -27,7 +27,6 @@ class CalendarController extends Controller
             $actividades = Actividad::with('Prospecto')->whereHas('Prospecto', function($q){
                 $q->where('userid', auth::user()->id);
             })->get();
-            dd($actividades);
 
         }else{
             $actividades = Actividad::all();
