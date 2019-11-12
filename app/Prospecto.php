@@ -78,11 +78,21 @@ class Prospecto extends Model
 
 	public function getDiasAttribute(){
 		
-		return 10;
+		$ultima_bitacora = $this->bitacoras->first();
+		if($ultima_bitacora){
+			$ultimo_cambio = $ultima_bitacora->created_at;
+			$ultimo_estatus_dias = $ultima_bitacora->etapa->dias;
 
-		/*$ultima_bitacora = $this->bitacoras->first();
-		$ultimo_cambio = $ultima_bitacora->created_at;
-		$dias=$ultimo_cambio->diffInDays();*/
+			$dias=$ultimo_cambio->diffInDays();
+			$dias_por_vencer = $ultimo_estatus_dias - $dias;
+			if($dias_por_vencer<5){
+				return "(".$dias_por_vencer.")";
+			}else{
+				return "";
+			}
+		}else{
+			return "";
+		}
 	}
 
 

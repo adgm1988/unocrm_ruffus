@@ -33,7 +33,7 @@
 		</thead>
 		@foreach($bitacoras as $bitacora)
 		<tr>		
-			<td>{{ $bitacora->prospecto->empresa }}</td>		
+			<td>{{ $bitacora->prospecto->empresa ? $bitacora->prospecto->empresa : '-' }}</td>		
 			<td nowrap>{{ $bitacora->fecha }}</td>
 			<td>{{ $bitacora->etapa->etapa }}</td>
 			<td nowrap>{{ $bitacora->dias }}</td>

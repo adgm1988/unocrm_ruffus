@@ -45,8 +45,8 @@
 			<tr>
 				@foreach($etapas as $key=>$etapa)
 					<th class='text-center'>
-						<div>{{ $etapa->etapa }} <span style="font-size:10px; color:gray;"> ({{ $etapa->cuenta }})</span></div>
-						<div style="font-size:12px; color: {{ $etapa->color }}">${{ number_format($etapa->suma,0) }}</div>
+						<div>{{ $etapa->etapa }} <span style="font-size:10px; color:gray;"> ({{ $etapa->dias }} días)</span></div>
+						<div style="font-size:12px; color: {{ $etapa->color }}">{{ $etapa->cuenta }}: ${{ number_format($etapa->suma,0) }}</div>
 					</th>
 				@endforeach
 			</tr>
@@ -67,7 +67,7 @@
 						<div class="tarjeta" style="width:98%; box-shadow: 2px 2px #888888; border: 1px solid gray; background-color:{{ $prospecto->indicador }}; border-bottom:5px solid {{ $etapa->color }} ; border-radius:4px; padding:5px; margin:auto; margin-bottom:5px; ">
 							<div>
 								<div style="padding-right:5px; overflow:hidden;">
-									<span class="empresa" style="font-size:12px; font-weight:bold; margin-left:5px; white-space:nowrap; "><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }}</span> 
+									<span class="empresa" style="font-size:12px; font-weight:bold; margin-left:5px; white-space:nowrap; "><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->dias }} {{ $prospecto->empresa }} </span> 
 								</div>						
 								
 								<hr style="margin:6px;">
