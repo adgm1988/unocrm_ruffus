@@ -90,19 +90,21 @@
 				<th>Responsable</th>
 			</tr>
 		</thead>
-		@foreach($ventas as $venta)
-		<tr>		
-			<td nowrap>
-				<a href="/venta/{{ $venta->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
-				<a onclick="return confirm('¿Estas seguro de querer eliminar esta venta?')" href="ventas/delete/{{ $venta->id }}"><i class="far fa-trash-alt"></i></a>
-			</td>
-			<td>{{ $venta->prospecto->empresa }}</td>		
-			<td nowrap>{{ $venta->fecha }}</td>		
-			<td nowrap>$ {{ number_format($venta->monto,2,".",",") }}</td>		
-			<td nowrap>{{ $venta->detalle }}</td>		
-			<td nowrap>{{ $venta->prospecto->user->name }}</td>		
-		</tr>
-		@endforeach
+		@if($ventas)
+			@foreach($ventas as $venta)
+			<tr>		
+				<td nowrap>
+					<a href="/venta/{{ $venta->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
+					<a onclick="return confirm('¿Estas seguro de querer eliminar esta venta?')" href="ventas/delete/{{ $venta->id }}"><i class="far fa-trash-alt"></i></a>
+				</td>
+				<td>{{ $venta->prospecto->empresa }}</td>		
+				<td nowrap>{{ $venta->fecha }}</td>		
+				<td nowrap>$ {{ number_format($venta->monto,2,".",",") }}</td>		
+				<td nowrap>{{ $venta->detalle }}</td>		
+				<td nowrap>{{ $venta->prospecto->user->name }}</td>		
+			</tr>
+			@endforeach
+		@endif
 	</table>
 </div>
 
