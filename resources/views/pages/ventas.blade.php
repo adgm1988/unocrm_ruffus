@@ -90,7 +90,8 @@
 				<th>Responsable</th>
 			</tr>
 		</thead>
-		@if($ventas)
+		@if(!$ventas->isEmpty())
+			{{ $ventas }}
 			@foreach($ventas as $venta)
 			<tr>		
 				<td nowrap>
@@ -104,6 +105,10 @@
 				<td nowrap>{{ $venta->prospecto->user->name }}</td>		
 			</tr>
 			@endforeach
+		@else
+			<tr>
+				<td>No hay ventas registradas</td>
+			</tr>	
 		@endif
 	</table>
 </div>
