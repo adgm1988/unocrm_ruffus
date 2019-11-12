@@ -90,7 +90,7 @@
 				<th>Responsable</th>
 			</tr>
 		</thead>
-		@if(!$ventas->isEmpty())
+		@if($ventas->count()>0)
 			{{ $ventas }}
 			@foreach($ventas as $venta)
 			<tr>		
