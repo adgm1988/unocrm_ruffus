@@ -91,7 +91,6 @@
 			</tr>
 		</thead>
 		@if($ventas->count()>0)
-			{{ $ventas }}
 			@foreach($ventas as $venta)
 			<tr>		
 				<td nowrap>
