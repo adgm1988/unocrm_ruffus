@@ -158,7 +158,7 @@
 				<a href="/actividad/{{ $actividad->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
 				<a onclick="return confirm('¿Estas seguro de querer eliminar esta actividad?')" href="actividades/delete/{{ $actividad->id }}"><i class="far fa-trash-alt"></i></a>
 			</td>
-			<td>{{ $actividad->prospecto->empresa }}</td>		
+			<td>{{ $actividad->prospecto->empresa ?? ''}}</td>		
 			<td nowrap>{{ $actividad->tiposdeact->tipo }}</td>		
 			<td nowrap>{{ $actividad->fecha }}</td>		
 			<td nowrap>{{ $actividad->hora }}</td>		
