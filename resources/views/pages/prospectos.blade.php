@@ -184,7 +184,9 @@
                  <td nowrap>
                     <a href="/prospectos/{{ $prospecto->id }}"><i class="far fa-eye"></i></a>&nbsp;
                     <a href="/prospectos/{{ $prospecto->id }}/form"><i class="far fa-edit"></i></a>&nbsp;
-                    <a onclick="return confirm('¿Estas seguro de querer eliminar esta actividad?')" href="/prospectos/delete/{{ $prospecto->id }}"><i class="far fa-trash-alt"></i></a>
+                    @if( $prospecto->hijos < 1  )
+                        <a onclick="return confirm('¿Estas seguro de querer eliminar este prospecto?')" href="/prospectos/delete/{{ $prospecto->id }}"><i class="far fa-trash-alt"></i></a>
+                    @endif
                 </td>
                 <td nowrap><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }} </td>	     
                 <td> <div style="border-radius: 10px; font-weight:bold; text-align:center; width:100px; height:25px; border:1px solid black; background-color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }} </div></td>

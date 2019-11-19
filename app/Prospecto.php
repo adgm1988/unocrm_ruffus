@@ -36,6 +36,10 @@ class Prospecto extends Model
 		return $this->hasMany('App\Venta','_prospectoid')->orderBy('fecha', 'DESC');
 	}
 
+	public function getHijosAttribute(){
+		return $this->actividades()->count() + $this->ventas()->count();
+	}
+
 	public function getSemaforoAttribute(){
 		$siguiente_act = $this->actividades->where('resultado','=','')->first();
 		
