@@ -40,7 +40,11 @@ class CalendarController extends Controller
             $duracion =  str_replace(':','',$actividad->duracion);
             $horafinal = str_pad($hora+$duracion,4,0,STR_PAD_LEFT);
             $color = $actividad->color;
-            $textocalendario = $actividad->prospecto->empresa.'--'.$actividad->descripcion;
+            if($actividad->prospecto->empresa){
+                $textocalendario = $actividad->prospecto->empresa.'--'.$actividad->descripcion;
+            }else{
+                $actividad->descripcion;
+            }
             $concatfechahorainicial = $actividad->fecha.'T'. $hora;
             $concatfechahorafinal = $actividad->fecha.'T'. $horafinal;
             $events[] = \Calendar::event(
