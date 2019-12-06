@@ -78,6 +78,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('reportes','ReportsController@index');
 	Route::post('reportes/filtrar','ReportsController@filtrar');
 
+	Route::get('indicadores','IndicadoresController@index');
+
 
 
 	//rutas catalogos

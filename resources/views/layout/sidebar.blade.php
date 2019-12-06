@@ -13,7 +13,14 @@
           <span>Calendario</span>
         </a>
       </li>
-  
+      <!--
+      <li class="nav-item">
+        <a class="nav-link" href="/indicadores">
+          <i class="fas fa-fw fa-users"></i>
+          <span>Indicadores</span>
+        </a>
+      </li>
+  -->
     <!--
       @if(auth::user()->vendedor !=1)
       <li class="nav-item">
