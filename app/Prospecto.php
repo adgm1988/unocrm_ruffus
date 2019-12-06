@@ -36,6 +36,16 @@ class Prospecto extends Model
 		return $this->hasMany('App\Venta','_prospectoid')->orderBy('fecha', 'DESC');
 	}
 
+	public function getNuevoAttribute(){
+		$dias_creacion = $this->created_at->diffInDays();
+
+		if($dias_creacion > 0){
+			return "disabled";
+		}else{
+			return "";
+		}
+	}
+
 	public function getHijosAttribute(){
 		return $this->actividades()->count() + $this->ventas()->count();
 	}

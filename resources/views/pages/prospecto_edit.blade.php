@@ -22,7 +22,7 @@
 	<div class="row">
 		<div class="form-group col-md-12">
 			<label for="empresa">Empresa:</label>
-			<input type="text" class="form-control" name="empresa" value="{{ $prospecto->empresa }}">
+			<input type="text" class="form-control" name="empresa" {{$prospecto->nuevo}} value="{{ $prospecto->empresa }}">
 		</div>
 	</div>
 	<div class="row">
