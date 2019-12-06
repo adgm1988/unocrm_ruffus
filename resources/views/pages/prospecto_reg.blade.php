@@ -275,7 +275,9 @@
 				<tr>		
 					<td nowrap>
 						<a href="/actividad/{{ $actividad->id }}/form/prospecto"><i class="far fa-edit"></i></a>&nbsp;
+						@if(auth::user()->admin ==1 || auth::user()->consultor ==1)
 						<a onclick="return confirm('¿Estas seguro de querer eliminar esta actividad?')" href="actividades/delete/{{ $actividad->id }}/prospecto"><i class="far fa-trash-alt"></i></a>
+						@endif
 					</td>	
 					<td style="color:{{ $actividad->semaforo }}">{{ $actividad->tiposdeact->tipo }}</td>		
 					<td nowrap>{{ $actividad->fecha }}</td>		

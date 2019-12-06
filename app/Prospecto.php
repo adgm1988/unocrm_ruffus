@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Prospecto extends Model
 {
@@ -39,7 +40,7 @@ class Prospecto extends Model
 	public function getNuevoAttribute(){
 		$dias_creacion = $this->created_at->diffInDays();
 
-		if($dias_creacion > 0){
+		if($dias_creacion > 0 && auth::user()->admin !=1  && auth::user()->consultor !=1){
 			return "disabled";
 		}else{
 			return "";
