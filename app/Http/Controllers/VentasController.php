@@ -95,27 +95,21 @@ class VentasController extends Controller
 
     }
 
-
-     function update(Request $request, $id, $origen){
+    function update(Request $request, $id, $origen){
 
 
         $validated= $request->validate([
-            'actividad'=>'required',
             'fecha'=>'required',
-            'hora'=>'required',
-            'duracion'=>'required',
-            'descripcion'=>'required'
+            'monto'=>'required',
+            'detalle'=>'required'
         ]);
 
-        $actividad = Actividad::find($id);
-        $actividad->_tipoactid = $request->get('actividad');
-        $actividad->fecha = $request->get('fecha');
-        $actividad->hora = $request->get('hora');
-        $actividad->duracion = $request->get('duracion');
-        $actividad->descripcion = $request->get('descripcion');
-        $actividad->resultado = $request->get('resultado');
+        $venta = Venta::find($id);
+        $venta->fecha = $request->get('fecha');
+        $venta->monto = $request->get('monto');
+        $venta->detalle = $request->get('detalle');
 
-        $actividad->save();
+        $venta->save();
 
 
         /**
@@ -130,17 +124,20 @@ class VentasController extends Controller
         **/
 
         if($origen == 'prospecto'){
-            return redirect('/prospectos/'.$actividad->_prospectoid);
+            return redirect('/prospectos/'.$venta->_prospectoid);
         }else{
-            return redirect('/actividades');
+            return redirect('ventas');
         }
         
 
     }
 
-    function form($id, $venta = null){
+
+     
+
+    function form($id, $prospecto = null){
         $venta = Venta::find($id);
-        if($venta){
+        if($prospecto){
             $origen='prospecto';
         }else{
             $origen='venta';

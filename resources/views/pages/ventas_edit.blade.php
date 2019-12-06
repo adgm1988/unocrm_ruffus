@@ -17,7 +17,7 @@
 </div>
 @endif
 
-<form method="post" action="/ventas/{{ $venta->id}}" id="form">
+<form method="post" action="/ventas/{{ $venta->id}}/{{$origen}}" id="form">
 	@csrf
 	
 	<div class="row">

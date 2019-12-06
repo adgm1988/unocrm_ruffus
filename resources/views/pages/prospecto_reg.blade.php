@@ -331,7 +331,7 @@
 				@foreach($prospecto->ventas as $venta)
 				<tr>
 					<td nowrap>
-						<a href="/venta/{{ $venta->id }}/form/venta"><i class="far fa-edit"></i></a>&nbsp;
+						<a href="/venta/{{ $venta->id }}/form/prospecto"><i class="far fa-edit"></i></a>&nbsp;
 						<a onclick="return confirm('¿Estas seguro de querer eliminar esta venta?')" href="ventas/delete/{{ $venta->id }}/prospecto"><i class="far fa-trash-alt"></i></a>
 					</td>			
 					<td nowrap>{{ $venta->fecha }}</td>

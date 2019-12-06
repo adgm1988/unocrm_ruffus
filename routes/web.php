@@ -64,8 +64,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('ventas','VentasController@index');
 	Route::post('ventas','VentasController@store');
 	Route::get('ventas/delete/{venta}/{prospecto?}','VentasController@destroy');
-	Route::get('venta/{id}/form','VentasController@form');
-	Route::post('ventas/{id}','VentasController@update');
+	Route::get('venta/{id}/form/{prospecto?}','VentasController@form');
+	Route::post('ventas/{id}/{origen}','VentasController@update');
 
 	Route::get('bitacoras','BitacoraController@index');
 
