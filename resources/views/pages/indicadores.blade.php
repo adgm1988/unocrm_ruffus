@@ -4,12 +4,16 @@
 
 <h3 class='text-center'>Indicadores</h3>
 <script src="{{ asset('vendor/chart.js/Chart.min.js') }}" ></script>
+
 <div class="row">
     <div class="col-lg-12">
-        <canvas id="semanal" width="200" height="50"></canvas>
+        <canvas id="semanal" width="200" height="40"></canvas>
     </div>
     <div class="col-lg-12">
-        <canvas id="mensual" width="200" height="50"></canvas>
+        <canvas id="mensual" width="200" height="40"></canvas>
+    </div>
+    <div class="col-lg-12">
+        <canvas id="trimestral" width="200" height="40"></canvas>
     </div>
     
 </div>
@@ -34,7 +38,7 @@
                 ],
                 backgroundColor: [
                 	@foreach($ventasemanal as $semana)
-                    '#36e252',
+                    '#20c997',
                     @endforeach
                 ],
                 borderColor: [
@@ -79,7 +83,52 @@
                 ],
                 backgroundColor: [
                     @foreach($ventamensual as $mes)
-                    '#36e252',
+                    '#20c997',
+                    @endforeach
+                ],
+                borderColor: [
+                //vacio es sin borde
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+              labels: {
+                  boxWidth: 0
+              }
+          }
+        }
+    });
+</script>
+
+<script>
+    var ctx = document.getElementById('trimestral');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                @foreach($ventatrimestral as $mes)
+                    '{{ $mes->mes }}',
+                @endforeach
+            ],
+            datasets: [{
+                label: 'Venta trimestral',
+                data: [
+                @foreach($ventatrimestral as $mes)
+                    '{{ $mes->suma }}',
+                @endforeach
+                ],
+                backgroundColor: [
+                    @foreach($ventatrimestral as $mes)
+                    '#20c997',
                     @endforeach
                 ],
                 borderColor: [
