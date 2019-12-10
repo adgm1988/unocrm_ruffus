@@ -3,6 +3,19 @@
 
 
 <h3 class='text-center'>Indicadores</h3>
+
+@if(auth::user()->vendedor  != 1)
+<form action="/indicadoresfiltro" method="post">
+    @csrf
+    <select name="vendedorid" id="vendedorid">
+            <option value="0" selected></option>
+        @foreach ($vendedores as $vendedor)
+            <option value="{{$vendedor->id}}">{{$vendedor->name}}</option>
+        @endforeach
+    </select>
+    <input type="submit" value="Filtrar">
+</form>
+@endif
 <script src="{{ asset('vendor/chart.js/Chart.min.js') }}" ></script>
 
 <div class="row">
