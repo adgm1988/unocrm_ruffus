@@ -67,6 +67,12 @@
 							<input type="checkbox"  name="vendedor">
 						</div>
 					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label for="contacto">Meta:</label>
+							<input id="meta" type="number" min="0" step="1" class="form-control" name="meta" value="{{ old('meta') }}" required autocomplete="meta">
+						</div>
+					</div>
 					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -128,6 +134,12 @@
 							<input type="checkbox"  name="vendedor" id="vendedor_edit">
 						</div>
 					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label for="contacto">Meta:</label>
+							<input id="meta_edit" name="meta" type="number" min="0" step="1" class="form-control">
+						</div>
+					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 						<button  class="btn btn-success" >Guardar</button>
@@ -148,6 +160,7 @@
 				<th>id</th>
 				<th>Name</th>
 				<th>Email</th>
+				<th>Meta</th>
 				<th>Consultor Uno</th>		
 				<th>Director</th>		
 				<th>Ventas</th>		
@@ -157,13 +170,14 @@
 		<tr>		
 			<td>
 				<a href="#"><i class="far fa-eye"></i></a>&nbsp;
-				<a href="#" data-toggle="modal" onclick="llenar_modal({{ $user->id }},'{{ $user->name }}','{{ $user->email }}','{{ $user->password }}','{{ $user->consultor }}','{{ $user->director }}','{{ $user->vendedor }}');" data-target="#myModaledit" id="open"><i class="far fa-edit"></i></a>&nbsp;
+				<a href="#" data-toggle="modal" onclick="llenar_modal({{ $user->id }},'{{ $user->name }}','{{ $user->email }}','{{ $user->meta }}','{{ $user->password }}','{{ $user->consultor }}','{{ $user->director }}','{{ $user->vendedor }}');" data-target="#myModaledit" id="open"><i class="far fa-edit"></i></a>&nbsp;
 
 				<a href="/users/delete/{{ $user->id }}"><i class="far fa-trash-alt"></i></a>
 			</td>
 			<td>{{ $user->id }}</td>		
 			<td>{{ $user->name }}</td>		
 			<td>{{ $user->email }}</td>		
+			<td>${{ number_format($user->meta,0) }}</td>		
 			<!--<td>{{ $user->admin }}</td>	-->	
 			<td>{{ $user->consultor }}</td>		
 			<td>{{ $user->director }}</td>		
@@ -176,12 +190,13 @@
 @endsection
 
 <script>
-	var llenar_modal = function(id,name,email,password,consultor,director,vendedor){
+	var llenar_modal = function(id,name,email,meta,password,consultor,director,vendedor){
 
 		console.log(consultor+"-"+director+"-"+vendedor);
 
 		var name_field = document.getElementById('name_edit'); 
 		var email_field = document.getElementById('email_edit'); 
+		var meta_field = document.getElementById('meta_edit'); 
 		var consultor_field = document.getElementById('consultor_edit'); 
 		var director_field = document.getElementById('director_edit'); 
 		var vendedor_field = document.getElementById('vendedor_edit');
@@ -191,6 +206,7 @@
 		form.action =act;
 		name_field.value = name;
 		email_field.value = email;
+		meta_field.value = meta;
 		consultor_field.checked = consultor=='1'?true:false;
 		director_field.checked = director=='1'?true:false;
 		vendedor_field.checked = vendedor=='1'?true:false;

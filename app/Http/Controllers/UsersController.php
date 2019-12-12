@@ -24,6 +24,11 @@ class UsersController extends Controller
     	$usuario = new User;
     	$usuario->name = $request->get('name');
     	$usuario->email = $request->get('email');
+        if($request->get('meta')){
+            $usuario->meta = $request->get('meta');
+        }else{
+            $usuario->meta=0;
+        }
         if($request->get('password')){
             $usuario->password = Hash::make($request->get('password'));
         }
@@ -42,11 +47,15 @@ class UsersController extends Controller
 		$validatedData = $request->validate([
 	        'name' => 'required',
 	        'email' => 'required|email|unique:users,email,'.$id,
+            'meta' => 'required',
     	]);
 
     	$usuario = User::find($id);
     	$usuario->name = $request->get('name');
     	$usuario->email = $request->get('email');
+        if($request->get('meta')!=""){
+            $usuario->meta = $request->get('meta');
+        }
     	if($request->get('password')){
             $usuario->password = Hash::make($request->get('password'));
         }

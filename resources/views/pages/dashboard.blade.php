@@ -37,6 +37,21 @@
 	<div class="col-md-4">
 		<input autocomplete="off" onkeyup="filtrar()" id="filtro" type="text" class="form-control form-control-sm" placeholder="Nombre de empresa o contacto..." name="valor">
 	</div>
+	<div class="col-md-2">
+		&nbsp;
+	</div>
+	@if(auth::user()->vendedor ==1)
+	<div class="col-md-3">
+		<div class="progress" style="height:30px;">
+			<div class="progress-bar bg-info p-3" role="progressbar" style="width: {{$avancemeta}}%" aria-valuenow="{{$avancemeta}}" aria-valuemin="0" aria-valuemax="100"><h6>V: {{$avancemeta}}% (${{number_format($ventasmes,0)}}/${{number_format($usuario->meta,0)}})</h6></div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="progress" style="height:30px;">
+			<div class="progress-bar bg-{{$color}} p-3" role="progressbar" style="width: {{$porcentajeproyectado}}%" aria-valuenow="{{$porcentajeproyectado}}" aria-valuemin="0" aria-valuemax="100"><h6>PR: {{$porcentajeproyectado}}% (${{number_format($proyectado,0)}}/${{number_format($usuario->meta,0)}})</h6></div>
+		</div>
+	</div>
+	@endif
 </div>
 <div class="table-responsive">
 	<table class="table table-bordered">
@@ -123,6 +138,8 @@
 		}
 
 	}
+
+
 
 
 </script>

@@ -6,25 +6,62 @@ use Illuminate\Http\Request;
 use App\Prospecto;
 use App\Etapa;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use DB;
 
 class DashboardController extends Controller
 {
     //
     function index(){
+        
+        $etapas = Etapa::withCount('prospectos')->get(); //on esto ya saco la cantidad de propsectos por etapa
+        $etapas = $etapas->sortBy('orden');
+
         if(auth::user()->vendedor == 1){
             $prospectos = Prospecto::where('estatus','like','prospecto')->where('userid',auth::user()->id)->get();
+        
+
+            $now = Carbon::now();
+            $ano = $now->year;
+            $mes = $now->month;
+
+            $ventasmes = DB::table('ventas')
+                ->select('ventas.fecha','ventas.monto','prospectos.userid')
+                ->join('prospectos', 'ventas._prospectoid', '=', 'prospectos.id')
+                ->where('prospectos.userid',auth::user()->id)
+                ->whereYear('ventas.fecha', $ano)
+                ->whereMonth('ventas.fecha', $mes)
+                ->sum('ventas.monto');
+
+            $usuario = auth::user();
+
+            $avancemeta = ($ventasmes/$usuario->meta)*100;
+
+            $diasmes =Carbon::now()->daysInMonth;
+            $numdia =Carbon::now()->day;
+
+            //dd($numdia);
+
+            $proyectado = ($ventasmes*$diasmes/$numdia);
+            $porcentajeproyectado = ($proyectado/$usuario->meta)*100;
+
+            if($porcentajeproyectado>90){
+                $color='success';
+            }elseif($porcentajeproyectado>60){
+                $color = 'warning';
+            }else{
+                $color= 'danger';
+            }
+
+        	
+        	//$prospectos = Prospecto::where('estatus','like','prospecto')->get();
+        	
+        	
+        	return view('pages.dashboard', compact('etapas','prospectos','usuario','ventasmes','avancemeta','proyectado','porcentajeproyectado','color'));
+
         }else{
             $prospectos = Prospecto::where('estatus','like','prospecto')->get();
+            return view('pages.dashboard', compact('etapas','prospectos'));
         }
-
-
-    	//$etapas = Etapa::all();
-    	$etapas = Etapa::withCount('prospectos')->get(); //on esto ya saco la cantidad de propsectos por etapa
-
-    	$etapas = $etapas->sortBy('orden');
-    	//$prospectos = Prospecto::where('estatus','like','prospecto')->get();
-    	
-    	
-    	return view('pages.dashboard', compact('etapas','prospectos'));
     }
 }
