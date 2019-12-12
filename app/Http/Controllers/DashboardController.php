@@ -13,7 +13,7 @@ class DashboardController extends Controller
 {
     //
     function index(){
-        
+
         $etapas = Etapa::withCount('prospectos')->get(); //on esto ya saco la cantidad de propsectos por etapa
         $etapas = $etapas->sortBy('orden');
 
@@ -35,15 +35,15 @@ class DashboardController extends Controller
 
             $usuario = auth::user();
 
-            $avancemeta = ($ventasmes/$usuario->meta)*100;
+            $avancemeta = round(($ventasmes/$usuario->meta)*100);
 
             $diasmes =Carbon::now()->daysInMonth;
             $numdia =Carbon::now()->day;
 
             //dd($numdia);
 
-            $proyectado = ($ventasmes*$diasmes/$numdia);
-            $porcentajeproyectado = ($proyectado/$usuario->meta)*100;
+            $proyectado = round(($ventasmes*$diasmes/$numdia));
+            $porcentajeproyectado = round(($proyectado/$usuario->meta)*100);
 
             if($porcentajeproyectado>90){
                 $color='success';
