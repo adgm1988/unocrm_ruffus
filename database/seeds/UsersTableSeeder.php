@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
             'email'=>'vendedor@uno.uno',
             'password'=>bcrypt('12341234'),
             'vendedor'=>true,
-            'meta'=>0,
+            'meta'=>1,
         ]);
 
         //Si quisiera crear 5 usuarios aparte de Juan
