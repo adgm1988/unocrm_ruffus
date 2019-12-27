@@ -9,8 +9,10 @@ use App\Prospecto;
 $factory->define(Prospecto::class, function (Faker $faker) {
 
     return [
-		'empresa'=> $faker->company,
 		'contacto'=> $faker->name,
+		'instagram'=> '@'.$faker->userName,
+		'dogname'=> $faker->name,
+		'dogsize'=> $faker->randomElement($array = array ('XS','S','M','L','XL')),
 		'telefono'=> $faker->phoneNumber,
 		'correo'=> $faker->email,
 		'procedencia'=> $faker->numberBetween(1,7),

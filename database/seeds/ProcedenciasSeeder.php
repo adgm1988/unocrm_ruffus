@@ -13,7 +13,7 @@ class ProcedenciasSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $procedencias = ['Personal','Recomendado','Llamada en frío','Google Ads','Facebook','Instagram','Eventos'];
+        $procedencias = ['Facebook','Instagram','Llamada en frío','Whatsapp','Correo'];
         foreach ($procedencias as $key => $procedencia){
         	Procedencia::create([
         	'procedencia'=>$procedencia,

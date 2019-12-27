@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('consultor')->default(0);
             $table->boolean('director')->default(0);
             $table->boolean('vendedor')->default(0);
+            $table->integer('meta')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

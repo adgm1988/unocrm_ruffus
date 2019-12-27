@@ -150,6 +150,7 @@
 				<th>Duración</th>
 				<th>Descripción</th>
 				<th>Resultado</th>
+				<th>Responsable</th>
 			</tr>
 		</thead>
 		@foreach($actividades as $actividad)
@@ -167,6 +168,7 @@
 			<td nowrap>{{ $actividad->duracion }}</td>		
 			<td>{{ $actividad->descripcion }}</td>		
 			<td>{{ $actividad->resultado }}</td>
+			<td>{{ $actividad->prospecto->user->name}}</td>
 		</tr>
 		@endforeach
 	</table>

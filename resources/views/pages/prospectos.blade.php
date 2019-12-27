@@ -39,14 +39,33 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label for="empresa">Empresa:</label>
-                            <input type="text" class="form-control" name="empresa">
+                            <label for="contacto">Contacto:</label>
+                            <input type="text" class="form-control" name="contacto">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label for="contacto">Contacto:</label>
-                            <input type="text" class="form-control" name="contacto">
+                            <label for="instagram">Instagram:</label>
+                            <input type="text" class="form-control" name="instagram">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="dogname">Nombre mascota:</label>
+                            <input type="text" class="form-control" name="dogname">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="dogsize">Tamaño de perro:</label>
+                            <select name="dogsize" id="dogsize" class="form-control">
+                                <option value="na">-</option>
+                                <option value="xs">XS</option>
+                                <option value="s">S</option>
+                                <option value="m">M</option>
+                                <option value="l">L</option>
+                                <option value="xl">XL</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -69,7 +88,7 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="procedencia">Industria:</label>
+                            <label for="procedencia">Servicio:</label>
                             <select class="custom-select" name="industria">
                                 @foreach($industrias as $industria)
                                 <option value='{{ $industria->id }}'>{{ $industria->industria }}</option>
@@ -112,14 +131,16 @@
 
             <div class="col">
               <select class="form-control form-control-sm" name="campo" id="campo">
-                  <option value="empresa">Empresa</option>
                   <option value="contacto">Contacto</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="dogname">Nombre mascota</option>
+                  <option value="dogsize">Tamaño mascota</option>
                   <option value="telefono">Telefono</option>
                   <option value="correo">Correo</option>
                   <option value="valor">Valor</option>
                   <option value="etapa">Etapa</option>
                   <option value="procedencia">Procedencia</option>
-                  <option value="industria">Industria</option>
+                  <option value="industria">Servicio</option>
                   <option value="usuario">Usuario</option>
               </select>
           </div>
@@ -163,9 +184,10 @@
 		<thead>
 			<tr>
 				<th></th>
-				<th>Empresa</th>
-                <th>Etapa</th>
                 <th>Contacto</th>
+                <th>Instagram</th>
+				<th>Mascota</th>
+                <th>Etapa</th>
                 <th>Teléfono</th>
                 <th>Correo</th>
                 <th>Procedencia</th>
@@ -188,9 +210,10 @@
                         <a onclick="return confirm('¿Estas seguro de querer eliminar este prospecto?')" href="/prospectos/delete/{{ $prospecto->id }}"><i class="far fa-trash-alt"></i></a>
                     @endif
                 </td>
-                <td nowrap><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }} </td>	     
+                <td nowrap><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->contacto }} </td>	     
+                <td nowrap>{{ $prospecto->instagram }}</td>		
+                <td nowrap>{{ $prospecto->dogname }}({{$prospecto->dogsize}})</td>     
                 <td> <div style="border-radius: 10px; font-weight:bold; text-align:center; width:100px; height:25px; border:1px solid black; background-color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }} </div></td>
-                <td nowrap>{{ $prospecto->contacto }}</td>		
                 <td>{{ $prospecto->telefono }}</td>		
                 <td>{{ $prospecto->correo }}</td>		
                 <td>{{ $prospecto->procedencias->procedencia }}</td>		

@@ -160,7 +160,6 @@ class ProspectoController extends Controller
     {
 
     	$validatedData = $request->validate([
-	        'empresa' => 'required',
 	        'contacto' => 'required',
 	        'telefono' => 'required',
 	        'correo' => 'required',
@@ -176,8 +175,12 @@ class ProspectoController extends Controller
     	//aqui hay error porque no paso la info vlaidada
 
     	$prospecto = new Prospecto;
-    	$prospecto->empresa = $request->get('empresa');
+    	
     	$prospecto->contacto = $request->get('contacto');
+        $prospecto->instagram = $request->get('instagram');
+        $prospecto->dogname = $request->get('dogname');
+        $prospecto->dogsize = $request->get('dogsize');
+        $prospecto->instagram = $request->get('instagram');
     	$prospecto->telefono = $request->get('telefono');
     	$prospecto->correo = $request->get('correo');
     	$prospecto->procedencia = $request->get('procedencia');
