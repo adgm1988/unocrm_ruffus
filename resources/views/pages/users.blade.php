@@ -172,7 +172,7 @@
 				<a href="#"><i class="far fa-eye"></i></a>&nbsp;
 				<a href="#" data-toggle="modal" onclick="llenar_modal({{ $user->id }},'{{ $user->name }}','{{ $user->email }}','{{ $user->meta }}','{{ $user->password }}','{{ $user->consultor }}','{{ $user->director }}','{{ $user->vendedor }}');" data-target="#myModaledit" id="open"><i class="far fa-edit"></i></a>&nbsp;
 
-				<a href="/users/delete/{{ $user->id }}"><i class="far fa-trash-alt"></i></a>
+				<!--<a href="/users/delete/{{ $user->id }}"><i class="far fa-trash-alt"></i></a>-->
 			</td>
 			<td>{{ $user->id }}</td>		
 			<td>{{ $user->name }}</td>		

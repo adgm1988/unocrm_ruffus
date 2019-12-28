@@ -25,14 +25,16 @@
 
             <div class="col">
               <select class="form-control form-control-sm" name="campo" id="campo">
-                  <option value="empresa">Empresa</option>
                   <option value="contacto">Contacto</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="dogname">Nombre mascota</option>
+                  <option value="dogsize">Tamaño mascota</option>
                   <option value="telefono">Telefono</option>
                   <option value="correo">Correo</option>
                   <option value="valor">Valor</option>
                   <option value="etapa">Etapa</option>
                   <option value="procedencia">Procedencia</option>
-                  <option value="industria">Industria</option>
+                  <option value="industria">Servicio</option>
                   <option value="usuario">Usuario</option>
               </select>
           </div>
@@ -76,16 +78,17 @@
     <thead>
       <tr>
         <th></th>
-        <th>Empresa</th>
-                <th>Etapa</th>
-                <th>Contacto</th>
-                <th>Teléfono</th>
-                <th>Correo</th>
-                <th>Procedencia</th>
-                <th>Industria</th>
-                <th>Valor</th>                
-                <th>Responsable</th>        
-            </tr>
+        <th>Contacto</th>
+        <th>Instagram</th>
+        <th>Mascota</th>
+        <th>Etapa</th>
+        <th>Teléfono</th>
+        <th>Correo</th>
+        <th>Procedencia</th>
+        <th>Industria</th>
+        <th>Valor</th>                
+        <th>Responsable</th>          
+      </tr>
         </thead>
         @foreach($prospectos as $prospecto)
         <tr style="border-left:10px solid {{ $prospecto->indicador }};">    
@@ -96,15 +99,16 @@
               <a onclick="return confirm('¿Estas seguro de querer eliminar este prospecto?')" href="/prospectos/delete/{{ $prospecto->id }}"><i class="far fa-trash-alt"></i></a>
             @endif
         </td>
-        <td nowrap><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->empresa }} </td>      
-        <td> <div style="border-radius: 10px; font-weight:bold; text-align:center; width:100px; height:25px; border:1px solid black; background-color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }} </div></td>     
-        <td nowrap>{{ $prospecto->contacto }}</td>    
-        <td>{{ $prospecto->telefono }}</td>   
-        <td>{{ $prospecto->correo }}</td>   
-        <td>{{ $prospecto->procedencias->procedencia }}</td>    
-        <td>{{ $prospecto->industrias->industria }}</td>    
-        <td>${{ number_format($prospecto->valor,2,".",",") }}</td>    
-        <td>{{ $prospecto->user->name }}</td> 
+        <td nowrap><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->contacto }} </td>       
+                <td nowrap>{{ $prospecto->instagram }}</td>   
+                <td nowrap>{{ $prospecto->dogname }}({{$prospecto->dogsize}})</td>     
+                <td> <div style="border-radius: 10px; font-weight:bold; text-align:center; width:100px; height:25px; border:1px solid black; background-color: {{ $prospecto->etapas->color }}">{{ $prospecto->etapas->etapa }} </div></td>
+                <td>{{ $prospecto->telefono }}</td>   
+                <td>{{ $prospecto->correo }}</td>   
+                <td>{{ $prospecto->procedencias->procedencia }}</td>    
+                <td>{{ $prospecto->industrias->industria }}</td>    
+                <td>${{ number_format($prospecto->valor,2,".",",") }}</td>    
+                <td>{{ $prospecto->user->name }}</td>
     </tr>
     @endforeach
 </table>

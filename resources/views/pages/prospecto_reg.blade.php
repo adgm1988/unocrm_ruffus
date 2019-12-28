@@ -238,6 +238,11 @@
 					<div class="col-md-4"><span class="font-weight-bold">Correo: </span>{{ $prospecto->correo }}</div>
 					<div class="col-md-4"><span class="font-weight-bold">Valor: </span>$ {{ number_format($prospecto->valor,2,".",",") }}</div>
 				</div>
+				<div class="row">
+					<div class="col-md-4"><span class="font-weight-bold">Instagram:</span> {{ $prospecto->instagram }}</div>
+					<div class="col-md-4"><span class="font-weight-bold">Nombre mascota: </span>{{ $prospecto->dogname }}</div>
+					<div class="col-md-4"><span class="font-weight-bold">Tamaño mascota: </span>{{ $prospecto->dogsize }}</div>
+				</div>
 			</p>
 		</div>
 	</div>
