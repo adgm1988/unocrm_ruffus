@@ -40,8 +40,8 @@ class CalendarController extends Controller
             $duracion =  str_replace(':','',$actividad->duracion);
             $horafinal = str_pad($hora+$duracion,4,0,STR_PAD_LEFT);
             $color = $actividad->color;
-            if($actividad->prospecto->empresa != null){
-                $textocalendario = $actividad->prospecto->empresa.'--'.$actividad->descripcion;
+            if($actividad->prospecto->contacto != null){
+                $textocalendario = $actividad->prospecto->contacto.'--'.$actividad->descripcion;
             }else{
                 $textocalendario = $actividad->descripcion;
             }
