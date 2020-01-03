@@ -104,6 +104,16 @@
 					</div>
 					<div class="row">
 						<div class="form-group col-md-12">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" name="realizada" id="realizada">
+							  	<label class="form-check-label" for="realizada">
+							    Realizada
+							  	</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
 							<label for="resultado">Resultado:</label>
 							<input type="text" class="form-control" name="resultado">
 						</div>
@@ -208,7 +218,7 @@
 <div class="card mb-3">
 	<h5 class="card-header"> 
 		<i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> 
-		{{ $prospecto->empresa }}
+		{{ $prospecto->contacto }}
 		@if($prospecto->estatus!='prospecto')
 			<span style="color:gray;">({{ ucfirst($prospecto->estatus) }})</span>
 		@endif 
@@ -223,7 +233,7 @@
 		<p class="card-text">
 			<div class="container">
 				<div class="row mb-3">
-					<div class="col-md-4"><span class="font-weight-bold">Contacto:</span> {{ $prospecto->contacto }} </div>
+					<div class="col-md-4"><span class="font-weight-bold">Servicio:</span> {{ $prospecto->industrias->industria }} </div>
 					<div class="col-md-4" ><span class="font-weight-bold">Etapa: </span>
 								
 							<button  type="button" class="ml-2 p-2 btn-sm" style="color:black; border-radius: 13px; font-weight:bold; text-align:center; height:30px; border:1px solid black; padding:3px 15px 3px 15px !important; background-color: {{ $prospecto->etapas->color }}"  data-toggle="modal" data-target="#modalestatus" id="open">
@@ -273,7 +283,9 @@
 						<th>Fecha</th>
 						<th>Hora</th>
 						<th>Descripción</th>
+						<th>Realizada</th>
 						<th>Resultado</th>
+						<th>Edición</th>
 					</tr>
 				</thead>
 				@foreach($prospecto->actividades as $actividad)
@@ -288,7 +300,15 @@
 					<td nowrap>{{ $actividad->fecha }}</td>		
 					<td>{{ $actividad->hora }}</td>			
 					<td>{{ $actividad->descripcion }}</td>		
+					<td>
+						@if($actividad->realizada)
+						&#10004
+						@else
+						&#x274C
+						@endif
+					</td>
 					<td>{{ $actividad->resultado }}</td>
+					<td>{{ $actividad->editadopor->name }} ({{$actividad->edited_at}})</td>
 				</tr>
 				@endforeach
 			</table>

@@ -15,6 +15,9 @@ $factory->define(Actividad::class, function (Faker $faker) {
         'hora'=> str_pad($faker->numberBetween(0,23),2,0,STR_PAD_LEFT).":00",
         'duracion'=> '00:30',
         'descripcion'=> $faker->sentence(6,true),
-        'resultado'=> $faker->sentence(9,true)
+        'resultado'=> $faker->sentence(9,true),
+        'realizada'=>$faker->boolean(),
+        'created_by'=> $faker->numberBetween(1,4),
+        'edited_by'=> $faker->numberBetween(1,4)
     ];
 });

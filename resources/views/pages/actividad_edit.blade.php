@@ -97,6 +97,16 @@
 	</div>
 	<div class="row">
 		<div class="form-group col-md-12">
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" {{ $actividad->realizada == 1 ? "checked" : "" }} name="realizada" id="realizada">
+			  	<label class="form-check-label" for="realizada">
+			    Realizada
+			  	</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-md-12">
 			<label for="resultado">Resultado:</label>
 			<input type="text" class="form-control" name="resultado" value="{{ $actividad->resultado }}">
 		</div>

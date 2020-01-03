@@ -53,6 +53,9 @@ class ActividadController extends Controller
         $actividad->duracion = $request->get('duracion');
     	$actividad->descripcion = $request->get('descripcion');
     	$actividad->resultado = $request->get('resultado');
+        $actividad->realizada = isset($request->realizada) ? 1 : 0;
+        $actividad->created_by = auth::user()->id;
+        $actividad->edited_by = auth::user()->id;
 
         /* //Mejor dejo la bitacora solamente para cambio de estatus.
         $bitacora = new Bitacora;
@@ -90,6 +93,9 @@ class ActividadController extends Controller
         $actividad->duracion = $request->get('duracion');
         $actividad->descripcion = $request->get('descripcion');
         $actividad->resultado = $request->get('resultado');
+        $actividad->realizada = isset($request->realizada) ? 1 : 0;
+        $actividad->created_by = auth::user()->id;
+        $actividad->edited_by = auth::user()->id;
 
 
         $actividad->save();
@@ -116,6 +122,9 @@ class ActividadController extends Controller
         $actividad->duracion = $request->get('duracion');
         $actividad->descripcion = $request->get('descripcion');
         $actividad->resultado = $request->get('resultado');
+        $actividad->realizada = isset($request->realizada) ? 1 : 0;
+        $actividad->created_by = auth::user()->id;
+        $actividad->edited_by = auth::user()->id;
 
         $actividad->save();
 
@@ -139,13 +148,13 @@ class ActividadController extends Controller
 
      function update(Request $request, $id, $origen){
 
-
         $validated= $request->validate([
             'actividad'=>'required',
             'fecha'=>'required',
             'hora'=>'required',
             'duracion'=>'required',
-            'descripcion'=>'required'
+            'descripcion'=>'required',
+
         ]);
 
         $actividad = Actividad::find($id);
@@ -155,6 +164,8 @@ class ActividadController extends Controller
         $actividad->duracion = $request->get('duracion');
         $actividad->descripcion = $request->get('descripcion');
         $actividad->resultado = $request->get('resultado');
+        $actividad->realizada = isset($request->realizada) ? 1 : 0;
+        $actividad->edited_by = auth::user()->id;
 
         $actividad->save();
 

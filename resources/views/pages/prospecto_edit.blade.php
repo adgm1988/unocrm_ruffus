@@ -20,12 +20,6 @@
 <form method="post" action="/prospectos/{{ $prospecto->id}}" id="form">
 	@csrf
 	<div class="row">
-		<div class="form-group col-md-12">
-			<label for="empresa">Empresa:</label>
-			<input type="text" class="form-control" name="empresa" {{$prospecto->nuevo}} value="{{ $prospecto->empresa }}">
-		</div>
-	</div>
-	<div class="row">
 		<div class="form-group col-md-6">
 			<label for="contacto">Contacto:</label>
 			<input type="text" class="form-control" name="contacto" value="{{ $prospecto->contacto }}">
@@ -65,7 +59,7 @@
 			</select>
 		</div>
 		<div class="form-group col-md-6">
-			<label for="procedencia">Industria:</label>
+			<label for="procedencia">Servicio:</label>
 			<select class="custom-select" name="industria">
 				@foreach($industrias as $industria)
 				<option {{ $industria->id === $prospecto->industria ? "selected" : "" }} value='{{ $industria->id }}'>{{ $industria->industria }}</option>

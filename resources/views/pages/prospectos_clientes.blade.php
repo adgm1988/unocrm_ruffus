@@ -85,7 +85,7 @@
           <th>Teléfono</th>
           <th>Correo</th>
           <th>Procedencia</th>
-          <th>Industria</th>
+          <th>Servicio</th>
           <th>Valor</th>                
           <th>Responsable</th>              
       </tr>

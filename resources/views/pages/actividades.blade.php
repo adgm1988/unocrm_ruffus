@@ -44,7 +44,7 @@
 							<label for="prospecto">Prospecto:</label>
 							<select class="custom-select" name="prospecto">
 								@foreach($prospectos as $prospecto)
-								<option value='{{ $prospecto->id }}'>{{ $prospecto->empresa }}</option>
+								<option value='{{ $prospecto->id }}'>{{ $prospecto->contacto }}</option>
 								@endforeach
 							</select>
 						</div>
@@ -121,6 +121,16 @@
 					</div>
 					<div class="row">
 						<div class="form-group col-md-12">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" name="realizada" id="realizada">
+							  	<label class="form-check-label" for="realizada">
+							    Realizada
+							  	</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
 							<label for="resultado">Resultado:</label>
 							<input type="text" class="form-control" name="resultado">
 						</div>
@@ -149,8 +159,11 @@
 				<th>Hora</th>
 				<th>Duración</th>
 				<th>Descripción</th>
+				<th>Realizada</th>
 				<th>Resultado</th>
 				<th>Responsable</th>
+				<th>Creado por</th>
+				<th>Editado por</th>
 			</tr>
 		</thead>
 		@foreach($actividades as $actividad)
@@ -161,14 +174,24 @@
 				<a onclick="return confirm('¿Estas seguro de querer eliminar esta actividad?')" href="actividades/delete/{{ $actividad->id }}"><i class="far fa-trash-alt"></i></a>
 				@endif
 			</td>
-			<td>{{ $actividad->prospecto->empresa ?? ''}}</td>		
+			<td>{{ $actividad->prospecto->contacto ?? ''}}</td>		
 			<td nowrap>{{ $actividad->tiposdeact->tipo }}</td>		
 			<td nowrap>{{ $actividad->fecha }}</td>		
 			<td nowrap>{{ $actividad->hora }}</td>		
 			<td nowrap>{{ $actividad->duracion }}</td>		
 			<td>{{ $actividad->descripcion }}</td>		
+			
+			<td>
+				@if($actividad->realizada)
+				&#10004
+				@else
+				&#x274C
+				@endif
+			</td>
 			<td>{{ $actividad->resultado }}</td>
 			<td>{{ $actividad->prospecto->user->name}}</td>
+			<td>{{ $actividad->creadopor->name}} ({{$actividad->created_at}})</td>
+			<td>{{ $actividad->editadopor->name}} ({{$actividad->updated_at}})</td>
 		</tr>
 		@endforeach
 	</table>

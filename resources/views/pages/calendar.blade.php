@@ -25,7 +25,7 @@
 							<label for="prospecto">Prospecto:</label>
 							<select class="custom-select" name="prospecto">
 								@foreach($prospectos as $prospecto)
-								<option value='{{ $prospecto->id }}'>{{ $prospecto->empresa }}</option>
+								<option value='{{ $prospecto->id }}'>{{ $prospecto->contacto }}</option>
 								@endforeach
 							</select>
 						</div>
@@ -98,6 +98,16 @@
 						<div class="form-group col-md-12">
 							<label for="descripcion">Descripcion:</label>
 							<input type="text" class="form-control" name="descripcion">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="realizada" id="realizada">
+							  	<label class="form-check-label" for="realizada">
+							    Realizada
+							  	</label>
+							</div>
 						</div>
 					</div>
 					<div class="row">

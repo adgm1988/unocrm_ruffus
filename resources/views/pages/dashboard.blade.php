@@ -82,11 +82,11 @@
 						<div class="tarjeta" style="width:98%; box-shadow: 2px 2px #888888; border: 1px solid gray; background-color:{{ $prospecto->indicador }}; border-bottom:5px solid {{ $etapa->color }} ; border-radius:4px; padding:5px; margin:auto; margin-bottom:5px; ">
 							<div>
 								<div style="padding-right:5px; overflow:hidden;">
-									<span class="empresa" style="font-size:12px; font-weight:bold; margin-left:5px; white-space:nowrap; "><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->dias }} {{ $prospecto->empresa }} </span> 
+									<span class="empresa" style="font-size:12px; font-weight:bold; margin-left:5px; white-space:nowrap; "><i style="font-size:10px; color:{{ $prospecto->semaforo }}" class="fas fa-circle"></i> {{ $prospecto->dias }} {{ $prospecto->contacto }} </span> 
 								</div>						
 								
 								<hr style="margin:6px;">
-								<span class="contacto" style="font-size:10px; font-weight:bold; float:left;">{{ $prospecto->contacto }}</span> 
+								<span class="contacto" style="font-size:10px; font-weight:bold; float:left;">{{ $prospecto->dogname }}</span> 
 								<span style="color:gray; font-size: 9px; float:right;">${{ $prospecto->valor }}</span>
 							</div>
 							<div style="clear:both"></div>
