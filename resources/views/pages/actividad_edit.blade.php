@@ -2,7 +2,7 @@
 @section('content')
 
 
-<h3 class='text-center'>{{ $actividad->prospecto->empresa }}</h3>
+<h3 class='text-center'>{{ $actividad->prospecto->contacto }}</h3>
 <!-- Trigger the modal with a button -->
 
 @if ($errors->any())
@@ -21,7 +21,7 @@
 		<div class="form-group col-md-12">
 			<label for="prospecto">Prospecto:</label>
 			<select class="custom-select" name="prospecto" disabled>
-				<option value='{{ $actividad->prospecto->id }}'>{{ $actividad->prospecto->empresa }}</option>
+				<option value='{{ $actividad->prospecto->id }}'>{{ $actividad->prospecto->contacto }}</option>
 			</select>
 		</div>
 	</div>
