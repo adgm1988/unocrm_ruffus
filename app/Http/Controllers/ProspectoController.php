@@ -24,8 +24,8 @@ class ProspectoController extends Controller
     //
 	function index(){
         if(auth::user()->vendedor == 1){
-            $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->paginate(500);
-            $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->count();
+            $prospectos = Prospecto::where('estatus','prospecto')->paginate(500);
+            $cant = Prospecto::where('estatus','prospecto')->count();
         }else{
             $prospectos = Prospecto::where('estatus','prospecto')->paginate(500);
             $cant = Prospecto::where('estatus','prospecto')->count();
@@ -95,28 +95,28 @@ class ProspectoController extends Controller
        if(auth::user()->vendedor == 1){
             switch ($condicion){
             case "contiene":  // if $var == "x"
-                $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->where($campo,'like','%'.$valor.'%')->paginate(30);
-                $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->where($campo,'like','%'.$valor.'%')->count();
+                $prospectos = Prospecto::where('estatus','prospecto')->where($campo,'like','%'.$valor.'%')->paginate(30);
+                $cant = Prospecto::where('estatus','prospecto')->where($campo,'like','%'.$valor.'%')->count();
                 $condicion_texto= "contiene";
                 break;
             case "mayor":  // if $var == "y"
-                $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->where($campo,'>',$valor)->paginate(30);
-                $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->where($campo,'>',$valor)->count();
+                $prospectos = Prospecto::where('estatus','prospecto')->where($campo,'>',$valor)->paginate(30);
+                $cant = Prospecto::where('estatus','prospecto')->where($campo,'>',$valor)->count();
                 $condicion_texto= "es mayor que";
                 break;
             case "menor":  // if $var == "y"
-                $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->where($campo,'<',$valor)->paginate(30);
-                $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->where($campo,'<',$valor)->xount();
+                $prospectos = Prospecto::where('estatus','prospecto')->where($campo,'<',$valor)->paginate(30);
+                $cant = Prospecto::where('estatus','prospecto')->where($campo,'<',$valor)->xount();
                 $condicion_texto= "es menor que";
                 break;
             case "especial":  // if $var == "y"
-                $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->whereIn($campo_tabla, $array_ids)->paginate(30);   
-                $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->whereIn($campo_tabla, $array_ids)->count();   
+                $prospectos = Prospecto::where('estatus','prospecto')->whereIn($campo_tabla, $array_ids)->paginate(30);   
+                $cant = Prospecto::where('estatus','prospecto')->whereIn($campo_tabla, $array_ids)->count();   
                 $condicion_texto= "contiene";
                 break;
             default:  // if $var != "x" && != "y"
-                $prospectos = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->paginate(30);
-                $cant = Prospecto::where('estatus','prospecto')->where('userid',auth::user()->id)->count();
+                $prospectos = Prospecto::where('estatus','prospecto')->paginate(30);
+                $cant = Prospecto::where('estatus','prospecto')->count();
                 break;
             }
         }else{

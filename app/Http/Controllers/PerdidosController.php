@@ -18,8 +18,8 @@ class PerdidosController extends Controller
 {
     function index(){
         if(auth::user()->vendedor == 1){
-            $prospectos = Prospecto::where('estatus','like','perdido')->where('userid',auth::user()->id)->paginate(500);
-            $cant = Prospecto::where('estatus','perdido')->where('userid',auth::user()->id)->count(); //si le quitas el like es "es igual", con el like puedes poner si contiene, empieza terminar etc.
+            $prospectos = Prospecto::where('estatus','like','perdido')->paginate(500);
+            $cant = Prospecto::where('estatus','perdido')->count(); //si le quitas el like es "es igual", con el like puedes poner si contiene, empieza terminar etc.
         }else{
             $prospectos = Prospecto::where('estatus','like','perdido')->paginate(500);
             $cant = Prospecto::where('estatus','perdido')->count(); //si le quitas el like es "es igual", con el like puedes poner si contiene, empieza terminar etc.
@@ -39,19 +39,19 @@ class PerdidosController extends Controller
         if(auth::user()->vendedor == 1){
             switch ($condicion){
             case "contiene":  // if $var == "x"
-                $prospectos = Prospecto::where('estatus','like','perdido')->where('userid',auth::user()->id)->where($campo,'like','%'.$valor.'%')->paginate(30);
+                $prospectos = Prospecto::where('estatus','like','perdido')->where($campo,'like','%'.$valor.'%')->paginate(30);
                 $condicion_texto= "contiene";
                 break;
             case "mayor":  // if $var == "y"
-                $prospectos = Prospecto::where('estatus','like','perdido')->where('userid',auth::user()->id)->where($campo,'>',$valor)->paginate(30);
+                $prospectos = Prospecto::where('estatus','like','perdido')->where($campo,'>',$valor)->paginate(30);
                 $condicion_texto= "es mayor que";
                 break;
             case "menor":  // if $var == "y"
-                $prospectos = Prospecto::where('estatus','like','perdido')->where('userid',auth::user()->id)->where($campo,'<',$valor)->paginate(30);
+                $prospectos = Prospecto::where('estatus','like','perdido')->where($campo,'<',$valor)->paginate(30);
                 $condicion_texto= "es menor que";
                 break;
             case "especial":  // if $var == "y"
-                $prospectos = Prospecto::where('estatus','like','perdido')->where('userid',auth::user()->id)->whereIn($campo_tabla, $array_ids)->paginate(30);   
+                $prospectos = Prospecto::where('estatus','like','perdido')->whereIn($campo_tabla, $array_ids)->paginate(30);   
                 $condicion_texto= "contiene";
                 break;
             default:  // if $var != "x" && != "y"

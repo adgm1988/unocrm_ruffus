@@ -64,7 +64,7 @@
 							<label for="fecha">Fecha:</label>
 							<input type="date" class="form-control" name="fecha" value="{{ date('Y-m-d') }}">
 						</div>
-						<div class="form-group col-md-3">
+						<div class="form-group col-md-6">
 							<label for="hora">Hora:</label>
 							<select class="custom-select" name="hora">
 								<option value='00:00'>00:00 am</option>
@@ -94,10 +94,11 @@
 
 							</select>
 						</div>
+						<!--
 						<div class="form-group col-md-3">
 							<label for="duracion">Duracion:</label>
 							<select class="custom-select" name="duracion">
-								<option selected value='00:30'>00:30</option>
+								<option selected value='00:20'>00:20</option>
 								<option value='00:45'>00:45</option>
 								<option value='01:00'>01:00</option>
 								<option value='01:30'>01:30</option>
@@ -112,6 +113,7 @@
 								<option value='08:00'>08:00</option>
 							</select>
 						</div>
+					-->
 					</div>
 					<div class="row">
 						<div class="form-group col-md-12">
@@ -174,7 +176,7 @@
 				<a onclick="return confirm('¿Estas seguro de querer eliminar esta actividad?')" href="actividades/delete/{{ $actividad->id }}"><i class="far fa-trash-alt"></i></a>
 				@endif
 			</td>
-			<td>{{ $actividad->prospecto->contacto ?? ''}}</td>		
+			<td><a href="prospectos/{{$actividad->prospecto->id}}">{{ $actividad->prospecto->contacto ?? ''}}</a></td>		
 			<td nowrap>{{ $actividad->tiposdeact->tipo }}</td>		
 			<td nowrap>{{ $actividad->fecha }}</td>		
 			<td nowrap>{{ $actividad->hora }}</td>		

@@ -47,7 +47,7 @@
 							<label for="fecha">Fecha:</label>
 							<input type="date" class="form-control" name="fecha" value="{{ date('Y-m-d') }}">
 						</div>
-						<div class="form-group col-md-3">
+						<div class="form-group col-md-6">
 							<label for="hora">Hora:</label>
 							<select class="custom-select" name="hora">
 								<option value='00:00'>00:00 am</option>
@@ -77,10 +77,11 @@
 
 							</select>
 						</div>
+						<!--
 						<div class="form-group col-md-3">
 							<label for="duracion">Duracion:</label>
 							<select class="custom-select" name="duracion">
-								<option selected value='00:30'>00:30</option>
+								<option selected value='00:20'>00:20</option>
 								<option value='00:45'>00:45</option>
 								<option value='01:00'>01:00</option>
 								<option value='01:30'>01:30</option>
@@ -95,6 +96,7 @@
 								<option value='08:00'>08:00</option>
 							</select>
 						</div>
+						-->
 					</div>
 					<div class="row">
 						<div class="form-group col-md-12">
@@ -285,6 +287,7 @@
 						<th>Descripción</th>
 						<th>Realizada</th>
 						<th>Resultado</th>
+						<th>Creación</th>
 						<th>Edición</th>
 					</tr>
 				</thead>
@@ -308,6 +311,7 @@
 						@endif
 					</td>
 					<td>{{ $actividad->resultado }}</td>
+					<td>{{ $actividad->creadopor->name}} ({{$actividad->created_at}})</td>
 					<td>{{ $actividad->editadopor->name }} ({{$actividad->edited_at}})</td>
 				</tr>
 				@endforeach

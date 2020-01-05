@@ -35,13 +35,12 @@ class ActividadController extends Controller
     }
 
     function store(Request $request){
-
+        dd($request);
     	$validated= $request->validate([
     		'prospecto'=>'required',
     		'actividad'=>'required',
     		'fecha'=>'required',
     		'hora'=>'required',
-            'duracion'=>'required',
     		'descripcion'=>'required',
     	]);
 
@@ -50,7 +49,7 @@ class ActividadController extends Controller
     	$actividad->_tipoactid = $request->get('actividad');
     	$actividad->fecha = $request->get('fecha');
     	$actividad->hora = $request->get('hora');
-        $actividad->duracion = $request->get('duracion');
+        $actividad->duracion = "00:20";
     	$actividad->descripcion = $request->get('descripcion');
     	$actividad->resultado = $request->get('resultado');
         $actividad->realizada = isset($request->realizada) ? 1 : 0;
@@ -81,7 +80,6 @@ class ActividadController extends Controller
             'actividad'=>'required',
             'fecha'=>'required',
             'hora'=>'required',
-            'duracion'=>'required',
             'descripcion'=>'required',
         ]);
 
@@ -90,7 +88,7 @@ class ActividadController extends Controller
         $actividad->_tipoactid = $request->get('actividad');
         $actividad->fecha = $request->get('fecha');
         $actividad->hora = $request->get('hora');
-        $actividad->duracion = $request->get('duracion');
+        $actividad->duracion = "00:20";
         $actividad->descripcion = $request->get('descripcion');
         $actividad->resultado = $request->get('resultado');
         $actividad->realizada = isset($request->realizada) ? 1 : 0;
@@ -110,7 +108,6 @@ class ActividadController extends Controller
             'actividad'=>'required',
             'fecha'=>'required',
             'hora'=>'required',
-            'duracion'=>'required',
             'descripcion'=>'required'
         ]);
 
@@ -119,7 +116,7 @@ class ActividadController extends Controller
         $actividad->_tipoactid = $request->get('actividad');
         $actividad->fecha = $request->get('fecha');
         $actividad->hora = $request->get('hora');
-        $actividad->duracion = $request->get('duracion');
+        $actividad->duracion = "00:20";
         $actividad->descripcion = $request->get('descripcion');
         $actividad->resultado = $request->get('resultado');
         $actividad->realizada = isset($request->realizada) ? 1 : 0;
@@ -161,7 +158,7 @@ class ActividadController extends Controller
         $actividad->_tipoactid = $request->get('actividad');
         $actividad->fecha = $request->get('fecha');
         $actividad->hora = $request->get('hora');
-        $actividad->duracion = $request->get('duracion');
+        $actividad->duracion = "00:20";
         $actividad->descripcion = $request->get('descripcion');
         $actividad->resultado = $request->get('resultado');
         $actividad->realizada = isset($request->realizada) ? 1 : 0;
