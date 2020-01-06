@@ -25,7 +25,7 @@ class CalendarController extends Controller
     	if(auth::user()->vendedor == 1){
            // $actividades = Actividad::orderBy('fecha', 'DESC')->get();
             $actividades = Actividad::with('Prospecto')->whereHas('Prospecto', function($q){
-                $q->where('userid', auth::user()->id);
+                $q->where('userid','>',0); //esto es porque le quite que solo vieran los suyos y para no cambiar todo el query
             })->get();
             //dd($actividades);
 

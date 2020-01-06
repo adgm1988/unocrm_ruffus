@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $etapas = $etapas->sortBy('orden');
 
         if(auth::user()->vendedor == 1){
-            $prospectos = Prospecto::where('estatus','like','prospecto')->where('userid',auth::user()->id)->get();
+            $prospectos = Prospecto::where('estatus','like','prospecto')->where('userid','>',0)->get(); //puse esta condicion de id para no cambiar todo el query porque antes si userid era igual a authuserid pero ahora todos deben ver todos.
         
 
             $now = Carbon::now();
