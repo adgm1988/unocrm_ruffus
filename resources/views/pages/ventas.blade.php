@@ -44,7 +44,7 @@
 							<label for="prospecto">Prospecto:</label>
 							<select class="custom-select" name="prospecto">
 								@foreach($prospectos as $prospecto)
-								<option value='{{ $prospecto->id }}'>{{ $prospecto->empresa }}</option>
+								<option value='{{ $prospecto->id }}'>{{ $prospecto->contacto }}</option>
 								@endforeach
 							</select>
 						</div>
