@@ -350,9 +350,9 @@
 				<thead>
 					<tr>
 						<th>
-							@if($prospecto->estatus=='cliente')
+							<!--@if($prospecto->estatus=='cliente')-->
 								<button type="button" class="btn btn-info p-1 btn-sm" data-toggle="modal" data-target="#modalventa" id="open">Agregar</button>
-							@endif
+							<!--@endif-->
 						</th>
 						<th>Fecha</th>
 						<th>Monto</th>

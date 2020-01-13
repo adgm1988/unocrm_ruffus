@@ -46,35 +46,15 @@ class VentasController extends Controller
     	$venta->detalle = $request->get('detalle');
 
         $venta->save();
+
+        $prospecto = Prospecto::find($id);
+        $prospecto->estatus='cliente';
+        $prospecto->save();
+
     	return redirect('ventas');
 
     }
-    function storecal(Request $request){
-
-        $validated= $request->validate([
-            'prospecto'=>'required',
-            'actividad'=>'required',
-            'fecha'=>'required',
-            'hora'=>'required',
-            'duracion'=>'required',
-            'descripcion'=>'required',
-        ]);
-
-        $actividad = new Actividad;
-        $actividad->_prospectoid = $request->get('prospecto');
-        $actividad->_tipoactid = $request->get('actividad');
-        $actividad->fecha = $request->get('fecha');
-        $actividad->hora = $request->get('hora');
-        $actividad->duracion = $request->get('duracion');
-        $actividad->descripcion = $request->get('descripcion');
-        $actividad->resultado = $request->get('resultado');
-
-
-        $actividad->save();
-
-        return back();
-
-    }
+    
 
      function storeprosp($id, Request $request){
 
@@ -90,6 +70,10 @@ class VentasController extends Controller
         $venta->detalle = $request->get('detalle');
 
         $venta->save();
+
+        $prospecto = Prospecto::find($id);
+        $prospecto->estatus='cliente';
+        $prospecto->save();
 
         return back();
 
