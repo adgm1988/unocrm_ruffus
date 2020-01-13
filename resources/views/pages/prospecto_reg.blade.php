@@ -350,9 +350,13 @@
 				<thead>
 					<tr>
 						<th>
-							<!--@if($prospecto->estatus=='cliente')-->
+							<!-- FILTRO PARA QUE SOLO AGREGARAN SI YA ERA CLIENTE
+							@if($prospecto->estatus=='cliente')
 								<button type="button" class="btn btn-info p-1 btn-sm" data-toggle="modal" data-target="#modalventa" id="open">Agregar</button>
-							<!--@endif-->
+							@endif
+							-->
+							<!--ESTE QUE SIGUE ES SIN FILTRO-->
+							<button type="button" class="btn btn-info p-1 btn-sm" data-toggle="modal" data-target="#modalventa" id="open">Agregar</button>
 						</th>
 						<th>Fecha</th>
 						<th>Monto</th>
