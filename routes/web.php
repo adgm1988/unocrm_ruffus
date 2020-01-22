@@ -14,7 +14,7 @@
 
 
 Route::get('time',function(){
-	return view('pages/time');
+	return view('pages/demo');
 });
 
 
