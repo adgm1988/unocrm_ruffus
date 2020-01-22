@@ -13,8 +13,8 @@
 
 
 
-Route::get('/demo',function(){
-	return view('pages/demo');
+Route::get('time',function(){
+	return view('pages/time');
 });
 
 
