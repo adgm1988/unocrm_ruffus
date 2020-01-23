@@ -11,7 +11,7 @@
 |
 */
 
-date_default_timezone_set('America/Monterrey');
+
 
 Route::get('time',function(){
 	return view('pages/demo');
