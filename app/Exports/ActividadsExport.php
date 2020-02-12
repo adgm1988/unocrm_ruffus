@@ -53,9 +53,9 @@ class ActividadsExport implements FromCollection, WithHeadings, WithMapping
             $actividad->duracion,
             $actividad->descripcion,
             $actividad->resultado,
-            $actividad->creado_por,
+            $actividad->creadopor,
             $actividad->created_at,
-            $actividad->editado_por,
+            $actividad->editadopor,
             $actividad->updated_at,
         ];
     }
