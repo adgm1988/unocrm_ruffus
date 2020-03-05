@@ -47,7 +47,9 @@ class VentasController extends Controller
 
         $venta->save();
 
-        $prospecto = new Prospecto;
+
+        $id = $request->get('prospecto');
+        $prospecto = Prospecto::find($id);
         $prospecto->estatus='cliente';
         $prospecto->save();
 
